@@ -1,0 +1,130 @@
+a:link,
+a:visited {
+    background-color: azure;
+    color: Blue;
+    padding: 5 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover,
+a:active {
+    background-color: lightblue;
+}
+
+nav {
+    width: 100%;
+    color: grey;
+    background: blue;
+    font-weight: bold;
+    letter-spacing: 0.025em;
+}
+
+nav ul {
+    text-align: left;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 0 5em;
+    line-height: 2.9em;
+}
+
+nav ul li:hover {
+    background: #00939C;
+}
+
+.filler {
+    width: 1px;
+    height: 10%;
+}
+.filler-small{
+    height: 5%;
+    width: 1px;
+}
+.left-filler {
+    float: left;
+    width: 3%;
+    height: 1px;
+}
+
+.two {
+    height: 10%;
+}
+
+.three {
+    height: 60%;
+}
+
+.right_box {
+    width: 15%;
+    height: auto;
+    outline: none;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    border-radius: 2px;
+    color: #333;
+    font-size: 01.1rem;
+    transition: all 0.1s linear;
+    background-color: aliceblue;
+    float: right;
+    text-align: left;
+}
+
+.right_floater {
+    float: right;
+}
+
+.left_floater {
+    float: left;
+}
+
+.dropper {
+    position: relative;
+    display: inline-block;
+}
+
+.dropper-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    padding: 12px 16px;
+}
+
+.dropper:hover .dropper-content {
+    display: block;
+}
+
+.body {
+    width: 80%;
+    text-align: center;
+    outline: none;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    border-radius: 2px;
+    color: #333;
+    font-size: 01.1rem;
+    transition: all 0.1s linear;
+    background-color: aliceblue;
+}
+
+.footer {
+    text-align: center;
+    outline: none;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    border-radius: 2px;
+    color: #333;
+    font-size: 0.8rem;
+    transition: all 0.1s linear;
+    background-color: aliceblue;
+}
+
+
+
+text-align-cent {
+    text-align: center;
+}
