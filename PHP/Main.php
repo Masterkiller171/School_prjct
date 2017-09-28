@@ -3,47 +3,57 @@
 
 <head>
     <title>InnoForm</title>
+    <?php include 'Functions.php';?>
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
     <link rel="stylesheet" type="text/css" href="P<?php $url?>/Reg.css">
-    <?php include 'Functions.php';?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
     <div class="right_floater">
-        <h4><a href="<?php $url?> Reg.php" style="">Register</a></h4>
+        <h4><a href="<?php $url?> /PHP/Reg.php" style="
+    color: Blue;
+    padding: 5 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: lightblue;
+">
+                Register</a></h4>
     </div>
     <div class="filler"></div>
 
-    <nav id="navbar">
-        <ul>
-            <div class="dropper">
-                <span><li><a href="Main.php" style="color: aliceblue;"></a></li></span>
-            </div>
-            <div class="dropper">
-                <span><li>Posts</li></span>
-                <div class="dropper-content">
-                    <li>Hot.Posts</li>
-                    <li>New.Posts</li>
-                    <li>pupolar.Posts</li>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>Support</li></span>
-                <div class="dropper-content">
-                    <li><a href="Rules.php">Rules</a></li>
-                    <li><a href="Contact.php">Contact</a></li>
-                </div>
-            </div>
-        </ul>
-    </nav>
+    <nav>
+   <ul>
+       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       </li>
+     <li class="sub-menu-parent">
+       <a> Posts</a>
+       <ul class="sub-menu">
+         <li><a href="#">New Posts</a></li>
+         <li><a href="#">Hot Posts</a></li>
+         <li><a href="#">Trending</a></li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a>Create post</a>
+       <ul class="sub-menu">
+         <li>
+             <a href="<?php $url ?> /PHP/Post-input.php">Create post</a>
+         </li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a href="#">Projects</a>
+       <ul class="sub-menu">
+         <li><a href="#">Sub Item 1</a></li>
+       </ul></li>
+        <li class="sub-menu-parent"><a>Support</a>
+       <ul class="sub-menu">
+         <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
+         <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+       </ul></li>
+   </ul>
+ </nav>
     <div class="filler two"></div>
     <div class="left-filler"></div>
         <div class="right_box">
@@ -61,7 +71,7 @@
                 <a href="">Projects</a>
             </li>
             <li>
-                <a href="#">Populair posts</a>
+                <a href="#">Popular posts</a>
             </li>
 
         </th>
@@ -69,7 +79,13 @@
     <div class="body">
         <strong><h1>Title</h1></strong>
 
-        <h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</h5>
+        <h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+            Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+            In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. 
+            <br>
+            Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
+            Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. 
+            Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</h5>
     </div>
 
 

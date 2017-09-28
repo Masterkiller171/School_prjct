@@ -3,7 +3,6 @@
 //Setting url for every page
 $url = 'http://' . $_SERVER['HTTP_HOST'];
 
-
 $DBname = "school_website";
 $servername = "localhost:3306";
 $username = "root";

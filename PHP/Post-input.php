@@ -6,34 +6,37 @@
 </head>
 
 <body>
-    <nav id="navbar">
-        <ul>
-            <div class="dropper">
-                <span><li><a href ="<?php $url?>Main.php"><img src="<?php $url?>/Images/Home.png" alt="Home" style="height: 4%;"></a></li></span>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>Support</li></span>
-                <div class="dropper-content">
-                    <li><a href="#">Rules</a>
-                    </li>
-                    <li><a href="#">Contact</a>
-                    </li>
-                </div>
-            </div>
-        </ul>
-    </nav>
+    <nav>
+   <ul>
+       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       </li>
+     <li class="sub-menu-parent">
+         
+       <a> Posts</a>
+       <ul class="sub-menu">
+         <li><a href="#">New Posts</a></li>
+         <li><a href="#">Hot Posts</a></li>
+         <li><a href="#">Trending</a></li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a>Create post</a>
+       <ul class="sub-menu">
+         <li>
+             <a href="<?php $url ?> /PHP/Post-input.php">Create post</a>
+         </li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a href="#">Projects</a>
+       <ul class="sub-menu">
+         <li><a href="#">Sub Item 1</a></li>
+       </ul></li>
+        <li class="sub-menu-parent"><a>Support</a>
+       <ul class="sub-menu">
+         <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
+         <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+       </ul></li>
+   </ul>
+ </nav>
     <text-align-cent>
         <div class="post-box">
 
@@ -50,7 +53,7 @@
                 </div>
                 <p1>Title</p1>
                 <div class="u-form">
-                    <textarea name="textarea" placeholder="Tell something about yourself" style="margin-left: 126px; margin-top: 62px; width: 572px; height: 193px;"></textarea>
+                    <textarea name="textarea" placeholder="Explain your problem" style="margin-left: 126px; margin-top: 62px; width: 572px; height: 193px;"></textarea>
                 </div>
                 <button class="button buttonc" style="margin-top: 2px; margin-left: 129px; width: 568px;">Post...</button>
             </form>

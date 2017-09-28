@@ -11,51 +11,51 @@
         <h4><a href="#">Login/Register</a></h4>
     </div>
     <div class="filler"></div>
-    <nav id="navbar">
-        <ul>
-            <li> An Home Picture</li>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-        </ul>
-    </nav>
+    <nav>
+   <ul>
+       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       </li>
+     <li class="sub-menu-parent">
+         
+       <a> Posts</a>
+       <ul class="sub-menu">
+         <li><a href="#">New Posts</a></li>
+         <li><a href="#">Hot Posts</a></li>
+         <li><a href="#">Trending</a></li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a>Create post</a>
+       <ul class="sub-menu">
+         <li>
+             <a href="<?php $url ?> /PHP/Post-input.php">Create post</a>
+         </li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a href="#">Projects</a>
+       <ul class="sub-menu">
+         <li><a href="#">Sub Item 1</a></li>
+       </ul></li>
+        <li class="sub-menu-parent"><a href="#">Support</a>
+       <ul class="sub-menu">
+         <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+       </ul></li>
+   </ul>
+ </nav>
     <div class="filler two"></div>
     <div class="left-filler"></div>
     <div class="body">
         <strong><h1>Title</h1></strong>
         <ol>
             <li>lol</li>
+            <br/>
             <li>lol</li>
+            <br/>
             <li>lol</li>
+            <br/>
             <li>lol</li>
+            <br/>
             <li>lol</li>
+            <br/>
             <li>lol</li>
         </ol>
     </div>

@@ -1,39 +1,35 @@
-a:link,
-a:visited {
-    background-color: azure;
-    color: Blue;
-    padding: 5 1%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
-a:hover,
-a:active {
+body{
     background-color: lightblue;
 }
+.sub-menu-parent { position: relative; }
 
-nav {
-    width: 100%;
-    color: grey;
-    background: blue;
-    font-weight: bold;
-    letter-spacing: 0.025em;
+.sub-menu { 
+  visibility: hidden;
+  position: absolute;
+  width: 100%;
+  transform: translateY(-2em);
+  z-index: -1;
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
 }
 
-nav ul {
-    text-align: left;
-    margin: 0;
+.sub-menu-parent:hover .sub-menu {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0%);
+  transition-delay: 0s, 0s, 0.3s;
 }
 
-nav ul li {
-    display: inline-block;
-    padding: 0 5em;
-    line-height: 2.9em;
-}
 
-nav ul li:hover {
-    background: #00939C;
+nav a { color: #93b7bc; display: block; padding: 0.5em 1em; text-decoration: none;}
+nav a:hover { color: #F55; }
+nav ul,
+nav ul li { list-style-type: none; padding: 0; margin: 0; }
+nav > ul { background: #2050b2; }
+nav > ul > li { display: inline-block; }
+
+.sub-menu {
+  background: #2050b2;
 }
 
 .filler {
@@ -79,23 +75,6 @@ nav ul li:hover {
 
 .left_floater {
     float: left;
-}
-
-.dropper {
-    position: relative;
-    display: inline-block;
-}
-
-.dropper-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    padding: 12px 16px;
-}
-
-.dropper:hover .dropper-content {
-    display: block;
 }
 
 .body {

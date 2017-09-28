@@ -2,8 +2,8 @@
 
 <head>
     <title>Contact Page</title>
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.ccs">
     <?php include 'Functions.php';?>
+    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -12,37 +12,35 @@
         <h4><a href="#">Login/Register</a></h4>
     </div>
     <div class="filler"></div>
-    <nav id="navbar">
-        <ul>
-            <div class="dropper">
-                <span><li><a href ="<?php $url?> main.php"><img src="<?php $url?>/Images/Home.png" alt="Home" style= "height: 5%;"></a></li></span>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-        </ul>
-    </nav>
+    <nav>
+   <ul>
+       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       </li>
+     <li class="sub-menu-parent">
+       <a> Posts</a>
+       <ul class="sub-menu">
+         <li><a href="#">New Posts</a></li>
+         <li><a href="#">Hot Posts</a></li>
+         <li><a href="#">Trending</a></li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a>Create post</a>
+       <ul class="sub-menu">
+         <li>
+             <a href="<?php $url ?> /PHP/Post-input.php">Create post</a>
+         </li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a href="#">Projects</a>
+       <ul class="sub-menu">
+         <li><a href="#">Sub Item 1</a></li>
+       </ul></li>
+        <li class="sub-menu-parent"><a>Support</a>
+       <ul class="sub-menu">
+         <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
+       </ul></li>
+   </ul>
+ </nav>
     <div class="filler two"></div>
     <div class="left-filler"></div>
     <div class="body">

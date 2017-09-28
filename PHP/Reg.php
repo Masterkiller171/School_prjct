@@ -101,13 +101,26 @@ elseif ($gender == ($_POST['Male']))
         <div class="filler-small"></div>
         <form class="signup">
 <p3>What's your gender?</p3>
-    <input value="1" name="Female" class="subject-list" type="checkbox" required>Female 
-    <input value="2" name="Male" class="subject-list" type="checkbox" required>Male
+<input value="1" name="Female" class="subject-list" type="checkbox" id="fem" >Female 
+<input value="2" name="Male" class="subject-list" type="checkbox" id="mal"  >Male
  
     <script type="text/javascript">
-	    $('.subject-list').on('change', function() {
+	    $('.subject-list').on('change', 
+            function() {
 		    $('.subject-list').not(this).prop('checked', false);  
 		});
+                
+                 function CheckBox(){
+                 var fem = document.getElementById("fem").checked;
+                 var mal = document.getElementById("mal").checked;
+     
+                 if (mal || fem === !true){
+                     return document.getElementById("fem","mal").required;
+                            
+                 }
+                 
+             }
+             
     </script>
     <br/>
                             <div class="u-form">
@@ -141,7 +154,7 @@ elseif ($gender == ($_POST['Male']))
             <div class="u-form">
                 <textarea name="textarea" placeholder="Tell something about yourself" style="width:250px;height:150px;" name="Comment" required></textarea>
                 <div class="u-form">
-                    <input type="submit" value="register" name="register" class="button buttonc" required/>
+                    <button type="submit" value="register" name="register" class="button buttonc" onclick="CheckBox()" required> Submit</button>
                 </div>
             </div>
         </form>

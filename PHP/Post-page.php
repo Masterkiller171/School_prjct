@@ -13,42 +13,35 @@
     </div>
     <div class="filler"></div>
 
-    <nav id="navbar">
-        <ul>
-            <div class="dropper">
-                <span><li>Home</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>Posts</li></span>
-                <div class="dropper-content">
-                    <ul>
-                        <li><a href="#">Hot</a>
-                        </li>
-                        <li><a href="#">News</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>One</li></span>
-                <div class="dropper-content">
-                    <p> Content</p>
-                </div>
-            </div>
-            <div class="dropper">
-                <span><li>Support</li></span>
-                <div class="dropper-content">
-                    <li><a href="#">Rules</a>
-                    </li>
-                    <li><a href="#">Contact</a>
-                    </li>
-                </div>
-            </div>
-        </ul>
-    </nav>
+    <nav>
+   <ul>
+       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       </li>
+     <li class="sub-menu-parent">
+         
+       <a> Posts</a>
+       <ul class="sub-menu">
+         <li><a href="#">New Posts</a></li>
+         <li><a href="#">Hot Posts</a></li>
+         <li><a href="#">Trending</a></li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a>Create post</a>
+       <ul class="sub-menu">
+         <li><a href="#">Sub Item 1</a></li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a href="#">Projects</a>
+       <ul class="sub-menu">
+         <li><a href="#">Sub Item 1</a></li>
+       </ul></li>
+        <li class="sub-menu-parent"><a>Support</a>
+       <ul class="sub-menu">
+         <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
+         <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+       </ul></li>
+   </ul>
+ </nav>
     <div class="filler two"></div>
     <div class="left-filler"></div>
     <div class="container">
@@ -58,7 +51,7 @@
                     <div class="cover left">
                         <h2 class="title">Post</h2>
                         <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium quis enim nam dolorem recusandae ducimus laudantium iure sint similique reiciendis quaerat dolorum cum aliquid officiis repudiandae in qui itaque maiores!</p>
-                        <div class="btn"><a href="#">Read more...</a></div>
+                        <div class="btn"><a href="<?php $url?>/PHP/Post.php">Read more...</a></div>
                         <p class="date">Time</p>
                     </div>
                 </div>
@@ -69,7 +62,7 @@
                     <div class="cover left">
                         <h2 class="title">Post</h2>
                         <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium quis enim nam dolorem recusandae ducimus laudantium iure sint similique reiciendis quaerat dolorum cum aliquid officiis repudiandae in qui itaque maiores!</p>
-                        <div class="btn"><a href="#">Read more...</a></div>
+                        <div class="btn"><a href="<?php $url?>/PHP/Post.php">Read more...</a></div>
                         <p class="date">Time</p>
                     </div>
                 </div>
@@ -78,7 +71,7 @@
                     <div class="cover left">
                         <h2 class="title">Post</h2>
                         <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium quis enim nam dolorem recusandae ducimus laudantium iure sint similique reiciendis quaerat dolorum cum aliquid officiis repudiandae in qui itaque maiores!</p>
-                        <div class="btn"><a href="#">Read more...</a></div>
+                        <div class="btn"><a href="<?php $url?>/PHP/Post.php">Read more...</a></div>
                         <p class="date">Time</p>
                     </div>
                 </div>
@@ -89,7 +82,7 @@
                     <div class="cover left">
                         <h2 class="title">Post</h2>
                         <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium quis enim nam dolorem recusandae ducimus laudantium iure sint similique reiciendis quaerat dolorum cum aliquid officiis repudiandae in qui itaque maiores!</p>
-                        <div class="btn"><a href="#">Read more...</a></div>
+                        <div class="btn"><a href="<?php $url?>/PHP/Post.php">Read more...</a></div>
                         <p class="date">Time</p>
                     </div>
                 </div>
