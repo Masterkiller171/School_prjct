@@ -3,6 +3,9 @@
 //Setting url for every page
 $url = 'http://' . $_SERVER['HTTP_HOST'];
 
+//Getting date
+(date("Y-m-d",$t));
+
 $DBname = "school_website";
 $servername = "localhost:3306";
 $username = "root";
@@ -17,7 +20,8 @@ try {
     }
 catch(PDOException $e)
     {
-    die();
+    $conn->close();
     }
+    
 
-    ?>
+

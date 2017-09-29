@@ -114,8 +114,8 @@ elseif ($gender == ($_POST['Male']))
                  var fem = document.getElementById("fem").checked;
                  var mal = document.getElementById("mal").checked;
      
-                 if (mal || fem === !true){
-                     return document.getElementById("fem","mal").required;
+                 if (var mal && var fem === !true){
+                     return document.getElementById("fem","mal").required = true;
                             
                  }
                  
@@ -154,7 +154,7 @@ elseif ($gender == ($_POST['Male']))
             <div class="u-form">
                 <textarea name="textarea" placeholder="Tell something about yourself" style="width:250px;height:150px;" name="Comment" required></textarea>
                 <div class="u-form">
-                    <button type="submit" value="register" name="register" class="button buttonc" onclick="CheckBox()" required> Submit</button>
+                    <a href="<?php $url?> Verify-Page.php"  <button type="submit" value="register" name="register" class="button buttonc" onclick="CheckBox()" required> Submit</button></a>
                 </div>
             </div>
         </form>

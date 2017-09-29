@@ -10,6 +10,7 @@ body{
   transform: translateY(-2em);
   z-index: -1;
   transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+  border-radius: 2px;
 }
 
 .sub-menu-parent:hover .sub-menu {
@@ -55,6 +56,7 @@ nav > ul > li { display: inline-block; }
 }
 
 .right_box {
+    display: block;
     width: 15%;
     height: auto;
     outline: none;
@@ -78,7 +80,8 @@ nav > ul > li { display: inline-block; }
 }
 
 .body {
-    width: 80%;
+    display: block;
+    width: 70%;
     text-align: center;
     outline: none;
     border: 1px solid #ddd;

@@ -5,7 +5,7 @@
     <title>InnoForm</title>
     <?php include 'Functions.php';?>
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
-    <link rel="stylesheet" type="text/css" href="P<?php $url?>/Reg.css">
+    <link rel="stylesheet" type="text/css" href="P<?php $url?>/CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -20,7 +20,7 @@
     display: inline-block;
     background-color: lightblue;
 ">
-                Register</a></h4>
+                Login/Register</a></h4>
     </div>
     <div class="filler"></div>
 
@@ -31,9 +31,9 @@
      <li class="sub-menu-parent">
        <a> Posts</a>
        <ul class="sub-menu">
-         <li><a href="#">New Posts</a></li>
-         <li><a href="#">Hot Posts</a></li>
-         <li><a href="#">Trending</a></li>
+         <li><a href="<?php $url?> /PHP/Post-page.php">New Posts</a></li>
+         <li><a href="<?php $url?> /PHP/Post-page.php">Hot Posts</a></li>
+         <li><a href="<?php $url?> /PHP/Post-page.php">Trending</a></li>
        </ul>
      </li>
      <li class="sub-menu-parent"><a>Create post</a>
@@ -43,14 +43,26 @@
          </li>
        </ul>
      </li>
-     <li class="sub-menu-parent"><a href="#">Projects</a>
+     <li class="sub-menu-parent"><a>Projects</a>
        <ul class="sub-menu">
-         <li><a href="#">Sub Item 1</a></li>
+         <li><a href="<?php $url?> /PHP/Projects.php">New Projects</a></li>
+         <li><a href="<?php $url?> /PHP/Projects.php">Hot Projects</a></li>
+         <li><a href="<?php $url?> /PHP/Projects.php">Trending Projects</a></li>
        </ul></li>
         <li class="sub-menu-parent"><a>Support</a>
        <ul class="sub-menu">
          <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
          <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+       </ul></li>
+       <li class="sub-menu-parent"><a>History</a>
+       <ul class="sub-menu">
+         <li><a href="<?php $url?>/PHP/">Post History</a></li>
+         <li><a href="<?php $url?>/PHP/">Comment History</a></li>
+       </ul></li>
+       <li class="sub-menu-parent"><a>About us</a>
+       <ul class="sub-menu">
+         <li><a href="<?php $url?>/PHP/Aboutus.php">Our project</a></li>
+         <li><a href="<?php $url?>/PHP/">Background story</a></li>
        </ul></li>
    </ul>
  </nav>
@@ -62,22 +74,23 @@
                 <a href="<?php $url?>Post-page.php">Post</a>
             </li>
             <li>
-                <a href="#">Latest posts</a>
+                <a href="<?php $url?>Post-page.php">Latest posts</a>
             </li>
             <li>
-                <a href="#">New Posts</a>
+                <a href="<?php $url?>Post-page.php">New Posts</a>
             </li>
             <li>
-                <a href="">Projects</a>
+                <a href="<?php $url?>Projects.php">Projects</a>
             </li>
             <li>
-                <a href="#">Popular posts</a>
+                <a href="<?php $url?>Post-page.php">Popular posts</a>
             </li>
 
         </th>
     </div>
+    <div class="left-filler"></div>
     <div class="body">
-        <strong><h1>Title</h1></strong>
+        <strong><h1>Welcome To<bold> Innoform</bold></h1></strong>
 
         <h5>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
             Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.

@@ -9,7 +9,15 @@
 <body>
 
     <div class="right_floater">
-        <h4><a href="<?php $url?>Reg.php">Login/Register</a></h4>
+        <h4><a href="<?php $url?>Reg.php" style="
+    color: Blue;
+    padding: 5 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: lightblue;
+">
+                Login/Register</a></h4>
     </div>
     <div class="filler"></div>
 
@@ -21,9 +29,9 @@
          
        <a> Posts</a>
        <ul class="sub-menu">
-         <li><a href="#">New Posts</a></li>
-         <li><a href="#">Hot Posts</a></li>
-         <li><a href="#">Trending</a></li>
+         <li><a href="<?php $url?> /PHP/Post.php">New Posts</a></li>
+         <li><a href="<?php $url?> /PHP/Post.php">Hot Posts</a></li>
+         <li><a href="<?php $url?> /PHP/Post.php">Trending posts</a></li>
        </ul>
      </li>
      <li class="sub-menu-parent"><a>Create post</a>
@@ -31,14 +39,21 @@
          <li><a href="#">Sub Item 1</a></li>
        </ul>
      </li>
-     <li class="sub-menu-parent"><a href="#">Projects</a>
+     <li class="sub-menu-parent"><a>Projects</a>
        <ul class="sub-menu">
-         <li><a href="#">Sub Item 1</a></li>
+         <li><a href="<?php $url?> /PHP/Projects.php">New Projects</a></li>
+         <li><a href="<?php $url?> /PHP/Projects.php">Hot Projects</a></li>
+         <li><a href="<?php $url?> /PHP/Projects.php">Trending Projects</a></li>
        </ul></li>
         <li class="sub-menu-parent"><a>Support</a>
        <ul class="sub-menu">
          <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
          <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+       </ul></li>
+       <li class="sub-menu-parent"><a>History</a>
+       <ul class="sub-menu">
+         <li><a href="<?php $url?>/PHP/">Post History</a></li>
+         <li><a href="<?php $url?>/PHP/">Comment History</a></li>
        </ul></li>
    </ul>
  </nav>

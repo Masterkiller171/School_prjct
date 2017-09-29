@@ -13,7 +13,7 @@
     <nav>
    <ul>
           <ul>
-       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php" > Home</a>
        </li>
      <li class="sub-menu-parent">
        <a> Posts</a>

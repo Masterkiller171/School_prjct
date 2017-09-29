@@ -4,12 +4,22 @@
     <title>Contact Page</title>
     <?php include 'Functions.php';?>
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
+    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
     <div class="right_floater">
-        <h4><a href="#">Login/Register</a></h4>
+        <h4><a href="<?php $url?> /PHP/Reg.php" style="
+    color: Blue;
+    padding: 5 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: lightblue;
+">
+                Login/Register</a>
+        </h4>
     </div>
     <div class="filler"></div>
     <nav>
