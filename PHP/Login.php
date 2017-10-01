@@ -1,9 +1,25 @@
+<?php 
+$match="";
+if(isset($_POST['Email']) && !empty($_POST['Email']) AND isset($_POST['Password']) && !empty($_POST['Password']))
+    {
+    $search = mysql_query("SELECT Username, Password, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'") or die(mysql_error()); 
+    $match  = mysql_num_rows($search);
+}
+
+if($match > 0){
+    $msg = 'Login Complete! You may now continue.';
+}else{
+    $msg = 'Login Failed! Please make sure that you enter the correct details and that you have activated your account.';
+}
+
+
+?>
 <html lang=en>
     <head>
-
+    <?php include 'Functions.php';?>
+    <?php include 'Verify-Page.php';?>
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Reg.css">
-    <?php include 'Functions.php';?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -31,7 +47,7 @@
                 <button class=" button buttonc">Sign Up!</button>
             </a>Or Go Back to the homepage here:
             <a href="Main.php">
-                <button class=" button buttonc">GoBack! </button>
+                <button type="button" class="button buttonc"> GoBack!</button>
             </a>
         </p>
     </text-align-cent>

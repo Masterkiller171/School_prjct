@@ -14,10 +14,9 @@ if($_SERVER['REQUEST_METHOD']== 'POST')
     
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
-$Password = md5($_POST['password']); //Generating hash code for Password
+$Password = rand(1000,5000);; //Generating hash code for Password
 $picture_path = $conn->real_escape_string('image/'.$_FILES['avatar']['Name']);//Path of picture
-$id= md5($id);//Generating an id for every specific user
-$Specialty = ($_POST['specialty']); //Turning specialty into variable
+$Email= whirlpool($id);//Generating an id for every specific user
 
 
 //Will check if email has already been used once
@@ -52,8 +51,8 @@ elseif ($gender == ($_POST['Male']))
             $_SESSION['Username'] = $Username;
             $_SESSION['picture'] = $picture_path;
             
-            $sql = "INSERT INTO reg/log (Username, Name, Surname, Email, Password, Passwordrpt, Picture, Comment, Gender, id, Specialty)"
-                ."VALUES ('$Username','$Name',' $Surname',' $Password',' $Passwordrpt',' $Comment',' $Email ','$gender ','$id' ','$Specialty)";
+            $sql = "INSERT INTO reg/log (Username, Name, Surname, Email, Password, Picture, Comment, Gender, Specialty, hash)"
+                ."VALUES ('$Username','$Name',' $Surname',' $Password',' $Comment',' $Email ','$gender','$Specialty '.'$hash)";
             
             //Registration succesfull
             if($conn->quert($sql) === true)
@@ -109,17 +108,6 @@ elseif ($gender == ($_POST['Male']))
             function() {
 		    $('.subject-list').not(this).prop('checked', false);  
 		});
-                
-                 function CheckBox(){
-                 var fem = document.getElementById("fem").checked;
-                 var mal = document.getElementById("mal").checked;
-     
-                 if (var mal && var fem === !true){
-                     return document.getElementById("fem","mal").required = true;
-                            
-                 }
-                 
-             }
              
     </script>
     <br/>

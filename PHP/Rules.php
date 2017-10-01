@@ -8,14 +8,9 @@
 
 <body>
     <div class="right_floater">
-        <h4><a href="<?php $url?> /PHP/Reg.php " style="
-    color: Blue;
-    padding: 5 1%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    background-color: lightblue;
-">Login/Register</a></h4>
+        <h4><a href="<?php $url?> /PHP/Reg.php" 
+    style="<?php echo$butreg ?>">
+    <?php button() ?></a></h4></div>
     </div>
     <div class="filler"></div>
     <nav>
