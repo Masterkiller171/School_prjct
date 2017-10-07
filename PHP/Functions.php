@@ -29,7 +29,7 @@ $hash = md5($str);
 $DBname = "school_website";
 $servername = "localhost:3306";
 $username = "root";
-$password = "Banana171";
+$password = "";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -40,10 +40,10 @@ if ($conn->connect_error) {
     
 function button(){
 //style for registration button
-$regbutt= 'Login/Register';
+$regbutt= '<a href ="<?php $url>/PHP/Reg.php" style="<?php echo$butreg ?>"> Login/Register</a>';
 
 //Profile
-$probutt= 'My Profile';
+$probutt= '<a href ="<?php $url>/PHP/Profile.php" style="<?php echo$butreg ?>"> My Profile</a>';
 
     if("SELECT active FROM userinfo" == 1){
         echo $regbutt;
@@ -52,3 +52,31 @@ $probutt= 'My Profile';
     echo $probutt;
     }
 }
+ 
+//creating a loop untill 12 months   
+    function month_loop(){
+    for($month = 1; $month <=12; $month++){
+        echo '<option value="monsel" name="mon' . $month . ' " required>'.$month.'</option>';
+    }
+    }
+    
+ //creating a loop from current year - 120 to current year
+ function year_loop(){
+    for($year = date("Y") - 120; $year <= date("Y"); $year++){
+        echo '<option value="yearsel" name="year' . $year . ' " required>'.$year.'</option>';
+    } 
+        }
+        
+          
+//Creating a loop for the amount of days in a month
+function days_loop(){  
+  
+    for($days = 1; $days <=31; $days++){
+        echo '<option value="daysel" name="day' . $days . ' " required>'.$days.'</option>';
+        
+    }
+    
+}
+
+  
+

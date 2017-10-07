@@ -17,7 +17,7 @@ $Email = $conn-> real_escape_string($_POST['Email']);
 $Password = rand(1000,5000);; //Generating hash code for Password
 $picture_path = $conn->real_escape_string('image/'.$_FILES['avatar']['Name']);//Path of picture
 $Email= whirlpool($id);//Generating an id for every specific user
-
+$year = $_POST['year'];
 
 //Will check if email has already been used once
 if(($_POST ['Email']) == ($_POST['Email'])){
@@ -51,8 +51,8 @@ elseif ($gender == ($_POST['Male']))
             $_SESSION['Username'] = $Username;
             $_SESSION['picture'] = $picture_path;
             
-            $sql = "INSERT INTO reg/log (Username, Name, Surname, Email, Password, Picture, Comment, Gender, Specialty, hash)"
-                ."VALUES ('$Username','$Name',' $Surname',' $Password',' $Comment',' $Email ','$gender','$Specialty '.'$hash)";
+            $sql = "INSERT INTO reg/log (Username, Name, Surname, Email, Password, Picture, Comment, Gender, Specialty, hash, days, month, year)"
+                ."VALUES ('$Username','$Name',' $Surname',' $Password',' $Comment',' $Email ','$gender','$Specialty '.'$hash'.'$dayss'.'$months'.'$years')";
             
             //Registration succesfull
             if($conn->quert($sql) === true)
@@ -99,10 +99,11 @@ elseif ($gender == ($_POST['Male']))
         <div class="alert alert-error"><?php echo $_SESSION['message']?></div>
         <div class="filler-small"></div>
         <form class="signup">
+            <div class="u-form">
 <p3>What's your gender?</p3>
 <input value="1" name="Female" class="subject-list" type="checkbox" id="fem" >Female 
 <input value="2" name="Male" class="subject-list" type="checkbox" id="mal"  >Male
- 
+
     <script type="text/javascript">
 	    $('.subject-list').on('change', 
             function() {
@@ -110,8 +111,27 @@ elseif ($gender == ($_POST['Male']))
 		});
              
     </script>
-    <br/>
-                            <div class="u-form">
+            </div>
+   
+            
+                                <p3>When were you born?</p3>
+                                <select name="days">
+                                    <?php days_loop() ?>
+
+                                </select>
+                                
+                                <select name="month">
+                                    
+                                   <?php month_loop() ?>
+
+                                </select>
+                                
+                                <select name="year">
+                                    <?php year_loop() ?>
+
+                                </select>
+                            
+    <div class="u-form">
                 <input type="username" placeholder="Username..." name='Username' required>
             </div>
             <div class="u-form">

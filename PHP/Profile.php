@@ -1,4 +1,19 @@
-<htm<html lang="en">
+<?php
+$info = ['SELECT `userinfo`.`Username`,
+    `userinfo`.`Name`,
+    `userinfo`.`Password`,
+    `userinfo`.`Surname`,
+    `userinfo`.`Email`,
+    `userinfo`.`Picture`,
+    `userinfo`.`Comment`,
+    `userinfo`.`Gender`,
+    `userinfo`.`Specialty`,
+    `userinfo`.`Hash`
+FROM `school_project`.`userinfo`;
+']
+
+?>
+<html lang="en">
     <head>
         <?php include 'Functions.php';  ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -11,7 +26,6 @@
        
        
     <nav>
-   <ul>
           <ul>
        <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php" > Home</a>
        </li>
@@ -66,7 +80,7 @@
                     <tbody>
                       <tr>
                         <td>Department:</td>
-                        <td>Programming</td>
+                        <td><?php echo $info['Specialty']?></td>
                       </tr>
                       <tr>
                         <td>Date of Birth</td>

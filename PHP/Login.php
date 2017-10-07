@@ -17,7 +17,6 @@ if($match > 0){
 <html lang=en>
     <head>
     <?php include 'Functions.php';?>
-    <?php include 'Verify-Page.php';?>
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
