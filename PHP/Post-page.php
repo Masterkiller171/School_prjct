@@ -1,5 +1,6 @@
 <html lang =en>
    <head>
+       <?php include 'Functions.php' ?>
     <title>Post-Page</title>
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Post-page.css">
@@ -9,10 +10,8 @@
 <body>
 
     <div class="right_floater">
-        <h4><a href="<?php $url?> /PHP/Reg.php" 
-    style="<?php echo$butreg ?>">
-    <?php button() ?></a></h4></div>
-    </div>
+        <?php button() ?></div>
+    
     <div class="filler"></div>
 
     <nav>

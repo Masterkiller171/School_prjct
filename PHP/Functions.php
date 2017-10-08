@@ -1,24 +1,13 @@
 
 <?php
 //Defining all global variables.
-$Username = "";
-$Name= "";
-$Surname= "";
-$Password= "";
-$Passwordrpt= "";
-$Comment= "";
-$Email = "";
-$gender= "";
-$id= "";
-$Specialty= "";
-$str = "";
+$Username = $Name= $Surname= $Password= $Passwordrpt= $Comment= $Email = $gender= $id= $Specialty= $str = "";
 
-$butreg = 'color: Blue;
-    padding: 5 1%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    background-color: lightblue;';
+//Setting time to London time
+date_default_timezone_set('GMT'); 
+
+//Getting today's date
+$today = date("F j, Y, g:i a");
 
 //Setting url for every page
 $url = 'http://' . $_SERVER['HTTP_HOST'];
@@ -29,7 +18,7 @@ $hash = md5($str);
 $DBname = "school_website";
 $servername = "localhost:3306";
 $username = "root";
-$password = "";
+$password = "root";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -39,11 +28,19 @@ if ($conn->connect_error) {
 } 
     
 function button(){
+    
+    $butreg = 'color: Blue;
+    padding: 5 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: lightblue;';
+
 //style for registration button
-$regbutt= '<a href ="<?php $url>/PHP/Reg.php" style="<?php echo$butreg ?>"> Login/Register</a>';
+$regbutt= '<a href ="<?php $url>/PHP/Reg.php" style="'.$butreg.'"> Login/Register</a>';
 
 //Profile
-$probutt= '<a href ="<?php $url>/PHP/Profile.php" style="<?php echo$butreg ?>"> My Profile</a>';
+$probutt= '<a href ="<?php $url>/PHP/Profile.php" style="'.$butreg.'"> My Profile</a>';
 
     if("SELECT active FROM userinfo" == 1){
         echo $regbutt;
@@ -52,7 +49,17 @@ $probutt= '<a href ="<?php $url>/PHP/Profile.php" style="<?php echo$butreg ?>"> 
     echo $probutt;
     }
 }
- 
+$curtim = date($str);
+
+//Creating function for creating a post if you're logged in
+function create_post(){
+ if("SELECT active FROM userinfo" == 1){
+ echo '<a href ="<?php $url>/PHP/Reg.php"> Please Login</a>';
+ }else{
+     echo '<a href="<?php $url ?> /PHP/Post-input.php">Create post</a>';
+ }
+}
+
 //creating a loop untill 12 months   
     function month_loop(){
     for($month = 1; $month <=12; $month++){
@@ -78,5 +85,21 @@ function days_loop(){
     
 }
 
-  
+$show='   
+<script>
+$(document).ready(function(){
+    $("body").on("click", ".show", function()   {
+        $("this").prev().show();
+    });
+});
+</script>';  
+
+$hide='   
+<script>
+$(document).ready(function(){
+    $(".hide").click(function(){
+        $("p").hide();
+    });
+});
+</script>'; 
 

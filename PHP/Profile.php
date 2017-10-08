@@ -20,6 +20,7 @@ FROM `school_project`.`userinfo`;
     <link rel="stylesheet" href="<?php $url?>/CSS/Profile.css"> 
     <link rel="stylesheet" href="<?php $url?>/CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
        <A href="edit.html" >Logout</A>
@@ -58,51 +59,66 @@ FROM `school_project`.`userinfo`;
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-           <a href="edit.html" >Edit Profile</a>
-
-
-       <br>
-<p class=" text-info">May 05,2014,03:00 PM </p>
+          <h4>Member Since:</h4>
+          <br>
+          <h5><?php echo $today ?></h5>
+           <a href="<?php $url?>/PHP/Editprof.php" >Edit Profile</a>
       </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
    
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">Youri Bontekoe</h3>
+              <div class="panel-title"><h3>Random Users</h3>
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="#"> </div>
+                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="#" style=""> </div>
 
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
+                        <tr> 
+                        <td>Username</td>
+                        <td><?php "SELECT Username, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                            <button> edit</button><button class="">cancel</button></td>
+                      </tr>
+                      <tr>
+                        <td>Name</td>
+                        <td><?php "SELECT Name, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <button> edit</button><button class="">cancel</button></td>
+                      </tr>
+                      <tr>
+                        <td>SurName</td>
+                        <td><?php "SELECT Surname, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <button> edit</button><button class="">cancel</button></td>
+                      </tr>
                       <tr>
                         <td>Department:</td>
-                        <td><?php echo $info['Specialty']?></td>
+                        <td><?php "SELECT Specialty, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <button> edit</button><button class="">cancel</button></td>
                       </tr>
                       <tr>
                         <td>Date of Birth</td>
-                        <td>25/05/2001</td>
+                        <td><?php "SELECT Date, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <button> edit</button><button class="">cancel</button></td>
                       </tr>
-                   
-                         <tr>
                              <tr>
                         <td>Gender</td>
-                        <td>Female</td>
-                      </tr>
-                        <tr>
-                        <td>Home Address</td>
-                        <td>dorecht,netherlands</td>
-                      </tr>
+                        <td><?php "SELECT Gender, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <button> edit</button><button class="">cancel</button></td>
+                             </tr>
                       <tr>
                         <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                        <td><?php "SELECT Email, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                            <span><input type="Email" placeholder="Email..." name='Email'></span>
+                            
+                        <button class="">edit</button><?php $show ?></td>
                       </tr>
                        <tr>
-                        <td>Phone Number</td>
-                    <br><td>345345345345(Mobile)</td>
+                        <td>Comment</td>
+                        <td><?php "SELECT Comment, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                            <button class="">edit</button><button id="hide">cancel</button></td>
                      </tr>
                       </tbody>
                     </table>

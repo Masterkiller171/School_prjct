@@ -1,6 +1,7 @@
 <html lang="en">
 
 <head>
+    <?php include 'Functions.php'?>
     <title>InnoForm</title>
     <link rel="stylesheet" type="text/css" href="<?php $url?> /CSS/Main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,8 @@
 
 <body>
     <div class="right_floater">
-        <h4><a href="<?php $url?> /PHP/Reg.php" 
-    style="<?php echo$butreg ?>">
-    <?php button() ?></a></h4></div>
+        <div class="right_floater">
+        <?php button() ?></div>
     </div>
     <div class="filler"></div>
     <nav>
@@ -29,7 +29,7 @@
      <li class="sub-menu-parent"><a>Create post</a>
        <ul class="sub-menu">
          <li>
-             <a href="<?php $url ?> /PHP/Post-input.php">Create post</a>
+             <?php echo create_post() ?>
          </li>
        </ul>
      </li>

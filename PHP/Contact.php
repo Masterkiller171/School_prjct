@@ -30,7 +30,7 @@
      <li class="sub-menu-parent"><a>Create post</a>
        <ul class="sub-menu">
          <li>
-             <a href="<?php $url ?> /PHP/Post-input.php">Create post</a>
+             <?php echo create_post() ?>
          </li>
        </ul>
      </li>
