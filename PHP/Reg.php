@@ -1,7 +1,7 @@
 <?php
 include "Functions.php";
+include "Hints.php";
 
-//Calling session for alert message
 session_start();
 $_SESSION['message'] = '';
 
@@ -11,13 +11,16 @@ if($_SERVER['REQUEST_METHOD']== 'POST')
     if(($_POST['Password']) === ($_POST['Passwordconfirm']))//Checking if passwords are the same
         {
         
-    
+$id = rand(1000,5000);   
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
-$Password = rand(1000,5000);; //Generating hash code for Password
+$Password = rand(1000,5000); //Generating hash code for Password
 $picture_path = $conn->real_escape_string('image/'.$_FILES['avatar']['Name']);//Path of picture
-$Email= whirlpool($id);//Generating an id for every specific user
+$Email= md5($id);//Generating an id for every specific user
 $year = $_POST['year'];
+$Name = $conn-> real_escape_string($_POST['Name']);
+$Surname = $conn-> real_escape_string($_POST['Surname']);
+$Comment = $conn-> real_escape_string($_POST['Comment']);
 
 //Will check if email has already been used once
 if(($_POST ['Email']) == ($_POST['Email'])){
@@ -90,6 +93,8 @@ elseif ($gender == ($_POST['Male']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php $url?>  /CSS/Reg.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <?php echo $JSim?>
+    <?php echo $JSimvs?>
 </head>
     <div class="login-box">
         <div class="lb-header">
@@ -143,15 +148,13 @@ elseif ($gender == ($_POST['Male']))
             <div class="u-form">
                 <input type="email" placeholder="Email..." name='Email'required> 
             </div>
-                <p3>What's your specialty</p3>
-                <select name='specialty'>
-                    <option value="bio" name="bio" required>Biologist</option>
-                    <option value="it" name="it" required>IT</option>
-                    <option value="anal" name="anal" required>Data-Analyst</option>
-                    <option value="engin" name="engin" required>Engineer</option>
-                </select>
+             <div class="u-form">   
+                 <input type="text" onkeyup="Hints(this.value)" placeholder="Specialty" id="Hint" required>
+                 <span id="Hints"><p>Suggestions:</p></span>
+             </div>
             <div class="u-form">
-                <input type="password" placeholder="Password..." name='Password' required>
+                <span><input type="password" placeholder="Password..." name='Password' required></span>
+                
             </div>
             <div class="u-form">
                 <input type="password" placeholder="Confirm Password..." name='Passwordrpt' required>

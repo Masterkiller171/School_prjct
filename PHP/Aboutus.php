@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
     <link rel="stylesheet" type="text/css" href="<?php $url?>/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php echo $JSim ?>
+    <?php echo $JSimvs?>
 </head>
 <body>
     <div class="right_floater">

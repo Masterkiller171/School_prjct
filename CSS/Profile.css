@@ -31,7 +31,3 @@
 .toppad{
     margin-top:20px;
 }
-
-.table-user-information > tbody > tr:nth-child(2) > span{
-    display: none;
-}

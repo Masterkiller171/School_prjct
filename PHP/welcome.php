@@ -9,6 +9,8 @@ include 'Functions';
 session_start();
 $_SESSION['message'];
 ?>
+<?php echo $JSim ?>
+<?php echo $JSimvs?>
 </head>
 <body>
 <div class="alert alert-success"><?php echo $_SESSION['message'] ?></div>

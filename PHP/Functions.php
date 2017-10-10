@@ -16,9 +16,9 @@ $url = 'http://' . $_SERVER['HTTP_HOST'];
 $hash = md5($str);
 
 $DBname = "school_website";
-$servername = "localhost:3306";
+$servername = "localhost:3307";
 $username = "root";
-$password = "root";
+$password = "usbw";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -63,14 +63,14 @@ function create_post(){
 //creating a loop untill 12 months   
     function month_loop(){
     for($month = 1; $month <=12; $month++){
-        echo '<option value="monsel" name="mon' . $month . ' " required>'.$month.'</option>';
+        echo '<option value="monsel" name="mon' . $month . ' " id="mon' . $month . '" required>'.$month.'</option>';
     }
     }
     
  //creating a loop from current year - 120 to current year
  function year_loop(){
     for($year = date("Y") - 120; $year <= date("Y"); $year++){
-        echo '<option value="yearsel" name="year' . $year . ' " required>'.$year.'</option>';
+        echo '<option value="yearsel" name="year' . $year . ' " id="year' . $year . '" required>'.$year.'</option>';
     } 
         }
         
@@ -85,21 +85,7 @@ function days_loop(){
     
 }
 
-$show='   
-<script>
-$(document).ready(function(){
-    $("body").on("click", ".show", function()   {
-        $("this").prev().show();
-    });
-});
-</script>';  
+ $ids = array("Username","Name","SurName","Department","Date","Gender","Email","Comment");
 
-$hide='   
-<script>
-$(document).ready(function(){
-    $(".hide").click(function(){
-        $("p").hide();
-    });
-});
-</script>'; 
-
+$JSim= '<script src="<?php $url ?>/JS/Functions.js"></script>';
+$JSimvs= '<script src="<?php $url ?>/JS/Visuals.js"></script>';

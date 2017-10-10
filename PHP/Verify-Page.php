@@ -51,6 +51,8 @@ if(isset($_POST['yes'])) {
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <?php echo $JSim ?>
+    <?php echo $JSimvs?>
 </head>
 <body>
     <div class="login-box" style="height: 15%;">
@@ -65,11 +67,8 @@ if(isset($_POST['yes'])) {
     <label for="no">No</label>
     <input type="checkbox" name="no" class="subject-list" value="2">
     <br>
-    <script type="text/javascript">
-	    $('.subject-list').on('change', 
-            function() {
-		    $('.subject-list').not(this).prop('checked', false);  
-		});
+    <script>
+	   checkbut();
              
     </script>
 <?php checker() ?>

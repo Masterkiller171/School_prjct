@@ -20,7 +20,9 @@ FROM `school_project`.`userinfo`;
     <link rel="stylesheet" href="<?php $url?>/CSS/Profile.css"> 
     <link rel="stylesheet" href="<?php $url?>/CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <?php echo $JSim ?>
+    <?php echo $JSimvs?>
+
     </head>
     <body>
        <A href="edit.html" >Logout</A>
@@ -110,10 +112,13 @@ FROM `school_project`.`userinfo`;
                              </tr>
                       <tr>
                         <td>Email</td>
-                        <td><?php "SELECT Email, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
-                            <span><input type="Email" placeholder="Email..." name='Email'></span>
-                            
-                        <button class="">edit</button><?php $show ?></td>
+                        <td><?php "SELECT Email, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?> 
+                        <div id='content'>
+<input type='button' id='hideshow' value='show'></div>
+                            <script> 
+                             show();
+                            </script>
+                                   
                       </tr>
                        <tr>
                         <td>Comment</td>
@@ -133,3 +138,4 @@ FROM `school_project`.`userinfo`;
     </div>
     </body>
 </html>
+
