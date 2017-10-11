@@ -31,3 +31,47 @@
 .toppad{
     margin-top:20px;
 }
+
+.box h3{
+  text-align:center;
+	position:relative;
+	top:80px;
+}
+.boxp {
+	width:110%;
+	height:50%;
+	background:#FFF;
+	margin:40px auto;
+        border-radius: 2px; 
+        overflow: scroll;
+}
+.shadow{
+	        box-shadow: 0 10px 6px -6px #777;
+}
+.box2 {
+	width:80%;
+	height:30%;
+	background:grey;
+	margin:40px auto;
+        border-radius: 2px;   
+        border: 1px solid #000;
+        overflow: hidden;
+        padding: 10px;
+}
+.btn a{
+  color: #fff;
+  text-decoration: none;
+}
+.cover .btn{
+  padding: 0.1em 1em;
+  margin: 0.5em;
+  background: #0099cc;
+  float: right;
+  border-radius: 0.25em;
+}
+.cover .date{
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  font-size: 10pt;
+}

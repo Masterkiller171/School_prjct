@@ -149,7 +149,7 @@ elseif ($gender == ($_POST['Male']))
                 <input type="email" placeholder="Email..." name='Email'required> 
             </div>
              <div class="u-form">   
-                 <input type="text" onkeyup="Hints(this.value)" placeholder="Specialty" id="Hint" required>
+                 <input type="text" onkeyup="Hints(this.value)" placeholder="Specialty" id="Hint" name="Hint" required>
                  <span id="Hints"><p>Suggestions:</p></span>
              </div>
             <div class="u-form">

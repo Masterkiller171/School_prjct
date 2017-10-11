@@ -1,6 +1,6 @@
 <?php
-//An array with all avaible scientific jobs
 
+//An array with all avaible scientific jobs
 $j[] = 'Analyst';
 $j[] = 'Analytical Lab Technician';
 $j[] = 'Analytical Services Chemist';
@@ -168,9 +168,9 @@ $j[] = 'Total Quality Manager';
 $j[] = 'Toxicologist';
 $j[] = 'Transportation Project Manager';
 
-$q = $_REQUEST["q"]; 
+$q = $_GET["q"]; 
 //echo "<pre>";
-//print_r  ($_GET);
+print_r  ($_GET);
 $Hint = "";
 
 if(!empty($q)){
@@ -178,7 +178,7 @@ if(!empty($q)){
     $len=  strlen($q);
     
     foreach($j as $job){
-        if(stristr($q,  substr($job = strtoupper($job),0,$len))){
+        if(stristr($q,  substr($job = strtolower($job),0,$len))){
             if($Hint ===""){
                 $Hint = $job;
             }else{

@@ -1,16 +1,5 @@
 <?php
-$info = ['SELECT `userinfo`.`Username`,
-    `userinfo`.`Name`,
-    `userinfo`.`Password`,
-    `userinfo`.`Surname`,
-    `userinfo`.`Email`,
-    `userinfo`.`Picture`,
-    `userinfo`.`Comment`,
-    `userinfo`.`Gender`,
-    `userinfo`.`Specialty`,
-    `userinfo`.`Hash`
-FROM `school_project`.`userinfo`;
-']
+
 
 ?>
 <html lang="en">
@@ -61,19 +50,9 @@ FROM `school_project`.`userinfo`;
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad">
-          <h4>Member Since:</h4>
-          <br>
-          <h5><?php echo $today ?></h5>
-           <a href="<?php $url?>/PHP/Editprof.php" >Edit Profile</a>
-           <div class="boxp shadow">
-               <div class="cover left">
-               <p style="text-align: center;">My posts</p>
-               <p style="text-align: center;">------------------------------------------------------</p>
-           <?php my_loop() ?>
-           </div>
-           
+           <a href="<?php $url?>/PHP/Editprof.php" >Apply to Profile</a>
       </div>
-      </div>
+          
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
    
           <div class="panel panel-info">
@@ -90,35 +69,40 @@ FROM `school_project`.`userinfo`;
                     <tbody>
                         <tr> 
                         <td>Username</td>
-                        <td><?php "SELECT Username, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                    <td><button> edit</button><button class="">cancel</button></td>
                       </tr>
                       <tr>
                         <td>Name</td>
-                        <td><?php "SELECT Name, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><button> edit</button><button class="">cancel</button></td>
                       </tr>
                       <tr>
                         <td>SurName</td>
-                        <td><?php "SELECT Surname, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><button> edit</button><button class="">cancel</button></td>
                       </tr>
                       <tr>
                         <td>Department:</td>
-                        <td><?php "SELECT Specialty, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><button> edit</button><button class="">cancel</button></td>
                       </tr>
                       <tr>
                         <td>Date of Birth</td>
-                        <td><?php "SELECT Date, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><button> edit</button><button class="">cancel</button></td>
                       </tr>
                              <tr>
                         <td>Gender</td>
-                        <td><?php "SELECT Gender, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><button> edit</button><button class="">cancel</button></td>
                              </tr>
                       <tr>
                         <td>Email</td>
-                        <td><?php "SELECT Email, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>         
+                        <td><div id='content'>
+                                <input type='button' id='hideshow' value='show'></div></td>
+                            <script> 
+                             show();
+                            </script>
+                                   
                       </tr>
                        <tr>
                         <td>Comment</td>
-                        <td><?php "SELECT Comment, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                            <td><button class="">edit</button><button id="hide">cancel</button></td>
                      </tr>
                       </tbody>
                     </table>

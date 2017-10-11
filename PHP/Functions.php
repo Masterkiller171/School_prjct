@@ -61,7 +61,7 @@ function create_post(){
 }
 
 //creating a loop untill 12 months   
-    function month_loop(){
+function month_loop(){
     for($month = 1; $month <=12; $month++){
         echo '<option value="monsel" name="mon' . $month . ' " id="mon' . $month . '" required>'.$month.'</option>';
     }
@@ -69,7 +69,7 @@ function create_post(){
     
  //creating a loop from current year - 120 to current year
  function year_loop(){
-    for($year = date("Y") - 120; $year <= date("Y"); $year++){
+    for($year = date("Y") - 117; $year <= date("Y"); $year++){
         echo '<option value="yearsel" name="year' . $year . ' " id="year' . $year . '" required>'.$year.'</option>';
     } 
         }
@@ -83,6 +83,24 @@ function days_loop(){
         
     }
     
+}
+
+//function for myposts on profile page --only usefull when posts are finished
+/*function my_posts(){
+    foreach($posts as $$p){
+        echo '<div class="filler1"></div>
+              <div class="box2 shadow">'. $post .'</div>';
+    }
+}*/
+
+//Function loop for testing posts on profile page
+function my_loop(){
+    for($l ="";$l <= 10; $l++){
+        echo '               <div class="filler1"></div>
+               <div class="cover left">
+               <div class="box2 shadow"> Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum... <div class="btn">
+                       <a href="<?php $url?>/PHP/Post.php">Read more...</a></div></div></div>';
+    }
 }
 
  $ids = array("Username","Name","SurName","Department","Date","Gender","Email","Comment");

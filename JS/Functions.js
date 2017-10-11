@@ -15,9 +15,10 @@ function checkbut(){
 		});
 }
 
+//Event for onkeyup 
 jQuery(document).ready(function(){
     $('body').on('keyup','#Hint', Hints);
-})
+});
 
 //Using AJAX to get a live feed of suggestions on search up
 function Hints(e){

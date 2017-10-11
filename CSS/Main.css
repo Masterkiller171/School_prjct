@@ -41,6 +41,10 @@ nav > ul > li { display: inline-block; }
     height: 5%;
     width: 1px;
 }
+.filler1{
+    width: 1px;
+    height: 3%;
+}
 .left-filler {
     float: left;
     width: 3%;
