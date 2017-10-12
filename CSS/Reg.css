@@ -32,7 +32,7 @@ body {
     position: relative;
     margin: 10px auto;
     width: 500px;
-    height: 900px;
+    height: 950px;
     background-color: #fff;
     padding: 10px;
     border-radius: 3px;
@@ -83,7 +83,9 @@ body {
 .u-form input[type="sirname"],
 .u-form input[type="name"],
 .u-form input[type="email"],
-.u-form input[type="password"] {
+.u-form input[type="password"],
+.u-form input[type="website"],
+.u-form input[type="text"]{
     width: calc(50% - 22px);
     height: 45px;
     outline: none;

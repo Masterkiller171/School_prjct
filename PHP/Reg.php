@@ -15,13 +15,22 @@ $id = rand(1000,5000);
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
 $Password = rand(1000,5000); //Generating hash code for Password
-$picture_path = $conn->real_escape_string('image/'.$_FILES['avatar']['Name']);//Path of picture
+$picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['Name']);//Path of picture
 $Email= md5($id);//Generating an id for every specific user
 $year = $_POST['year'];
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $Comment = $conn-> real_escape_string($_POST['Comment']);
 
+//Defining variables for input and comparing 
+$string_url= $_POST('website');
+$reg_exp = "/^(http(s?):\/\/)?(www\.)+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/";
+
+//Checking if it's a valid url
+if(!reg_match($reg_exp, $string_url) == TRUE){
+        echo "URL is invalid format";
+   }
+   
 //Will check if email has already been used once
 if(($_POST ['Email']) == ($_POST['Email'])){
    
@@ -148,6 +157,9 @@ elseif ($gender == ($_POST['Male']))
             <div class="u-form">
                 <input type="email" placeholder="Email..." name='Email'required> 
             </div>
+            <div class="u-form">
+                <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website'>
+            </div>
              <div class="u-form">   
                  <input type="text" onkeyup="Hints(this.value)" placeholder="Specialty" id="Hint" name="Hint" required>
                  <span id="Hints"><p>Suggestions:</p></span>
@@ -165,7 +177,7 @@ elseif ($gender == ($_POST['Male']))
             <div class="u-form">
                 <textarea name="textarea" placeholder="Tell something about yourself" style="width:250px;height:150px;" name="Comment" required></textarea>
                 <div class="u-form">
-                    <a href="<?php $url?> Verify-Page.php"  <button type="submit" value="register" name="register" class="button buttonc" onclick="CheckBox()" required> Submit</button></a>
+                    <a href="<?php $url?> Verify-Page.php"  <button type="submit" value="register" name="register" class="buttonc button" style="width: calc(50% - 22px);" onclick="CheckBox()" required> Submit</button></a>
                 </div>
             </div>
         </form>

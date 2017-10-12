@@ -25,7 +25,12 @@ FROM `school_project`.`userinfo`;
 
     </head>
     <body>
-       <A href="edit.html" >Logout</A>
+        <A href="" style="color: Blue;
+    padding: 5 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: lightblue;" onclick="" >Logout</A>
        
        
     <nav>

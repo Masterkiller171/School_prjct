@@ -14,8 +14,7 @@
 <body>
 
     <div class="right_floater">
-    <h4><a href="<?php $url?> /PHP/Reg.php" 
-    style="<?php echo$butreg ?>">
+    <h4>
     <?php button() ?></a></h4></div>
     <div class="filler"></div>
 

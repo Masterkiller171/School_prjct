@@ -3,6 +3,9 @@
 //Defining all global variables.
 $Username = $Name= $Surname= $Password= $Passwordrpt= $Comment= $Email = $gender= $id= $Specialty= $str = "";
 
+//variable for selecting active
+$active =mysql_query("SELECT active FROM userinfo"); 
+
 //Setting time to London time
 date_default_timezone_set('GMT'); 
 
@@ -26,15 +29,19 @@ $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-    
-function button(){
-    
+
+function button(){ 
     $butreg = 'color: Blue;
     padding: 5 1%;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     background-color: lightblue;';
+ 
+    
+//testing variable
+$id= 1; 
+
+$logup = mysql_query("UPDATE userinfo SET active='0' WHERE id= '".$id."'");
 
 //style for registration button
 $regbutt= '<a href ="<?php $url>/PHP/Reg.php" style="'.$butreg.'"> Login/Register</a>';
@@ -42,18 +49,21 @@ $regbutt= '<a href ="<?php $url>/PHP/Reg.php" style="'.$butreg.'"> Login/Registe
 //Profile
 $probutt= '<a href ="<?php $url>/PHP/Profile.php" style="'.$butreg.'"> My Profile</a>';
 
+//logout
+$outbut= '<a href ="" style="'.$butreg.' float: left;" onclick="'. $logup . '"> Logout</a>';
+
     if("SELECT active FROM userinfo" == 1){
         echo $regbutt;
     }else
         {
-    echo $probutt;
+    echo $probutt,$outbut;
     }
 }
 $curtim = date($str);
 
 //Creating function for creating a post if you're logged in
-function create_post(){
- if("SELECT active FROM userinfo" == 1){
+function create_post($active){
+ if($active == 1){
  echo '<a href ="<?php $url>/PHP/Reg.php"> Please Login</a>';
  }else{
      echo '<a href="<?php $url ?> /PHP/Post-input.php">Create post</a>';
