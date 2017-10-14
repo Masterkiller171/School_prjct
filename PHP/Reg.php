@@ -1,6 +1,5 @@
 <?php
 include "Functions.php";
-include "Hints.php";
 
 session_start();
 $_SESSION['message'] = '';
@@ -63,8 +62,8 @@ elseif ($gender == ($_POST['Male']))
             $_SESSION['Username'] = $Username;
             $_SESSION['picture'] = $picture_path;
             
-            $sql = "INSERT INTO reg/log (Username, Name, Surname, Email, Password, Picture, Comment, Gender, Specialty, hash, days, month, year)"
-                ."VALUES ('$Username','$Name',' $Surname',' $Password',' $Comment',' $Email ','$gender','$Specialty '.'$hash'.'$dayss'.'$months'.'$years')";
+            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, hash, days, month, year)"
+                ."VALUES ('$Username','$Name',' $Surname',' $Password',' $Comment',' $Email ','$gender','$Specialty '.'$hash'.'$dayss'.'$months'.'$years'.$picture')";
             
             //Registration succesfull
             if($conn->quert($sql) === true)
@@ -161,8 +160,241 @@ elseif ($gender == ($_POST['Male']))
                 <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website'>
             </div>
              <div class="u-form">   
-                 <input type="text" onkeyup="Hints(this.value)" placeholder="Specialty" id="Hint" name="Hint" required>
-                 <span id="Hints"><p>Suggestions:</p></span>
+                 <input type="text" id="searchBox" 
+class="search-field" autoFocus required/>
+<ul id="searchResults"></ul>
+<script>
+var searchIndex = [ 
+"Analyst", 
+"Analytical Lab Technician", 
+"Analytical Services Chemist", 
+"Assay Development Specialist", 
+"Assistant Field Technician", 
+"Assistant Technician", 
+"Associate Professor", 
+"Bioanalytical Scientist", 
+"Biochemist", 
+"Bioinformatics Research Scientist", 
+"Biology Professor", 
+"Business Analyst", 
+"Business System Analyst", 
+"Cell Biology Scientist", 
+"Cell Line Development Manager", 
+"Chemical Engineer", 
+"Chemical Technician", 
+"Climate Data Analyst", 
+"Clinical Data Research", 
+"Clinical Pharmacology Professor", 
+"Clinical Pharmacy Assistant", 
+"Clinical Research Associate", 
+"Clinical Research Coordinator", 
+"Clinical Research Director", 
+"Compliance Technician", 
+"Computational Chemistry Manager", 
+"Computer Programmer", 
+"Computing Consultant", 
+"Conservation Technician", 
+"Development Technologist", 
+"Drug Evaluator", 
+"Drug Regulatory Affairs Manager", 
+"Environmental Data Analyst", 
+"Environmental Emergencies Assistant", 
+"Environmental Emergencies Planner", 
+"Environmental Health Scientist", 
+"Environmental Project Analyst", 
+"Environmental Research Assistant", 
+"Environmental Scientist", 
+"Environmental Services Representative", 
+"Environmental Specialist", 
+"Exploration Director", 
+"Field Applications Specialist", 
+"Field Technician", 
+"Financial Analyst", 
+"Forensic Chemist", 
+"Forensic Scientist", 
+"Gene Editing Manager", 
+"Genetic Counselor", 
+"Grants/Proposal Writer", 
+"Groundwater Technician", 
+"Hardware Designer", 
+"Health Research Assistant", 
+"Health Technology Assistant", 
+"Hospital Accounting Analyst", 
+"Hospital Research Assistant", 
+"Human Factors Engineer", 
+"Immunology Scientist", 
+"Industrial Designer", 
+"IT Support Staff", 
+"Institutional Research Director", 
+"Insurance Representative", 
+"Intranet Specialist", 
+"Intranet Support", 
+"Junior Analyst", 
+"Laboratory Assistant", 
+"Laboratory Instructor", 
+"Laboratory Manager", 
+"Laboratory Technician", 
+"Market Access Analyst", 
+"Market Access Associate", 
+"Marketing Consultant", 
+"Medical Communications Director", 
+"Medical Physics Researcher", 
+"Medical Research Assistant", 
+"Medical Research Technician", 
+"Medical Scientist", 
+"Medical Services Assistant", 
+"Molecular Biologist", 
+"Molecular Scientist", 
+"Oncology Researcher", 
+"Operations Clerk", 
+"Operations Research Analysis Manager", 
+"Operations Section Manager", 
+"Operations Supervisor", 
+"Operations Team Leader", 
+"Operations Unit Manager", 
+"Organic Lab Research Assistant", 
+"Organic Lab Worker", 
+"Pharmaceutical Assistant", 
+"Pharmaceutical Marketing Assistant", 
+"Pharmaceutical Research Analyst", 
+"Pharmaceutical Research Assistant", 
+"Pharmaceutical Research Technician", 
+"Pharmaceutical Technician", 
+"Pharmacovigilance Supervisor", 
+"Pharmacy Affairs Assistant", 
+"Pharmacy Assistant", 
+"Pharmacy Innovation Assistant", 
+"Power Regulator", 
+"Process Engineer", 
+"Process Inspector", 
+"Process Research Manager", 
+"Product Engineer", 
+"Product Test Specialist", 
+"Production Team Leader", 
+"Production Test Supervisor", 
+"Professional Programs Assistant", 
+"Project Manager", 
+"Public Health Specialist", 
+"Quality Assistant", 
+"Quality Assurance Manager", 
+"Quality Assurance Technologist", 
+"Quality Control Analyst", 
+"Quality Control Manager", 
+"Quality Control Supervisor", 
+"Regulatory Affairs Associate", 
+"Regulatory Affairs Director", 
+"Regulatory Officer", 
+"Rehabilitation Engineering Assistant", 
+"Reimbursement Analyst", 
+"Research Assistant", 
+"Research Chemist", 
+"Research Team Leader", 
+"Research Technician",
+"Research and Development Associate", 
+"Research and Development Chemist", 
+"Research and Development Director", 
+"Research and Development Manager", 
+"Research and Development Supervisor", 
+"Research and Development Technician", 
+"Research and Development Tester", 
+"Research and Innovation Manager", 
+"Research Scientist", 
+"Researcher", 
+"Retail Analyst", 
+"Safety Data Specialist", 
+"Sales Analyst", 
+"Satellite Data Analyst", 
+"Science Technician", 
+"Scientific Artist", 
+"Scientific Programmer", 
+"Scientific Project Manager", 
+"Scientific Writer", 
+"Senior Pharmacy Student", 
+"Software Developer", 
+"Software Engineering Assistant", 
+"Solid Waste Field Technician", 
+"Special Projects Coordinator", 
+"Statistician", 
+"Stem Cell Researcher", 
+"STEM Career Advisor", 
+"Structural Biologist", 
+"Structural Engineer", 
+"Systems Analyst", 
+"Technical Application Specialist", 
+"Technical Support Technician", 
+"Technical Writer", 
+"Technology Research Analyst", 
+"Technology Research Manager", 
+"Technology Specialist", 
+"Therapeutic Director", 
+"Total Quality Management Director", 
+"Total Quality Manager", 
+"Toxicologist", 
+"Transportation Project Manager"];
+ 
+//Declearing all variables
+var input = document.getElementById("searchBox"),
+    ul = document.getElementById("searchResults"),
+    jobs, jobsArray, prej, jobc, results, sortedResults;
+
+
+var search = function() {
+  jobs = input.value.toLowerCase();
+  results = [];
+  jobsArray = jobs.split(" ");
+  prej = jobsArray.length === 1 ? "" : jobsArray.slice(0, -1).join(" ") + " ";
+  jobc = jobsArray[jobsArray.length -1].toLowerCase();
+  
+  for (var i = 0; i < searchIndex.length; i++) {
+    var a = searchIndex[i].toLowerCase(),
+        t = a.indexOf(jobc);
+    
+    if (t > -1) {
+      results.push(a);
+    }
+  }
+  
+  evaluateResults();
+};
+
+var evaluateResults = function() {
+  if (results.length > 0 && jobs.length > 0 && jobc.length !== 0) {
+    sortedResults = results.sort(sortResults);
+    oder();
+  } 
+  else {
+    clearResults();
+  }
+};
+
+var sortResults = function (a,b) {
+  if (a.indexOf(jobc) < b.indexOf(jobc)) return -1;
+  if (a.indexOf(jobc) > b.indexOf(jobc)) return 1;
+  return 0;
+};
+
+var oder = function () {
+  clearResults();
+  
+  for (var i=0; i < sortedResults.length && i < 5; i++) {
+    var li = document.createElement("li"),
+        result = prej 
+          + sortedResults[i].toLowerCase().replace(jobc, "<strong>"
+          + jobc 
+          +"</strong>");
+    
+    li.innerHTML = result;
+    ul.appendChild(li);
+  }
+};
+
+// deleting histroy of type characters
+var clearResults = function() {
+  ul.innerHTML = "";
+};
+  
+input.addEventListener("keyup", search, false); 
+</script>
              </div>
             <div class="u-form">
                 <span><input type="password" placeholder="Password..." name='Password' required></span>

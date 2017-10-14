@@ -1,0 +1,16 @@
+CREATE TABLE userinfo(
+Username varchar(255),
+Username varchar(255), 
+Name varchar(255), 
+Surname varchar(255), 
+Email varchar(255), 
+Password varchar(255), 
+avatar, 
+Comment varchar(255), 
+Gender varchar(255), 
+Specialty varchar(255), 
+hash varchar(255), 
+days INT(2), 
+month INT(2), 
+year INT(4),
+);

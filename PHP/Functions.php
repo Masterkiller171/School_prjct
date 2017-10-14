@@ -3,9 +3,6 @@
 //Defining all global variables.
 $Username = $Name= $Surname= $Password= $Passwordrpt= $Comment= $Email = $gender= $id= $Specialty= $str = "";
 
-//variable for selecting active
-$active =mysql_query("SELECT active FROM userinfo"); 
-
 //Setting time to London time
 date_default_timezone_set('GMT'); 
 
@@ -23,9 +20,10 @@ $servername = "localhost:3307";
 $username = "root";
 $password = "usbw";
 
-// Create connection
+// Create connection to database
 $conn = new mysqli($servername, $username, $password);
-// Check connection
+
+// Check connection 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
@@ -62,8 +60,12 @@ $outbut= '<a href ="" style="'.$butreg.' float: left;" onclick="'. $logup . '"> 
 $curtim = date($str);
 
 //Creating function for creating a post if you're logged in
-function create_post($active){
- if($active == 1){
+function create_post(){
+    
+//variable for selecting active
+$active =mysql_query("SELECT active FROM userinfo"); 
+
+ if($active !== 1){
  echo '<a href ="<?php $url>/PHP/Reg.php"> Please Login</a>';
  }else{
      echo '<a href="<?php $url ?> /PHP/Post-input.php">Create post</a>';

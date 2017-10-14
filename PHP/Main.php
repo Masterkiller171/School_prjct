@@ -5,7 +5,7 @@
     <title>InnoForm</title>
     <?php include 'Functions.php';?>
     <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
-    <link rel="stylesheet" type="text/css" href="P<?php $url?>/CSS/Reg.css">
+    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php echo $JSim ?>
     <?php echo $JSimvs?>
@@ -82,6 +82,7 @@
 
         </th>
     </div>
+    
     <div class="left-filler"></div>
     <div class="body">
         <strong><h1>Welcome To<bold> Innoform</bold></h1></strong>
