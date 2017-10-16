@@ -1,10 +1,64 @@
 <?php
+include 'Functions.php';
 
+//User update
+function Username(){
+$User = $_POST["Username"];
+$Usersel = "SELECT Username FROM userinfo";
+$Username = "UPDATE userinfo SET Username= ". $User . " WHERE Username = ". $Usersel . ""; 
+return $Username;
+}
 
+function Name(){
+//Name update
+$Name = $_POST["Name"];
+$Namesel = "SELECT Name FROM userinfo";
+$Nameup = "UPDATE userinfo SET Name = ". $Name . " WHERE Name = ". $Namesel . "";
+return $Nameup;
+}
+
+function Surname(){
+//Surname update
+$Surname = $_POST["Surname"];
+$Surnamesel = "SELECT Surname FROM userinfo";
+$Surnameup = "UPDATE userinfo SET Surname = ". $Surname . " WHERE Surname = ". $Surnamesel . ""; 
+return $Surnameup;
+}
+
+function Specialty(){
+//Specialty update
+$Specialty = $_POST["Specialty"];
+$Specialtysel = "SELECT Surname FROM userinfo";
+$Specialtyup = "UPDATE userinfo SET Specialty = ". $Specialty . " WHERE Specialty = ". $Specialtysel . ""; 
+return $Specialtyup;
+}
+
+function Gender(){
+//Gender update
+$Gender = $_POST["Male,Female"];
+$Gendersel = "SELECT Gender FROM userinfo";
+$Genderup = "UPDATE userinfo SET Gender = ". $Gender . " WHERE Gender = ". $Gendersel . ""; 
+return $Genderup;
+}
+
+function Email(){
+//Email update
+$Email = $_POST["Email"];
+$Emailsel = "SELECT Email FROM userinfo";
+$Emailup = "UPDATE userinfo SET Email = ". $Email . " WHERE Email = ". $Emailsel . ""; 
+return $Emailup;
+}
+
+function Comment(){
+//Comment update
+$Comment = $_POST["Comment"];
+$Commentsel = "SELECT Comment FROM userinfo";
+$Commentup = "UPDATE userinfo SET Comment = ". $Comment . " WHERE Comment = ". $Commentsel . ""; 
+return $Commentup;
+}
 ?>
 <html lang="en">
     <head>
-        <?php include 'Functions.php';  ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php $url?>/CSS/Profile.css"> 
     <link rel="stylesheet" href="<?php $url?>/CSS/Main.css"> 
@@ -69,40 +123,48 @@
                     <tbody>
                         <tr> 
                         <td>Username</td>
-                    <td><button> edit</button><button class="">cancel</button></td>
+                        <td><input type="text" name="Username" style="width:250px;"></td>
+                        <td><span><button onclick="<?php Username() ?>"> Apply</button></span></td>
                       </tr>
                       <tr>
                         <td>Name</td>
-                        <td><button> edit</button><button class="">cancel</button></td>
+                        <td><input type="text" name="Name" style="width:250px;"></td>
+                        <td><span><button onclick="<?php Name() ?>"> Apply</button></span></td>
                       </tr>
                       <tr>
                         <td>SurName</td>
-                        <td><button> edit</button><button class="">cancel</button></td>
+                        <td><input type="text" name="SurName" style="width:250px;"></td>
+                        <td><span><button onclick="<?php Surname() ?>"> Apply</button></span></td>
                       </tr>
                       <tr>
                         <td>Department:</td>
-                        <td><button> edit</button><button class="">cancel</button></td>
-                      </tr>
-                      <tr>
-                        <td>Date of Birth</td>
-                        <td><button> edit</button><button class="">cancel</button></td>
+                        <td><input type="text" name="Department" style="width:250px;"></td>
+                        <td><span><button onclick="<?php Specialty() ?>"> Apply</button></span></td>
                       </tr>
                              <tr>
                         <td>Gender</td>
-                        <td><button> edit</button><button class="">cancel</button></td>
+                        <td><input value="1" name="Female" class="subject-list" type="checkbox" id="fem" >Female 
+<input value="2" name="Male" class="subject-list" type="checkbox" id="mal"  >Male
+
+    <script type="text/javascript">
+	    $('.subject-list').on('change', 
+            function() {
+		    $('.subject-list').not(this).prop('checked', false);  
+		});
+             
+    </script></td>
+                        <td><span><button onclick="<?php Gender()?>"> Apply</button></span></td>
                              </tr>
                       <tr>
                         <td>Email</td>
-                        <td><div id='content'>
-                                <input type='button' id='hideshow' value='show'></div></td>
-                            <script> 
-                             show();
-                            </script>
+                        <td><input type="email" name="Username" style="width:250px;"></td>
+                        <td><span><button onclick="<?php Email()?>"> Apply</button></span></td>
                                    
                       </tr>
                        <tr>
                         <td>Comment</td>
-                            <td><button class="">edit</button><button id="hide">cancel</button></td>
+                        <td><textarea name="textarea" style="width:250px;height:150px;" name="Comment"></textarea></td>
+                        <td><span><button onclick="<?php Comment()?>"> Apply</button></span></td>
                      </tr>
                       </tbody>
                     </table>

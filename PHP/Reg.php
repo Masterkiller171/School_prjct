@@ -4,7 +4,7 @@ include "Functions.php";
 session_start();
 $_SESSION['message'] = '';
 
-
+function submit($in){
 if($_SERVER['REQUEST_METHOD']== 'POST')
     {
     if(($_POST['Password']) === ($_POST['Passwordconfirm']))//Checking if passwords are the same
@@ -15,8 +15,8 @@ $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
 $Password = rand(1000,5000); //Generating hash code for Password
 $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['Name']);//Path of picture
-$Email= md5($id);//Generating an id for every specific user
-$year = $_POST['year'];
+$Email= $conn->real_escape_string(md5($id));//Generating an id for every specific user
+$year = $conn->real_escape_string($_POST['year']);
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $Comment = $conn-> real_escape_string($_POST['Comment']);
@@ -26,7 +26,7 @@ $string_url= $_POST('website');
 $reg_exp = "/^(http(s?):\/\/)?(www\.)+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/";
 
 //Checking if it's a valid url
-if(!reg_match($reg_exp, $string_url) == TRUE){
+if(!preg_match($reg_exp, $string_url) == TRUE){
         echo "URL is invalid format";
    }
    
@@ -89,7 +89,7 @@ elseif ($gender == ($_POST['Male']))
         }
         
 }
-
+}
 
 ?>
 
@@ -161,10 +161,10 @@ elseif ($gender == ($_POST['Male']))
             </div>
              <div class="u-form">   
                  <input type="text" id="searchBox" 
-class="search-field" autoFocus required/>
-<ul id="searchResults"></ul>
+class="search-field"  placeholder="Your job" autoFocus required/>
+                 <ul id="searchResults"></ul>
 <script>
-var searchIndex = [ 
+var job = [ 
 "Analyst", 
 "Analytical Lab Technician", 
 "Analytical Services Chemist", 
@@ -330,14 +330,15 @@ var searchIndex = [
 "Total Quality Management Director", 
 "Total Quality Manager", 
 "Toxicologist", 
-"Transportation Project Manager"];
+"Transportation Project Manager",
+"bob the builder"];
  
-//Declearing all variables
+//Defining all variables
 var input = document.getElementById("searchBox"),
-    ul = document.getElementById("searchResults"),
+    order = document.getElementById("searchResults"),
     jobs, jobsArray, prej, jobc, results, sortedResults;
 
-
+//Function for searching the array for jobs
 var search = function() {
   jobs = input.value.toLowerCase();
   results = [];
@@ -345,8 +346,8 @@ var search = function() {
   prej = jobsArray.length === 1 ? "" : jobsArray.slice(0, -1).join(" ") + " ";
   jobc = jobsArray[jobsArray.length -1].toLowerCase();
   
-  for (var i = 0; i < searchIndex.length; i++) {
-    var a = searchIndex[i].toLowerCase(),
+  for (var i = 0; i < job.length; i++) {
+    var a = job[i].toLowerCase(),
         t = a.indexOf(jobc);
     
     if (t > -1) {
@@ -373,26 +374,28 @@ var sortResults = function (a,b) {
   return 0;
 };
 
+//Odering results under input
 var oder = function () {
   clearResults();
   
   for (var i=0; i < sortedResults.length && i < 5; i++) {
-    var li = document.createElement("li"),
+    var ol = document.createElement("ol"),
         result = prej 
           + sortedResults[i].toLowerCase().replace(jobc, "<strong>"
           + jobc 
           +"</strong>");
-    
-    li.innerHTML = result;
-    ul.appendChild(li);
+  
+    ol.innerHTML = result;
+    order.appendChild(ol);
   }
 };
 
 // deleting histroy of type characters
 var clearResults = function() {
-  ul.innerHTML = "";
+  order.innerHTML = "";
 };
-  
+ 
+//An event listener for onkeyup
 input.addEventListener("keyup", search, false); 
 </script>
              </div>
@@ -409,7 +412,7 @@ input.addEventListener("keyup", search, false);
             <div class="u-form">
                 <textarea name="textarea" placeholder="Tell something about yourself" style="width:250px;height:150px;" name="Comment" required></textarea>
                 <div class="u-form">
-                    <a href="<?php $url?> Verify-Page.php"  <button type="submit" value="register" name="register" class="buttonc button" style="width: calc(50% - 22px);" onclick="CheckBox()" required> Submit</button></a>
+                    <a href="<?php $url?> Verify-Page.php"  <button type="submit" value="register" name="register" class="buttonc button" style="width: calc(50% - 22px);" onclick="submit()" required> Submit</button></a>
                 </div>
             </div>
         </form>

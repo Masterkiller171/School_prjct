@@ -107,7 +107,7 @@ function days_loop(){
 
 //Function loop for testing posts on profile page
 function my_loop(){
-    for($l ="";$l <= 10; $l++){
+    for($l ="";$l <= 100; $l++){
         echo '               <div class="filler1"></div>
                <div class="cover left">
                <div class="box2 shadow"> Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum... <div class="btn">
