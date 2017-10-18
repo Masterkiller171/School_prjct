@@ -4,55 +4,46 @@ include "Functions.php";
 session_start();
 $_SESSION['message'] = '';
 
-function submit($in){
 if($_SERVER['REQUEST_METHOD']== 'POST')
     {
-    if(($_POST['Password']) === ($_POST['Passwordconfirm']))//Checking if passwords are the same
+    if(($_POST['Password']) === ($_POST['Passwordrpt']))//Checking if passwords are the same
         {
         
 $id = rand(1000,5000);   
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
-$Password = rand(1000,5000); //Generating hash code for Password
-$picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['Name']);//Path of picture
-$Email= $conn->real_escape_string(md5($id));//Generating an id for every specific user
-$year = $conn->real_escape_string($_POST['year']);
+$password= $_POST(['Password']);
+$Password = md5($password); //Generating hash code for Password
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
-$Comment = $conn-> real_escape_string($_POST['Comment']);
-
+$days = $_POST['days'];
+$month = $_POST['month'];
+$year = $_POST['year'];
 //Defining variables for input and comparing 
-$string_url= $_POST('website');
+$string_url= $_POST['Website'];
 $reg_exp = "/^(http(s?):\/\/)?(www\.)+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/";
 
 //Checking if it's a valid url
-if(!preg_match($reg_exp, $string_url) == TRUE){
-        echo "URL is invalid format";
-   }
-   
-//Will check if email has already been used once
-if(($_POST ['Email']) == ($_POST['Email'])){
-   
-   $_SESSION['message'] = 'This email has already been used, please use another!';
-}
+if(preg_match($reg_exp, $string_url) == TRUE){
+        
+
 
 //Checking if comment contains less than 200 characters
-if(200 < strlen($_POST['comment'])){
-    $_SESSION['message'] = 'Please keep your story below 200 characters please!';
-}
-
+if(200 >= strlen($_POST['Comment'])){
+    
 //Checking if gender equals male or female
-if($gender == ($_POST['Female']))
+if($gender == isset($_POST['Female']))
     {
-    return 1;
+    return "F";
 }
-elseif ($gender == ($_POST['Male']))
+elseif($gender == isset($_POST['Male']))
     {
-    return 0;
+    return "M";
 }
 
 /*Checking if the file is an actual picture*/
-    if (preg_match ("!images!",$_FILES['avatar']['type']))
+$picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);//Path of picture
+    if (preg_match ("!image!",$_FILES['avatar']['type']))
             {
         
 //Putting picture into database
@@ -62,8 +53,8 @@ elseif ($gender == ($_POST['Male']))
             $_SESSION['Username'] = $Username;
             $_SESSION['picture'] = $picture_path;
             
-            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, hash, days, month, year)"
-                ."VALUES ('$Username','$Name',' $Surname',' $Password',' $Comment',' $Email ','$gender','$Specialty '.'$hash'.'$dayss'.'$months'.'$years'.$picture')";
+            $sql = "INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `hash`, `days`, `month`, `year`)"
+                ."VALUES ('$Username','$Name',' $Surname',' $Password',' $Comment',' $Email ','$gender','$Specialty '.'$hash'.'$days'.'$month'.'$year'.$picture')";
             
             //Registration succesfull
             if($conn->quert($sql) === true)
@@ -73,23 +64,25 @@ elseif ($gender == ($_POST['Male']))
  
                 
             }
-        }
-        else {
-            $_SESSION['message']= "File Upload Failed!";
-        }
         
-            }
-        else{
-            $_SESSION['message']= "Please only upload JPG, GIF or PNG images!";
-        }
-    
-    }
-        else{
-            $_SESSION['message']= "The two given passwords don't match!";
-        }
+}else{
+     $_SESSION['message']= "File Upload Failed!";
+     }              
+}else{
+     $_SESSION['message']= "Please only upload JPG, GIF or PNG images!";
+     }
+}else{
+    $_SESSION['message'] = 'Please keep your story below 200 characters please!';
+     }
+}else{
+     $_SESSION['message'] =  "URL is invalid format!";
+     }
+}else{
+     $_SESSION['message']= "The two given passwords don't match!";
+     }
         
 }
-}
+
 
 ?>
 
@@ -101,17 +94,16 @@ elseif ($gender == ($_POST['Male']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php $url?>  /CSS/Reg.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <?php echo $JSim?>
-    <?php echo $JSimvs?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
     <div class="login-box">
         <div class="lb-header">
             <p3>Or if you don't have an account:</p3>
             <a href="<?php $url?> Login.php" class="active" id="login-box-link">Login</a>
         </div>
-        <div class="alert alert-error"><?php echo $_SESSION['message']?></div>
+        <p><?php echo $_SESSION['message']?></p>
         <div class="filler-small"></div>
-        <form class="signup">
+        <form class="signup" method="post" autocomplete="off">
             <div class="u-form">
 <p3>What's your gender?</p3>
 <input value="1" name="Female" class="subject-list" type="checkbox" id="fem" >Female 
@@ -145,193 +137,27 @@ elseif ($gender == ($_POST['Male']))
                                 </select>
                             
     <div class="u-form">
-                <input type="username" placeholder="Username..." name='Username' required>
+                <input type="username" placeholder="Username..." name='Username' required/>
             </div>
             <div class="u-form">
-                <input type="name" placeholder="Name..."name='Name' required>
+                <input type="name" placeholder="Name..."name='Name' required/>
             </div>
             <div class="u-form">
-                <input type="sirname" placeholder="Surname..." name='Surname'required>
+                <input type="sirname" placeholder="Surname..." name='Surname'required/>
+            </div>
+            
+            <div class="u-form">
+                <input type="email" placeholder="Email..." name='Email'required/> 
             </div>
             <div class="u-form">
-                <input type="email" placeholder="Email..." name='Email'required> 
-            </div>
-            <div class="u-form">
-                <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website'>
+                <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website'/>
             </div>
              <div class="u-form">   
                  <input type="text" id="searchBox" 
 class="search-field"  placeholder="Your job" autoFocus required/>
                  <ul id="searchResults"></ul>
-<script>
-var job = [ 
-"Analyst", 
-"Analytical Lab Technician", 
-"Analytical Services Chemist", 
-"Assay Development Specialist", 
-"Assistant Field Technician", 
-"Assistant Technician", 
-"Associate Professor", 
-"Bioanalytical Scientist", 
-"Biochemist", 
-"Bioinformatics Research Scientist", 
-"Biology Professor", 
-"Business Analyst", 
-"Business System Analyst", 
-"Cell Biology Scientist", 
-"Cell Line Development Manager", 
-"Chemical Engineer", 
-"Chemical Technician", 
-"Climate Data Analyst", 
-"Clinical Data Research", 
-"Clinical Pharmacology Professor", 
-"Clinical Pharmacy Assistant", 
-"Clinical Research Associate", 
-"Clinical Research Coordinator", 
-"Clinical Research Director", 
-"Compliance Technician", 
-"Computational Chemistry Manager", 
-"Computer Programmer", 
-"Computing Consultant", 
-"Conservation Technician", 
-"Development Technologist", 
-"Drug Evaluator", 
-"Drug Regulatory Affairs Manager", 
-"Environmental Data Analyst", 
-"Environmental Emergencies Assistant", 
-"Environmental Emergencies Planner", 
-"Environmental Health Scientist", 
-"Environmental Project Analyst", 
-"Environmental Research Assistant", 
-"Environmental Scientist", 
-"Environmental Services Representative", 
-"Environmental Specialist", 
-"Exploration Director", 
-"Field Applications Specialist", 
-"Field Technician", 
-"Financial Analyst", 
-"Forensic Chemist", 
-"Forensic Scientist", 
-"Gene Editing Manager", 
-"Genetic Counselor", 
-"Grants/Proposal Writer", 
-"Groundwater Technician", 
-"Hardware Designer", 
-"Health Research Assistant", 
-"Health Technology Assistant", 
-"Hospital Accounting Analyst", 
-"Hospital Research Assistant", 
-"Human Factors Engineer", 
-"Immunology Scientist", 
-"Industrial Designer", 
-"IT Support Staff", 
-"Institutional Research Director", 
-"Insurance Representative", 
-"Intranet Specialist", 
-"Intranet Support", 
-"Junior Analyst", 
-"Laboratory Assistant", 
-"Laboratory Instructor", 
-"Laboratory Manager", 
-"Laboratory Technician", 
-"Market Access Analyst", 
-"Market Access Associate", 
-"Marketing Consultant", 
-"Medical Communications Director", 
-"Medical Physics Researcher", 
-"Medical Research Assistant", 
-"Medical Research Technician", 
-"Medical Scientist", 
-"Medical Services Assistant", 
-"Molecular Biologist", 
-"Molecular Scientist", 
-"Oncology Researcher", 
-"Operations Clerk", 
-"Operations Research Analysis Manager", 
-"Operations Section Manager", 
-"Operations Supervisor", 
-"Operations Team Leader", 
-"Operations Unit Manager", 
-"Organic Lab Research Assistant", 
-"Organic Lab Worker", 
-"Pharmaceutical Assistant", 
-"Pharmaceutical Marketing Assistant", 
-"Pharmaceutical Research Analyst", 
-"Pharmaceutical Research Assistant", 
-"Pharmaceutical Research Technician", 
-"Pharmaceutical Technician", 
-"Pharmacovigilance Supervisor", 
-"Pharmacy Affairs Assistant", 
-"Pharmacy Assistant", 
-"Pharmacy Innovation Assistant", 
-"Power Regulator", 
-"Process Engineer", 
-"Process Inspector", 
-"Process Research Manager", 
-"Product Engineer", 
-"Product Test Specialist", 
-"Production Team Leader", 
-"Production Test Supervisor", 
-"Professional Programs Assistant", 
-"Project Manager", 
-"Public Health Specialist", 
-"Quality Assistant", 
-"Quality Assurance Manager", 
-"Quality Assurance Technologist", 
-"Quality Control Analyst", 
-"Quality Control Manager", 
-"Quality Control Supervisor", 
-"Regulatory Affairs Associate", 
-"Regulatory Affairs Director", 
-"Regulatory Officer", 
-"Rehabilitation Engineering Assistant", 
-"Reimbursement Analyst", 
-"Research Assistant", 
-"Research Chemist", 
-"Research Team Leader", 
-"Research Technician",
-"Research and Development Associate", 
-"Research and Development Chemist", 
-"Research and Development Director", 
-"Research and Development Manager", 
-"Research and Development Supervisor", 
-"Research and Development Technician", 
-"Research and Development Tester", 
-"Research and Innovation Manager", 
-"Research Scientist", 
-"Researcher", 
-"Retail Analyst", 
-"Safety Data Specialist", 
-"Sales Analyst", 
-"Satellite Data Analyst", 
-"Science Technician", 
-"Scientific Artist", 
-"Scientific Programmer", 
-"Scientific Project Manager", 
-"Scientific Writer", 
-"Senior Pharmacy Student", 
-"Software Developer", 
-"Software Engineering Assistant", 
-"Solid Waste Field Technician", 
-"Special Projects Coordinator", 
-"Statistician", 
-"Stem Cell Researcher", 
-"STEM Career Advisor", 
-"Structural Biologist", 
-"Structural Engineer", 
-"Systems Analyst", 
-"Technical Application Specialist", 
-"Technical Support Technician", 
-"Technical Writer", 
-"Technology Research Analyst", 
-"Technology Research Manager", 
-"Technology Specialist", 
-"Therapeutic Director", 
-"Total Quality Management Director", 
-"Total Quality Manager", 
-"Toxicologist", 
-"Transportation Project Manager",
-"bob the builder"];
+                 <script type="text/javascript">
+var job = <?php echo json_encode($jobs)?>;
  
 //Defining all variables
 var input = document.getElementById("searchBox"),
@@ -400,19 +226,19 @@ input.addEventListener("keyup", search, false);
 </script>
              </div>
             <div class="u-form">
-                <span><input type="password" placeholder="Password..." name='Password' required></span>
+                <span><input type="password" placeholder="Password..." name='Password'  required/></span>
                 
             </div>
             <div class="u-form">
-                <input type="password" placeholder="Confirm Password..." name='Passwordrpt' required>
+                <input type="password" placeholder="Confirm Password..." name='Passwordrpt' required/>
             </div>
                 <div class="filler-small"></div>
             <div class="avatar"><label>Select profile picture: </label>
-                <input type="file" name="avatar" accept="image/*" required name="Picture" required/></div>
+                <input type="file" name="avatar" accept="image/*" required/></div>
             <div class="u-form">
-                <textarea name="textarea" placeholder="Tell something about yourself" style="width:250px;height:150px;" name="Comment" required></textarea>
+                <textarea type='textarea' name='Comment' placeholder="Tell something about yourself" style="width:250px;height:150px;" required/></textarea>
                 <div class="u-form">
-                    <a href="<?php $url?> Verify-Page.php"  <button type="submit" value="register" name="register" class="buttonc button" style="width: calc(50% - 22px);" onclick="submit()" required> Submit</button></a>
+                    <button type="submit" value="register" name="register" class="buttonc button" style="width: calc(50% - 22px);" id="submit" required/> Submit</button>
                 </div>
             </div>
         </form>

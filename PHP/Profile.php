@@ -1,16 +1,4 @@
 <?php
-$info = ['SELECT `userinfo`.`Username`,
-    `userinfo`.`Name`,
-    `userinfo`.`Password`,
-    `userinfo`.`Surname`,
-    `userinfo`.`Email`,
-    `userinfo`.`Picture`,
-    `userinfo`.`Comment`,
-    `userinfo`.`Gender`,
-    `userinfo`.`Specialty`,
-    `userinfo`.`Hash`
-FROM `school_project`.`userinfo`;
-']
 
 ?>
 <html lang="en">

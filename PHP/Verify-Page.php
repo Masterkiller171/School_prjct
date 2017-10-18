@@ -1,6 +1,8 @@
 <?php
 include 'Functions.php';
-function submit(){
+function submit($hash){
+    
+if(isset($_POST['subject-list']) == "1") {
 $to = $Email;
 $subject = 'Signup | Verification';
 $message = 'Thanks for signing up at Innoform! we hope you will get your information here! 
@@ -13,7 +15,7 @@ Please click this link to activate your account:
 http://www.innoform.org/Verify-Page.php?Email=' .$Email. '&hash=' .$hash.' 
 
 Thank you!';
-}
+
 if(isset($_GET['Email']) && !empty($_GET['Email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
     // Verify data
     $email = mysql_escape_string($_GET['Email']); // Set email variable
@@ -30,19 +32,11 @@ if(isset($_GET['Email']) && !empty($_GET['Email']) AND isset($_GET['hash']) && !
         //There's no match so no activation
         echo 'The url is either invalid or you already have activated your account.';
     }
-                 
-}else{
-    //wrong link
-    echo 'wrong link, please use the link that has been send to your email.</div>';
+}
+    }              
 }
 
-function checker(){
-if(isset($_POST['yes'])) {
-   echo '<div class="u-form">
-            <input type="email" placeholder="Email">
-        </div>';
-}
-}
+
 ?>
 <html lang="en">
 <head>
@@ -63,15 +57,23 @@ if(isset($_POST['yes'])) {
     <?php echo "<p3>Is this your email?" . $Email . "</p3>";?>
     <br>
     <label for="yes">Yes</label>
-    <input type="checkbox" name="yes" class="subject-list" value="1">
+    <input type="checkbox" name="yes" class="subject-list" value="1" id="yes">
+    <input type="ver" id="outmail" required>
+                <script type="text/javascript">
+        document.getElementById('yes').onchange = function() {
+            document.getElementById('outmail').disabled = !this.checked;
+};
+        </script>
     <label for="no">No</label>
     <input type="checkbox" name="no" class="subject-list" value="2">
     <br>
-    <script>
-	   checkbut();
+    <script type="text/javascript">
+	   $('.subject-list').on('change', 
+            function() {
+		    $('.subject-list').not(this).prop('checked', false);  
+		});
              
     </script>
-<?php checker() ?>
                     <button name ="submit" class="button buttonc" onlcick="<?php submit()?>">Verify!</button>
     </text-align-cent> 
 </body>

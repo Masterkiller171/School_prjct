@@ -1,7 +1,7 @@
 
 <?php
 //Defining all global variables.
-$Username = $Name= $Surname= $Password= $Passwordrpt= $Comment= $Email = $gender= $id= $Specialty= $str = "";
+$Username = $Name= $Surname= $Password= $Passwordrpt= $Comment= $Email = $gender= $id= $Specialty= $str = $mysqli = $jobs ="";
 
 //Setting time to London time
 date_default_timezone_set('GMT'); 
@@ -15,18 +15,41 @@ $url = 'http://' . $_SERVER['HTTP_HOST'];
 //getting an hash code for verifaction
 $hash = md5($str);
 
-$DBname = "school_website";
+$DBname = "innoform";
 $servername = "localhost:3307";
 $username = "root";
 $password = "usbw";
 
 // Create connection to database
-$conn = new mysqli($servername, $username, $password);
+$conn = new mysqli($servername, $username, $password, $DBname);
 
 // Check connection 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
+
+//create the database
+//if ( !$conn->query('CREATE DATABASE innoform') ) {
+  //  printf("Errormessage: %s\n", $conn->error);
+//}
+
+//create users table with all the fields
+//$conn->query('
+//CREATE TABLE `userinfo`(
+//`Username` varchar(255) NOT NULL, 
+//`Name` varchar(255) NOT NULL, 
+//`Surname` varchar(255) NOT NULL, 
+//`Email` varchar(255) NOT NULL, 
+//`Password` varchar(255) NOT NULL, 
+//`avatar` VARCHAR(100) NOT NULL, 
+//`Comment` varchar(255) NOT NULL, 
+//Gender` varchar(255) NOT NULL, 
+//`Specialty` varchar(255) NOT NULL, 
+//`hash` varchar(255) NOT NULL, 
+//days` INT(2) NOT NULL, 
+//`month` INT(2) NOT NULL, 
+//`year` INT(4) NOT NULL,
+//);') or die($conn->error);
 
 function button(){ 
     $butreg = 'color: Blue;
@@ -88,22 +111,19 @@ function month_loop(){
         
           
 //Creating a loop for the amount of days in a month
-function days_loop(){  
-  
-    for($days = 1; $days <=31; $days++){
+function days_loop(){ 
+for($days = 1; $days <=31; $days++){
         echo '<option value="daysel" name="day' . $days . ' " required>'.$days.'</option>';
-        
     }
-    
-}
+    }
 
 //function for myposts on profile page --only usefull when posts are finished
-/*function my_posts(){
-    foreach($posts as $$p){
-        echo '<div class="filler1"></div>
-              <div class="box2 shadow">'. $post .'</div>';
-    }
-}*/
+//function my_posts(){
+//    foreach($posts as $$p){
+//        echo '<div class="filler1"></div>
+//              <div class="box2 shadow">'. $post .'</div>';
+//    }
+//}
 
 //Function loop for testing posts on profile page
 function my_loop(){
@@ -115,7 +135,10 @@ function my_loop(){
     }
 }
 
- $ids = array("Username","Name","SurName","Department","Date","Gender","Email","Comment");
-
-$JSim= '<script src="<?php $url ?>/JS/Functions.js"></script>';
-$JSimvs= '<script src="<?php $url ?>/JS/Visuals.js"></script>';
+//data for jobs in datasbase convert into an array
+$query="SELECT Jobs FROM query";
+$result = $conn->query($query) or trigger_error(mysql_error().$query);
+while ($row = mysql_fetch_array($jobs)){
+$job = $row['Jobs'];
+$jobs[]= $job;
+}
