@@ -1,17 +1,15 @@
 <?php
-
+include 'Functions.php';
+include 'Reg.php';
 ?>
 <html lang="en">
     <head>
-        <?php include 'Functions.php';  ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php $url?>/CSS/Profile.css"> 
     <link rel="stylesheet" href="<?php $url?>/CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php echo $JSim ?>
-    <?php echo $JSimvs?>
-
     </head>
+    
     <body>
         <A href="" style="color: Blue;
     padding: 5 1%;
@@ -83,35 +81,35 @@
                     <tbody>
                         <tr> 
                         <td>Username</td>
-                        <td><?php "SELECT Username, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><?php "SELECT Username FROM userinfo WHERE id='$id ' AND active='1'"?>
                       </tr>
                       <tr>
                         <td>Name</td>
-                        <td><?php "SELECT Name, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><?php "SELECT Name FROM userinfo WHERE id='$id ' AND active='1'"?>
                       </tr>
                       <tr>
                         <td>SurName</td>
-                        <td><?php "SELECT Surname, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><?php "SELECT Surname FROM userinfo WHERE id='$id ' AND active='1'"?>
                       </tr>
                       <tr>
                         <td>Department:</td>
-                        <td><?php "SELECT Specialty, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><?php "SELECT Specialty FROM userinfo WHERE id='$id ' AND active='1'"?>
                       </tr>
                       <tr>
                         <td>Date of Birth</td>
-                        <td><?php "SELECT Date, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><?php "SELECT Date FROM userinfo WHERE id='$id ' AND active='1'"?>
                       </tr>
                              <tr>
                         <td>Gender</td>
-                        <td><?php "SELECT Gender, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><?php "SELECT Gender FROM userinfo WHERE id='$id ' AND active='1'"?>
                              </tr>
                       <tr>
                         <td>Email</td>
-                        <td><?php "SELECT Email, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>         
+                        <td><?php "SELECT Email FROM userinfo WHERE id='$id ' AND active='1'"?>         
                       </tr>
                        <tr>
                         <td>Comment</td>
-                        <td><?php "SELECT Comment, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'"?>
+                        <td><?php "SELECT Comment FROM userinfo WHERE id='$id ' AND active='1'"?>
                      </tr>
                       </tbody>
                     </table>

@@ -1,5 +1,6 @@
 <?php
 include "Functions.php";
+include "Jobs.php";
 
 session_start();
 $_SESSION['message'] = '';
@@ -8,17 +9,29 @@ if($_SERVER['REQUEST_METHOD']== 'POST')
     {
     if(($_POST['Password']) === ($_POST['Passwordrpt']))//Checking if passwords are the same
         {
-        
 $id = rand(1000,5000);   
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
-$password= $_POST(['Password']);
-$Password = md5($password); //Generating hash code for Password
+$Password= $_POST['Password'];
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $days = $_POST['days'];
 $month = $_POST['month'];
 $year = $_POST['year'];
+$Comment = $conn-> real_escape_string($_POST['Comment']);
+
+if($days || $month || $year !== "-"){
+    
+//Checking if Job is filled in
+if(isset($_POST["Job"]))
+{
+    $Specialty = $_POST["Job"] ;
+}
+else
+{
+    $Specialty =  "" ;
+}
+
 //Defining variables for input and comparing 
 $string_url= $_POST['Website'];
 $reg_exp = "/^(http(s?):\/\/)?(www\.)+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/";
@@ -26,7 +39,7 @@ $reg_exp = "/^(http(s?):\/\/)?(www\.)+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-
 //Checking if it's a valid url
 if(preg_match($reg_exp, $string_url) == TRUE){
         
-
+$Website =$string_url;
 
 //Checking if comment contains less than 200 characters
 if(200 >= strlen($_POST['Comment'])){
@@ -34,11 +47,11 @@ if(200 >= strlen($_POST['Comment'])){
 //Checking if gender equals male or female
 if($gender == isset($_POST['Female']))
     {
-    return "F";
+    return $Gender = "F";
 }
 elseif($gender == isset($_POST['Male']))
     {
-    return "M";
+    return $Gender = "M";
 }
 
 /*Checking if the file is an actual picture*/
@@ -53,29 +66,31 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
             $_SESSION['Username'] = $Username;
             $_SESSION['picture'] = $picture_path;
             
-            $sql = "INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `hash`, `days`, `month`, `year`)"
-                ."VALUES ('$Username','$Name',' $Surname',' $Password',' $Comment',' $Email ','$gender','$Specialty '.'$hash'.'$days'.'$month'.'$year'.$picture')";
+            $time = date('Y-m-d H:i:s');
+            $sql = "INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`)"
+            ."VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time')";
             
-            //Registration succesfull
-            if($conn->quert($sql) === true)
-                {
-                $_SESSION['message'] = 'Registration is Succesfull!';
-                header("location: welcome.php");
- 
-                
-            }
-        
+              //Registration succesfull
+              if($conn->quert($sql) === true){
+                  $_SESSION['message'] = 'Registration is Succesfull!';
+                  header("location: welcome.php"); 
 }else{
-     $_SESSION['message']= "File Upload Failed!";
+     $_SESSION['message'] = "Registration has failed!"; 
+     }
+}else{
+     $_SESSION['message'] = "File Upload Failed!";
      }              
 }else{
      $_SESSION['message']= "Please only upload JPG, GIF or PNG images!";
      }
 }else{
-    $_SESSION['message'] = 'Please keep your story below 200 characters please!';
+     $_SESSION['message'] = 'Please keep your story below 200 characters please!';
      }
 }else{
      $_SESSION['message'] =  "URL is invalid format!";
+     }
+}else{
+     $_SESSION['message'] = "Please choose a date";
      }
 }else{
      $_SESSION['message']= "The two given passwords don't match!";
@@ -121,17 +136,19 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
             
                                 <p3>When were you born?</p3>
                                 <select name="days">
+                                    <option value="dayemp" name="-" id="dayemp" required>---</option>
                                     <?php days_loop() ?>
 
                                 </select>
                                 
                                 <select name="month">
-                                    
+                                    <option value="monthemp" name="-" id="monthemp" required>---</option>
                                    <?php month_loop() ?>
 
                                 </select>
                                 
                                 <select name="year">
+                                    <option value="yearemp" name="-" id="yearemp" required>------</option>
                                     <?php year_loop() ?>
 
                                 </select>
@@ -153,8 +170,7 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
                 <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website'/>
             </div>
              <div class="u-form">   
-                 <input type="text" id="searchBox" 
-class="search-field"  placeholder="Your job" autoFocus required/>
+                 <input type="text" name='Job' id="searchBox" placeholder="Your job..." required/>
                  <ul id="searchResults"></ul>
                  <script type="text/javascript">
 var job = <?php echo json_encode($jobs)?>;

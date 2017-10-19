@@ -134,11 +134,3 @@ function my_loop(){
                        <a href="<?php $url?>/PHP/Post.php">Read more...</a></div></div></div>';
     }
 }
-
-//data for jobs in datasbase convert into an array
-$query="SELECT Jobs FROM query";
-$result = $conn->query($query) or trigger_error(mysql_error().$query);
-while ($row = mysql_fetch_array($jobs)){
-$job = $row['Jobs'];
-$jobs[]= $job;
-}
