@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="<?php $url?> /CSS/Reg.css">
+<link rel="stylesheet" href="../<?php $url?> /CSS/Reg.css">
 <?php
 include 'Functions';
 
@@ -9,8 +9,6 @@ include 'Functions';
 session_start();
 $_SESSION['message'];
 ?>
-<?php echo $JSim ?>
-<?php echo $JSimvs?>
 </head>
 <body>
 <div class="alert alert-success"><?php echo $_SESSION['message'] ?></div>

@@ -32,7 +32,7 @@ body {
     position: relative;
     margin: 10px auto;
     width: 500px;
-    height: 950px;
+    height:1050px;
     background-color: #fff;
     padding: 10px;
     border-radius: 3px;
@@ -152,4 +152,10 @@ text-align-cent{
   color: #21ec0c;
   background-color: #15360e;
   box-shadow: 0 0 0 1px #2a551e inset, 0 5px 10px rgba(0, 0, 0, 0.75);
+}
+
+#showHide {
+}
+
+#hideShow {
 }

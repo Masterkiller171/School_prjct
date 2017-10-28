@@ -1,6 +1,6 @@
 <head>
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Post-input.css">
+    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Main.css">
+    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Post-input.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php echo $JSim ?>
     <?php echo $JSimvs?>
@@ -10,7 +10,7 @@
 <body>
     <nav>
    <ul>
-       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       <li class="sub-menu-parent"><a href="../<?php $url ?>/PHP/Main.php"> Home</a>
        </li>
      <li class="sub-menu-parent">
          
@@ -24,7 +24,7 @@
      <li class="sub-menu-parent"><a>Create post</a>
        <ul class="sub-menu">
          <li>
-             <a href="<?php $url ?> /PHP/Post-input.php">Create post</a>
+             <a href="../<?php $url ?> /PHP/Post-input.php">Create post</a>
          </li>
        </ul>
      </li>
@@ -34,8 +34,8 @@
        </ul></li>
         <li class="sub-menu-parent"><a>Support</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
-         <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+         <li><a href="../<?php $url?>/PHP/Rules.php">Rules</a></li>
+         <li><a href="../<?php $url?>/PHP/Contact.php">Contact</a></li>
        </ul></li>
    </ul>
  </nav>

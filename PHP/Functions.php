@@ -30,7 +30,7 @@ if ($conn->connect_error) {
 
 //create the database
 //if ( !$conn->query('CREATE DATABASE innoform') ) {
-  //  printf("Errormessage: %s\n", $conn->error);
+//   printf("Errormessage: %s\n", $conn->error);
 //}
 
 //create users table with all the fields
@@ -43,12 +43,12 @@ if ($conn->connect_error) {
 //`Password` varchar(255) NOT NULL, 
 //`avatar` VARCHAR(100) NOT NULL, 
 //`Comment` varchar(255) NOT NULL, 
-//Gender` varchar(255) NOT NULL, 
+//`Gender` varchar(255) NOT NULL, 
 //`Specialty` varchar(255) NOT NULL, 
-//`hash` varchar(255) NOT NULL, 
-//days` INT(2) NOT NULL, 
+//`id` varchar(255) NOT NULL, 
+//`days` INT(2) NOT NULL, 
 //`month` INT(2) NOT NULL, 
-//`year` INT(4) NOT NULL,
+//`year` INT(4) NOT NULL
 //);') or die($conn->error);
 
 function button(){ 

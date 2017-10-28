@@ -4,8 +4,8 @@
 <head>
     <title>InnoForm</title>
     <?php include 'Functions.php';?>
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/Reg.css">
+    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Main.css">
+    <link rel="stylesheet" type="text/css" href="../<?php $url?>/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php echo $JSim ?>
     <?php echo $JSimvs?>
@@ -19,7 +19,7 @@
     <div class="filler"></div>
     <nav>
    <ul>
-       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       <li class="sub-menu-parent"><a href="../<?php $url ?>/PHP/Main.php"> Home</a>
        </li>
      <li class="sub-menu-parent">
          
@@ -39,11 +39,11 @@
      </li>
      <li class="sub-menu-parent"><a>Projects</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url ?> /PHP/Projects.php">Projects</a></li>
+         <li><a href="../<?php $url ?> /PHP/Projects.php">Projects</a></li>
        </ul></li>
         <li class="sub-menu-parent"><a href="#">Support</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+         <li><a href="../<?php $url?>/PHP/Contact.php">Contact</a></li>
        </ul></li>
    </ul>
  </nav>

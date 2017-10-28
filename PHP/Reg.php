@@ -1,13 +1,13 @@
 <?php
-include "Functions.php";
-include "Jobs.php";
+include "../PHP/Functions.php";
+include "../PHP/Jobs.php";
 
 session_start();
 $_SESSION['message'] = '';
 
 if($_SERVER['REQUEST_METHOD']== 'POST')
     {
-    if(($_POST['Password']) === ($_POST['Passwordrpt']))//Checking if passwords are the same
+    if(isset($_POST['password']) === isset($_POST['passwordrpt']))//Checking if passwords are the same
         {
 $id = rand(1000,5000);   
 $Username = $conn-> real_escape_string($_POST['Username']);
@@ -20,7 +20,7 @@ $month = $_POST['month'];
 $year = $_POST['year'];
 $Comment = $conn-> real_escape_string($_POST['Comment']);
 
-if($days || $month || $year !== "-"){
+if($days && $month && $year !== "-"){
     
 //Checking if Job is filled in
 if(isset($_POST["Job"]))
@@ -100,16 +100,15 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
 
 
 ?>
-
 <html lang='en'>
     <body>
-    <head>
+<head>
    <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="<?php $url?> /CSS/Main.css">
+    <link rel="stylesheet" href="../<?php $url?>/CSS/Reg.css"> 
+    <link rel="stylesheet" href="../<?php $url?>/CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="<?php $url?>  /CSS/Reg.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
     <div class="login-box">
         <div class="lb-header">
@@ -172,14 +171,14 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
              <div class="u-form">   
                  <input type="text" name='Job' id="searchBox" placeholder="Your job..." required/>
                  <ul id="searchResults"></ul>
-                 <script type="text/javascript">
+<script type="text/javascript">
 var job = <?php echo json_encode($jobs)?>;
  
 //Defining all variables
 var input = document.getElementById("searchBox"),
     order = document.getElementById("searchResults"),
     jobs, jobsArray, prej, jobc, results, sortedResults;
-
+    
 //Function for searching the array for jobs
 var search = function() {
   jobs = input.value.toLowerCase();
@@ -199,7 +198,6 @@ var search = function() {
   
   evaluateResults();
 };
-
 var evaluateResults = function() {
   if (results.length > 0 && jobs.length > 0 && jobc.length !== 0) {
     sortedResults = results.sort(sortResults);
@@ -209,13 +207,11 @@ var evaluateResults = function() {
     clearResults();
   }
 };
-
 var sortResults = function (a,b) {
   if (a.indexOf(jobc) < b.indexOf(jobc)) return -1;
   if (a.indexOf(jobc) > b.indexOf(jobc)) return 1;
   return 0;
 };
-
 //Odering results under input
 var oder = function () {
   clearResults();
@@ -231,7 +227,6 @@ var oder = function () {
     order.appendChild(ol);
   }
 };
-
 // deleting histroy of type characters
 var clearResults = function() {
   order.innerHTML = "";
@@ -242,12 +237,56 @@ input.addEventListener("keyup", search, false);
 </script>
              </div>
             <div class="u-form">
-                <span><input type="password" placeholder="Password..." name='Password'  required/></span>
-                
+                <span><input class="password" type="password" placeholder="Password..." name='password' id="pass2" required/></span>
+                <span><input type="button" id="showHide" value="Show" onclick="change()"/></span>
             </div>
             <div class="u-form">
-                <input type="password" placeholder="Confirm Password..." name='Passwordrpt' required/>
-            </div>
+                <span><input class="Passwordrpt" type="password" placeholder="Confirm Password..." name='Passwordrpt'id="rpt" required/></span>
+                <span><input type="button" id="hideShow" value="Show" onclick="changerpt()"/></span>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#showHide").click(function() {
+    if ($(".password").attr("type") === "password") {
+      $(".password").attr("type", "text");
+
+    } else {
+      $(".password").attr("type", "password");
+    }
+  });
+});
+
+$(document).ready(function() {
+  $("#hideShow").click(function() {
+    if ($(".Passwordrpt").attr("type") === "password") {
+      $(".Passwordrpt").attr("type", "text");
+
+    } else {
+      $(".Passwordrpt").attr("type", "password");
+    }
+  });
+});
+
+function change()
+{
+   var Check = document.getElementById("showHide").value;
+   if(Check === "Show"){
+        return document.getElementById("showHide").value = "Hide";
+   }else{
+       return document.getElementById("showHide").value = "Show";
+   }
+};
+
+function changerpt()
+{
+   var Check = document.getElementById("hideShow").value;
+   if(Check === "Show"){
+        return document.getElementById("hideShow").value = "Hide";
+   }else{
+       return document.getElementById("hideShow").value = "Show";
+   }
+};
+                </script>
+            </div>                            
                 <div class="filler-small"></div>
             <div class="avatar"><label>Select profile picture: </label>
                 <input type="file" name="avatar" accept="image/*" required/></div>

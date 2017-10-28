@@ -4,11 +4,9 @@
 <head>
     <title>InnoForm</title>
     <?php include 'Functions.php';?>
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Reg.css">
+    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Main.css">
+    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php echo $JSim ?>
-    <?php echo $JSimvs?>
 </head>
 
 <body>
@@ -20,14 +18,14 @@
 
     <nav>
    <ul>
-       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       <li class="sub-menu-parent"><a href="../<?php $url ?>/PHP/Main.php"> Home</a>
        </li>
      <li class="sub-menu-parent">
        <a> Posts</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?> /PHP/Post-page.php">New Posts</a></li>
-         <li><a href="<?php $url?> /PHP/Post-page.php">Hot Posts</a></li>
-         <li><a href="<?php $url?> /PHP/Post-page.php">Trending</a></li>
+         <li><a href="../<?php $url?> /PHP/Post-page.php">New Posts</a></li>
+         <li><a href="../<?php $url?> /PHP/Post-page.php">Hot Posts</a></li>
+         <li><a href="../<?php $url?> /PHP/Post-page.php">Trending</a></li>
        </ul>
      </li>
      <li class="sub-menu-parent"><a>Create post</a>
@@ -39,24 +37,24 @@
      </li>
      <li class="sub-menu-parent"><a>Projects</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?> /PHP/Projects.php">New Projects</a></li>
-         <li><a href="<?php $url?> /PHP/Projects.php">Hot Projects</a></li>
-         <li><a href="<?php $url?> /PHP/Projects.php">Trending Projects</a></li>
+         <li><a href="../<?php $url?> /PHP/Projects.php">New Projects</a></li>
+         <li><a href="../<?php $url?> /PHP/Projects.php">Hot Projects</a></li>
+         <li><a href="../<?php $url?> /PHP/Projects.php">Trending Projects</a></li>
        </ul></li>
         <li class="sub-menu-parent"><a>Support</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
-         <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+         <li><a href="../<?php $url?>/PHP/Rules.php">Rules</a></li>
+         <li><a href="../<?php $url?>/PHP/Contact.php">Contact</a></li>
        </ul></li>
        <li class="sub-menu-parent"><a>History</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?>/PHP/">Post History</a></li>
-         <li><a href="<?php $url?>/PHP/">Comment History</a></li>
+         <li><a href="../<?php $url?>/PHP/">Post History</a></li>
+         <li><a href="../<?php $url?>/PHP/">Comment History</a></li>
        </ul></li>
        <li class="sub-menu-parent"><a>About us</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?>/PHP/Aboutus.php">Our project</a></li>
-         <li><a href="<?php $url?>/PHP/">Background story</a></li>
+         <li><a href="../<?php $url?>/PHP/Aboutus.php">Our project</a></li>
+         <li><a href="../<?php $url?>/PHP/">Background story</a></li>
        </ul></li>
    </ul>
  </nav>
@@ -65,19 +63,19 @@
         <div class="right_box">
         <th>
             <li>
-                <a href="<?php $url?>Post-page.php">Post</a>
+                <a href="../<?php $url?>Post-page.php">Post</a>
             </li>
             <li>
-                <a href="<?php $url?>Post-page.php">Latest posts</a>
+                <a href="../<?php $url?>Post-page.php">Latest posts</a>
             </li>
             <li>
-                <a href="<?php $url?>Post-page.php">New Posts</a>
+                <a href="../<?php $url?>Post-page.php">New Posts</a>
             </li>
             <li>
-                <a href="<?php $url?>Projects.php">Projects</a>
+                <a href="../<?php $url?>Projects.php">Projects</a>
             </li>
             <li>
-                <a href="<?php $url?>Post-page.php">Popular posts</a>
+                <a href="../<?php $url?>Post-page.php">Popular posts</a>
             </li>
 
         </th>

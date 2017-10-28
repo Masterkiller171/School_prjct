@@ -3,8 +3,8 @@
 <head>
     <title>Contact Page</title>
     <?php include 'Functions.php';?>
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Main.css">
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Reg.css">
+    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Main.css">
+    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php echo $JSim ?>
     <?php echo $JSimvs?>
@@ -12,14 +12,14 @@
 
 <body>
     <div class="right_floater">
-        <h4><a href="<?php $url?> /PHP/Reg.php" 
+        <h4><a href="../<?php $url?> /PHP/Reg.php" 
     style="<?php echo$butreg ?>">
     <?php button() ?></a></h4></div>
     </div>
     <div class="filler"></div>
     <nav>
    <ul>
-       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php"> Home</a>
+       <li class="sub-menu-parent"><a href="../<?php $url ?>/PHP/Main.php"> Home</a>
        </li>
      <li class="sub-menu-parent">
        <a> Posts</a>
@@ -42,7 +42,7 @@
        </ul></li>
         <li class="sub-menu-parent"><a>Support</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
+         <li><a href="../<?php $url?>/PHP/Rules.php">Rules</a></li>
        </ul></li>
    </ul>
  </nav>

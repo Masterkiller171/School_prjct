@@ -5,8 +5,8 @@ include 'Reg.php';
 <html lang="en">
     <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php $url?>/CSS/Profile.css"> 
-    <link rel="stylesheet" href="<?php $url?>/CSS/Main.css"> 
+    <link rel="stylesheet" href="../<?php $url?>/CSS/Profile.css"> 
+    <link rel="stylesheet" href="../<?php $url?>/CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
@@ -21,20 +21,20 @@ include 'Reg.php';
        
     <nav>
           <ul>
-       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php" > Home</a>
+       <li class="sub-menu-parent"><a href="../<?php $url ?>/PHP/Main.php" > Home</a>
        </li>
      <li class="sub-menu-parent">
        <a> Posts</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url ?>/PHP/Post-Page.php">New Posts</a></li>
-         <li><a href="<?php $url ?>/PHP/Post-Page.php">Hot Posts</a></li>
-         <li><a href="<?php $url ?>/PHP/Post-Page.php">Trending</a></li>
+         <li><a href="../<?php $url ?>/PHP/Post-Page.php">New Posts</a></li>
+         <li><a href="../<?php $url ?>/PHP/Post-Page.php">Hot Posts</a></li>
+         <li><a href="../<?php $url ?>/PHP/Post-Page.php">Trending</a></li>
        </ul>
      </li>
      <li class="sub-menu-parent"><a>Create post</a>
        <ul class="sub-menu">
          <li>
-             <a href="<?php $url ?> /PHP/Post-input.php">Create post</a>
+             <a href="../<?php $url ?> /PHP/Post-input.php">Create post</a>
          </li>
        </ul>
      </li>
@@ -44,8 +44,8 @@ include 'Reg.php';
        </ul></li>
         <li class="sub-menu-parent"><a href="#">Support</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
-         <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+         <li><a href="../<?php $url?>/PHP/Rules.php">Rules</a></li>
+         <li><a href="../<?php $url?>/PHP/Contact.php">Contact</a></li>
        </ul></li>
    </ul>
  </nav>
@@ -55,7 +55,7 @@ include 'Reg.php';
           <h4>Member Since:</h4>
           <br>
           <h5><?php echo $today ?></h5>
-           <a href="<?php $url?>/PHP/Editprof.php" >Edit Profile</a>
+           <a href="../<?php $url?>/PHP/Editprof.php" >Edit Profile</a>
            <div class="boxp shadow">
                <div class="cover left">
                <p style="text-align: center;">My posts</p>
@@ -81,35 +81,35 @@ include 'Reg.php';
                     <tbody>
                         <tr> 
                         <td>Username</td>
-                        <td><?php "SELECT Username FROM userinfo WHERE id='$id ' AND active='1'"?>
+                        <td><?php $conn-> query("SELECT Username FROM userinfo WHERE id='$id ' AND active='1'")?>
                       </tr>
                       <tr>
                         <td>Name</td>
-                        <td><?php "SELECT Name FROM userinfo WHERE id='$id ' AND active='1'"?>
+                        <td><?php $conn-> query("SELECT Name FROM userinfo WHERE id='$id ' AND active='1'")?>
                       </tr>
                       <tr>
                         <td>SurName</td>
-                        <td><?php "SELECT Surname FROM userinfo WHERE id='$id ' AND active='1'"?>
+                        <td><?php $conn-> query("SELECT Surname FROM userinfo WHERE id='$id ' AND active='1'")?>
                       </tr>
                       <tr>
                         <td>Department:</td>
-                        <td><?php "SELECT Specialty FROM userinfo WHERE id='$id ' AND active='1'"?>
+                        <td><?php $conn-> query("SELECT Specialty FROM userinfo WHERE id='$id ' AND active='1'")?>
                       </tr>
                       <tr>
                         <td>Date of Birth</td>
-                        <td><?php "SELECT Date FROM userinfo WHERE id='$id ' AND active='1'"?>
+                        <td><?php $conn-> query("SELECT Date FROM userinfo WHERE id='$id ' AND active='1'")?>
                       </tr>
                              <tr>
                         <td>Gender</td>
-                        <td><?php "SELECT Gender FROM userinfo WHERE id='$id ' AND active='1'"?>
+                        <td><?php $conn-> query("SELECT Gender FROM userinfo WHERE id='$id ' AND active='1'")?>
                              </tr>
                       <tr>
                         <td>Email</td>
-                        <td><?php "SELECT Email FROM userinfo WHERE id='$id ' AND active='1'"?>         
+                        <td><?php $conn-> query("SELECT Email FROM userinfo WHERE id='$id ' AND active='1'")?>         
                       </tr>
                        <tr>
                         <td>Comment</td>
-                        <td><?php "SELECT Comment FROM userinfo WHERE id='$id ' AND active='1'"?>
+                        <td><?php $conn-> query("SELECT Comment FROM userinfo WHERE id='$id ' AND active='1'")?>
                      </tr>
                       </tbody>
                     </table>

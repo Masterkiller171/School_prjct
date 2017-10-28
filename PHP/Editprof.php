@@ -60,8 +60,8 @@ return $Commentup;
 <html lang="en">
     <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php $url?>/CSS/Profile.css"> 
-    <link rel="stylesheet" href="<?php $url?>/CSS/Main.css"> 
+    <link rel="stylesheet" href="../<?php $url?>/CSS/Profile.css"> 
+    <link rel="stylesheet" href="../<?php $url?>/CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php echo $JSim ?>
     <?php echo $JSimvs?>
@@ -78,15 +78,15 @@ return $Commentup;
      <li class="sub-menu-parent">
        <a> Posts</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url ?>/PHP/Post-Page.php">New Posts</a></li>
-         <li><a href="<?php $url ?>/PHP/Post-Page.php">Hot Posts</a></li>
-         <li><a href="<?php $url ?>/PHP/Post-Page.php">Trending</a></li>
+         <li><a href="../<?php $url ?>/PHP/Post-Page.php">New Posts</a></li>
+         <li><a href="../<?php $url ?>/PHP/Post-Page.php">Hot Posts</a></li>
+         <li><a href="../<?php $url ?>/PHP/Post-Page.php">Trending</a></li>
        </ul>
      </li>
      <li class="sub-menu-parent"><a>Create post</a>
        <ul class="sub-menu">
          <li>
-             <a href="<?php $url ?> /PHP/Post-input.php">Create post</a>
+             <a href="../<?php $url ?> /PHP/Post-input.php">Create post</a>
          </li>
        </ul>
      </li>
@@ -96,15 +96,15 @@ return $Commentup;
        </ul></li>
         <li class="sub-menu-parent"><a href="#">Support</a>
        <ul class="sub-menu">
-         <li><a href="<?php $url?>/PHP/Rules.php">Rules</a></li>
-         <li><a href="<?php $url?>/PHP/Contact.php">Contact</a></li>
+         <li><a href="../<?php $url?>/PHP/Rules.php">Rules</a></li>
+         <li><a href="../<?php $url?>/PHP/Contact.php">Contact</a></li>
        </ul></li>
    </ul>
  </nav>
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad">
-           <a href="<?php $url?>/PHP/Editprof.php" >Apply to Profile</a>
+           <a href="../<?php $url?>/PHP/Editprof.php" >Apply to Profile</a>
       </div>
           
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >

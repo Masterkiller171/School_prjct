@@ -18,7 +18,7 @@ if($match > 0){
     <head>
     <?php include 'Functions.php';?>
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="<?php $url?>/CSS/Reg.css">
+    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php echo $JSim ?>
     <?php echo $JSimvs?>
