@@ -7,12 +7,12 @@ $_SESSION['message'] = '';
 
 if($_SERVER['REQUEST_METHOD']== 'POST')
     {
-    if(isset($_POST['password']) === isset($_POST['passwordrpt']))//Checking if passwords are the same
+    if(isset($_POST['password']) === isset($_POST['Passwordrpt']))//Checking if passwords are the same
         {
 $id = rand(1000,5000);   
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
-$Password= $_POST['Password'];
+$Password= $_POST['password'];
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $days = $_POST['days'];
@@ -31,6 +31,13 @@ else
 {
     $Specialty =  "" ;
 }
+
+////Putting a new job into an array (work in progress)
+//if(in_array($job,$jobs )){
+//    return $job;
+//}else{
+//    array_push($jobs,"$job");
+//}
 
 //Defining variables for input and comparing 
 $string_url= $_POST['Website'];
@@ -53,6 +60,9 @@ elseif($gender == isset($_POST['Male']))
     {
     return $Gender = "M";
 }
+elseif($gender !== isset($_POST['Female']) || isset($_POST['Male'])){
+    $_SESSION['message'] = "Please select a gender";
+}
 
 /*Checking if the file is an actual picture*/
 $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);//Path of picture
@@ -73,7 +83,7 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
               //Registration succesfull
               if($conn->quert($sql) === true){
                   $_SESSION['message'] = 'Registration is Succesfull!';
-                  header("location: welcome.php"); 
+                  header("location: Profile.php"); 
 }else{
      $_SESSION['message'] = "Registration has failed!"; 
      }
@@ -87,7 +97,7 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
      $_SESSION['message'] = 'Please keep your story below 200 characters please!';
      }
 }else{
-     $_SESSION['message'] =  "URL is invalid format!";
+     $_SESSION['message'] = 'Invalid website url!';
      }
 }else{
      $_SESSION['message'] = "Please choose a date";
@@ -238,11 +248,11 @@ input.addEventListener("keyup", search, false);
              </div>
             <div class="u-form">
                 <span><input class="password" type="password" placeholder="Password..." name='password' id="pass2" required/></span>
-                <span><input type="button" id="showHide" value="Show" onclick="change()"/></span>
+                <span><img scr="../Images/Show.png" alt="show" id="showHide" style="height: 20px; width: 20px;" onclick="change()"/></span>
             </div>
             <div class="u-form">
                 <span><input class="Passwordrpt" type="password" placeholder="Confirm Password..." name='Passwordrpt'id="rpt" required/></span>
-                <span><input type="button" id="hideShow" value="Show" onclick="changerpt()"/></span>
+                <span><img scr="../Images/Show.png" alt="show" id="hideShow" style="height: 20px; width: 20px;" onclick="changerpt()"/></span>
 <script type="text/javascript">
 $(document).ready(function() {
   $("#showHide").click(function() {
@@ -268,21 +278,26 @@ $(document).ready(function() {
 
 function change()
 {
-   var Check = document.getElementById("showHide").value;
-   if(Check === "Show"){
-        return document.getElementById("showHide").value = "Hide";
+   var Check = document.getElementById("showHide").src;
+   if(Check.src === "../Images/Show.png"){
+        return document.getElementById("showHide").src = "../Images/Show.png";
+        return document.getElementById("showHide").alt = "Show";
    }else{
-       return document.getElementById("showHide").value = "Show";
+       return document.getElementById("showHide").src = "../Images/Hide.png";
+       return document.getElementById("showHide").alt = "Hide";
    }
 };
 
 function changerpt()
 {
-   var Check = document.getElementById("hideShow").value;
-   if(Check === "Show"){
-        return document.getElementById("hideShow").value = "Hide";
+   var Check = document.getElementById("hideShow").src;
+
+   if(Check.src === "../Images/Show.png"){
+        return document.getElementById("hideShow").src = "../Images/Show.png";
+        return document.getElementById("hideShow").alt = "Show";
    }else{
-       return document.getElementById("hideShow").value = "Show";
+       return document.getElementById("hideShow").src = "../Images/Hide.png";
+       return document.getElementById("hideShow").alt = "Hide";
    }
 };
                 </script>
