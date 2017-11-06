@@ -159,3 +159,9 @@ text-align-cent{
 
 #hideShow {
 }
+
+.buttonf{
+    padding:5px 15px; background:lightblue; border:0 none;
+    cursor:pointer;
+    border-radius: 90px; 
+}

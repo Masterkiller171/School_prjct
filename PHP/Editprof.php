@@ -1,60 +1,77 @@
 <?php
 include 'Functions.php';
 
+    
 //User update
-function Username(){
+function Username($conn){
 $User = $_POST["Username"];
-$Usersel = "SELECT Username FROM userinfo";
-$Username = "UPDATE userinfo SET Username= ". $User . " WHERE Username = ". $Usersel . ""; 
+
+if(isset($User)){
+$Usersel = $conn ->query("SELECT Username FROM userinfo");
+$Username = $conn ->query("UPDATE userinfo SET Username= ". $User . " WHERE Username = ". $Usersel . ""); 
 return $Username;
 }
+}
 
-function Name(){
+function Name($conn){
 //Name update
 $Name = $_POST["Name"];
-$Namesel = "SELECT Name FROM userinfo";
-$Nameup = "UPDATE userinfo SET Name = ". $Name . " WHERE Name = ". $Namesel . "";
+
+if(isset($Name)){
+$Namesel = $conn ->query("SELECT Name FROM userinfo");
+$Nameup = $conn ->query("UPDATE userinfo SET Name = ". $Name . " WHERE Name = ". $Namesel . "");
 return $Nameup;
 }
-
-function Surname(){
+}
+function Surname($conn){
 //Surname update
 $Surname = $_POST["Surname"];
-$Surnamesel = "SELECT Surname FROM userinfo";
-$Surnameup = "UPDATE userinfo SET Surname = ". $Surname . " WHERE Surname = ". $Surnamesel . ""; 
+
+if(isset($Surname)){
+$Surnamesel = $conn ->query("SELECT Surname FROM userinfo");
+$Surnameup = $conn ->query("UPDATE userinfo SET Surname = ". $Surname . " WHERE Surname = ". $Surnamesel . ""); 
 return $Surnameup;
 }
-
-function Specialty(){
+}
+function Specialty($conn){
 //Specialty update
 $Specialty = $_POST["Specialty"];
-$Specialtysel = "SELECT Surname FROM userinfo";
-$Specialtyup = "UPDATE userinfo SET Specialty = ". $Specialty . " WHERE Specialty = ". $Specialtysel . ""; 
+
+if(isset($Specialty)){
+$Specialtysel = $conn ->query("SELECT Surname FROM userinfo");
+$Specialtyup = $conn ->query("UPDATE userinfo SET Specialty = ". $Specialty . " WHERE Specialty = ". $Specialtysel . ""); 
 return $Specialtyup;
 }
-
-function Gender(){
+}
+function Gender($conn){
 //Gender update
 $Gender = $_POST["Male,Female"];
-$Gendersel = "SELECT Gender FROM userinfo";
-$Genderup = "UPDATE userinfo SET Gender = ". $Gender . " WHERE Gender = ". $Gendersel . ""; 
+
+if(isset($Gender)){
+$Gendersel = $conn ->query("SELECT Gender FROM userinfo");
+$Genderup = $conn ->query("UPDATE userinfo SET Gender = ". $Gender . " WHERE Gender = ". $Gendersel . ""); 
 return $Genderup;
 }
-
-function Email(){
+}
+function Email($conn){
 //Email update
 $Email = $_POST["Email"];
-$Emailsel = "SELECT Email FROM userinfo";
-$Emailup = "UPDATE userinfo SET Email = ". $Email . " WHERE Email = ". $Emailsel . ""; 
+
+if(isset($Email)){
+$Emailsel = $conn ->query("SELECT Email FROM userinfo");
+$Emailup = $conn ->query("UPDATE userinfo SET Email = ". $Email . " WHERE Email = ". $Emailsel . ""); 
 return $Emailup;
 }
-
-function Comment(){
+}
+function Comment($conn){
 //Comment update
 $Comment = $_POST["Comment"];
-$Commentsel = "SELECT Comment FROM userinfo";
-$Commentup = "UPDATE userinfo SET Comment = ". $Comment . " WHERE Comment = ". $Commentsel . ""; 
+
+if(isset($Comment)){
+$Commentsel = $conn ->query("SELECT Comment FROM userinfo");
+$Commentup = $conn ->query("UPDATE userinfo SET Comment = ". $Comment . " WHERE Comment = ". $Commentsel . ""); 
 return $Commentup;
+}
 }
 ?>
 <html lang="en">
@@ -63,9 +80,6 @@ return $Commentup;
     <link rel="stylesheet" href="../<?php $url?>/CSS/Profile.css"> 
     <link rel="stylesheet" href="../<?php $url?>/CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php echo $JSim ?>
-    <?php echo $JSimvs?>
-
     </head>
     <body>
        <A href="edit.html" >Logout</A>
@@ -111,7 +125,7 @@ return $Commentup;
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <div class="panel-title"><h3>Random Users</h3>
+              <div class="panel-title"><h3> <?php  echo $names =$conn-> query("Username FROM userinfo WHERE id='".$id."'" );?></h3>
             </div>
             <div class="panel-body">
               <div class="row">

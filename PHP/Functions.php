@@ -50,8 +50,8 @@ if ($conn->connect_error) {
 //`month` INT(2) NOT NULL, 
 //`year` INT(4) NOT NULL
 //);') or die($conn->error);
-
-function button(){ 
+if (!function_exists('button')) {
+function button($conn, $url){ 
     $butreg = 'color: Blue;
     padding: 5 1%;
     text-align: center;
@@ -59,64 +59,68 @@ function button(){
     background-color: lightblue;';
  
     
-//testing variable
-$id= 1; 
-
-$logup = mysql_query("UPDATE userinfo SET active='0' WHERE id= '".$id."'");
+//declaring "id"
+$id= random(1000, 5000); 
+    
+$logout = $conn -> query("UPDATE userinfo SET active='0' WHERE id= '".$id."'");
 
 //style for registration button
-$regbutt= '<a href ="<?php $url>/PHP/Reg.php" style="'.$butreg.'"> Login/Register</a>';
+$regbutt= '<a href ="../<?php $url>/PHP/Reg.php" style="'.$butreg.'"> Login/Register</a>';
 
 //Profile
-$probutt= '<a href ="<?php $url>/PHP/Profile.php" style="'.$butreg.'"> My Profile</a>';
+$probutt= '<a href ="../<?php $url>/PHP/Profile.php" style="'.$butreg.'"> My Profile</a>';
 
 //logout
-$outbut= '<a href ="" style="'.$butreg.' float: left;" onclick="'. $logup . '"> Logout</a>';
+$outbut= '<a href ="" style="'.$butreg.' float: left;" onclick="'. $logout . '"> Logout</a>';
 
-    if("SELECT active FROM userinfo" == 1){
-        echo $regbutt;
-    }else
-        {
-    echo $probutt,$outbut;
+if("SELECT active FROM userinfo" !== 1){
+    return $regbutt;
+    }else{
+    return $probutt AND $outbut;
     }
+}
 }
 $curtim = date($str);
 
 //Creating function for creating a post if you're logged in
-function create_post(){
+if (!function_exists('button')) {
+function create_post($conn){
     
 //variable for selecting active
-$active =mysql_query("SELECT active FROM userinfo"); 
+$active = $conn -> query("SELECT active FROM userinfo"); 
 
- if($active !== 1){
+ if($active !== "1" || "2"){
  echo '<a href ="<?php $url>/PHP/Reg.php"> Please Login</a>';
  }else{
      echo '<a href="<?php $url ?> /PHP/Post-input.php">Create post</a>';
  }
 }
-
-//creating a loop untill 12 months   
+}
+//creating a loop untill 12 months 
+if (!function_exists('button')) {
 function month_loop(){
     for($month = 1; $month <=12; $month++){
         echo '<option value="monsel" name="mon' . $month . ' " id="mon' . $month . '" required>'.$month.'</option>';
     }
     }
-    
+}
  //creating a loop from current year - 120 to current year
+if (!function_exists('button')) {
  function year_loop(){
     for($year = date("Y") - 117; $year <= date("Y"); $year++){
         echo '<option value="yearsel" name="year' . $year . ' " id="year' . $year . '" required>'.$year.'</option>';
     } 
         }
-        
+}
           
 //Creating a loop for the amount of days in a month
+if (!function_exists('button')) {
 function days_loop(){ 
 for($days = 1; $days <=31; $days++){
         echo '<option value="daysel" name="day' . $days . ' " required>'.$days.'</option>';
     }
     }
-
+}
 //function for myposts on profile page --only usefull when posts are finished
 //function my_posts(){
 //    foreach($posts as $$p){

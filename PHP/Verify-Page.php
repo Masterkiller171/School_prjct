@@ -1,42 +1,18 @@
 <?php
 include 'Functions.php';
-function submit($hash){
-    
-if(isset($_POST['subject-list']) == "1") {
-$to = $Email;
-$subject = 'Signup | Verification';
-$message = 'Thanks for signing up at Innoform! we hope you will get your information here! 
- 
-your username: ' . $Username. ' 
-Password: ' . $Password. ' 
-    
+include 'Reg.php';
 
-Please click this link to activate your account:
-http://www.innoform.org/Verify-Page.php?Email=' .$Email. '&hash=' .$hash.' 
+$urll = "../<?php $url?>/PHP/Profile.php";
 
-Thank you!';
-
-if(isset($_GET['Email']) && !empty($_GET['Email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
-    // Verify data
-    $email = mysql_escape_string($_GET['Email']); // Set email variable
-    $hash = mysql_escape_string($_GET['hash']); // Set hash variable
-                 
-    $search = mysql_query("SELECT Email, id, active FROM users WHERE email='".$Email."' AND hash='".$hash."' AND active='0'") or die(mysql_error()); 
-    $match  = mysql_num_rows($search);
-                 
-    if($match > 0){
-        // Active = 1 wihich means that account may be activated
-        mysql_query("UPDATE users SET active='1' WHERE email='".$Email."' AND hash='".$hash."' AND active='0'") or die(mysql_error());
-        echo 'Your account has been activated, you can now login';
-    }else{
-        //There's no match so no activation
-        echo 'The url is either invalid or you already have activated your account.';
+if($_SERVER['REQUEST_METHOD']== 'POST'){
+    if(isset($_POST["inputiet"])){
+        $update = $conn -> query("UPDATE `userinfo` SET `Email`=[value-4] WHERE `active` = 1");
     }
+    if(isset($_POST['no'])){
+        
+    } 
 }
-    }              
-}
-
-
+    
 ?>
 <html lang="en">
 <head>
@@ -46,7 +22,7 @@ if(isset($_GET['Email']) && !empty($_GET['Email']) AND isset($_GET['hash']) && !
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
-<body>
+<body onload="disabled()">
     <script type="text/javascript">
     $('.subject-list').on('change', 
             function() {
@@ -58,20 +34,24 @@ if(isset($_GET['Email']) && !empty($_GET['Email']) AND isset($_GET['hash']) && !
             <div class="u-form">
     <p3>You're almost done!</p3>
     
-    <?php echo "<p3>Is this your email?" . $Email . "</p3>";?>
+    <?php echo '<p3>Is this "'. $Email .'" your email?</p3>';?>
     <br>
     <label for="yes">Yes</label>
     <input type="checkbox" name="yes" class="subject-list" value="1" id="yes">
-    <input type="ver" id="outmail" required>
+    <input type="ver" id="outmail" name="inputiet" required>
                 <script type="text/javascript">
         document.getElementById('yes').onchange = function() {
             document.getElementById('outmail').disabled = !this.checked;
-};
+              };
+                    
+    function disabled(){
+        document.getElementById('outmail').disabled = true;
+}; 
         </script>
     <label for="no">No</label>
     <input type="checkbox" name="no" class="subject-list" value="2">
     <br>
-                    <button name ="submit" class="button buttonc" onlcick="<?php submit()?>">Verify!</button>
+                    <button name ="submit" class="button buttonc" onlcick="<?php ?>">Verify!</button>
     </text-align-cent> 
 </body>
 </html>

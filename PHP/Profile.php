@@ -1,6 +1,5 @@
 <?php
 include 'Functions.php';
-include 'Reg.php';
 ?>
 <html lang="en">
     <head>
@@ -11,12 +10,13 @@ include 'Reg.php';
     </head>
     
     <body>
-        <A href="" style="color: Blue;
+<A href="" style="color: Blue;
     padding: 5 1%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    background-color: lightblue;" onclick="" >Logout</A>
+    background-color: lightblue;" onclick="" >
+    Logout</A>
        
        
     <nav>

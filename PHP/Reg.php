@@ -16,11 +16,18 @@ $Password= $_POST['password'];
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $days = $_POST['days'];
+$daysname = $_POST['-'];
 $month = $_POST['month'];
+$monthname = $_POST['--'];
 $year = $_POST['year'];
+$yearname = $_POST['---'];
 $Comment = $conn-> real_escape_string($_POST['Comment']);
 
-if($days && $month && $year !== "-"){
+if(isset($yearname) == false){
+    
+if(isset($monthname) == false){
+    
+if(isset($daysname) == false){
     
 //Checking if Job is filled in
 if(isset($_POST["Job"]))
@@ -100,7 +107,13 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
      $_SESSION['message'] = 'Invalid website url!';
      }
 }else{
-     $_SESSION['message'] = "Please choose a date";
+     $_SESSION['message'] = "Please choose a day";
+     }
+}else{
+     $_SESSION['message'] = "Please choose a month";
+     }
+}else{
+     $_SESSION['message'] = "Please choose a year";
      }
 }else{
      $_SESSION['message']= "The two given passwords don't match!";
@@ -151,13 +164,13 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
                                 </select>
                                 
                                 <select name="month">
-                                    <option value="monthemp" name="-" id="monthemp" required>---</option>
+                                    <option value="monthemp" name="--" id="monthemp" required>---</option>
                                    <?php month_loop() ?>
 
                                 </select>
                                 
                                 <select name="year">
-                                    <option value="yearemp" name="-" id="yearemp" required>------</option>
+                                    <option value="yearemp" name="---" id="yearemp" required>------</option>
                                     <?php year_loop() ?>
 
                                 </select>
@@ -248,13 +261,14 @@ input.addEventListener("keyup", search, false);
              </div>
             <div class="u-form">
                 <span><input class="password" type="password" placeholder="Password..." name='password' id="pass2" required/></span>
-                <span><img scr="../Images/Show.png" alt="show" id="showHide" style="height: 20px; width: 20px;" onclick="change()"/></span>
+                <span><input type="button" class="buttonf" value="show" id="showHide"  onclick="change()"/></span>
             </div>
             <div class="u-form">
                 <span><input class="Passwordrpt" type="password" placeholder="Confirm Password..." name='Passwordrpt'id="rpt" required/></span>
-                <span><img scr="../Images/Show.png" alt="show" id="hideShow" style="height: 20px; width: 20px;" onclick="changerpt()"/></span>
+                <span><input type="button" class="buttonf" id="hideShow" value="show" onclick="changerpt()"/></span>
+
 <script type="text/javascript">
-$(document).ready(function() {
+ $(document).ready(function() {
   $("#showHide").click(function() {
     if ($(".password").attr("type") === "password") {
       $(".password").attr("type", "text");
@@ -263,9 +277,9 @@ $(document).ready(function() {
       $(".password").attr("type", "password");
     }
   });
-});
+ });
 
-$(document).ready(function() {
+ $(document).ready(function() {
   $("#hideShow").click(function() {
     if ($(".Passwordrpt").attr("type") === "password") {
       $(".Passwordrpt").attr("type", "text");
@@ -278,26 +292,23 @@ $(document).ready(function() {
 
 function change()
 {
-   var Check = document.getElementById("showHide").src;
-   if(Check.src === "../Images/Show.png"){
-        return document.getElementById("showHide").src = "../Images/Show.png";
-        return document.getElementById("showHide").alt = "Show";
+   var Check = document.getElementById("showHide").value;
+   
+   if(Check === "show"){
+      return  document.getElementById("showHide").value = "hide";
    }else{
-       return document.getElementById("showHide").src = "../Images/Hide.png";
-       return document.getElementById("showHide").alt = "Hide";
+     return  document.getElementById("showHide").value = "show";
    }
 };
 
 function changerpt()
 {
-   var Check = document.getElementById("hideShow").src;
-
-   if(Check.src === "../Images/Show.png"){
-        return document.getElementById("hideShow").src = "../Images/Show.png";
-        return document.getElementById("hideShow").alt = "Show";
+   var Check = document.getElementById("hideShow").value;
+   
+   if(Check === "show"){
+      return  document.getElementById("hideShow").value = "hide";
    }else{
-       return document.getElementById("hideShow").src = "../Images/Hide.png";
-       return document.getElementById("hideShow").alt = "Hide";
+     return  document.getElementById("hideShow").value = "show";
    }
 };
                 </script>
