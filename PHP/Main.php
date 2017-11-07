@@ -13,7 +13,7 @@
 
     <div class="right_floater">
     <h4>
-    <?php button() ?></a></h4></div>
+    <?php button($conn) ?></a></h4></div>
     <div class="filler"></div>
 
     <nav>

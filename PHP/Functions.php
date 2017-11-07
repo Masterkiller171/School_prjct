@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 //Defining all global variables.
 $Username = $Name= $Surname= $Password= $Passwordrpt= $Comment= $Email = $gender= $id= $Specialty= $str = $mysqli = $jobs ="";
 
@@ -14,7 +15,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'];
 
 //getting an hash code for verifaction
 $hash = md5($str);
-
+ 
 $DBname = "innoform";
 $servername = "localhost:3307";
 $username = "root";
@@ -22,7 +23,6 @@ $password = "usbw";
 
 // Create connection to database
 $conn = new mysqli($servername, $username, $password, $DBname);
-
 // Check connection 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -51,17 +51,17 @@ if ($conn->connect_error) {
 //`year` INT(4) NOT NULL
 //);') or die($conn->error);
 if (!function_exists('button')) {
-function button($conn, $url){ 
+function button($conn = null){ 
+    $id = '';
+    if(isset($_SESSION['id'])) {
+        $id = $_SESSION['id'];
+    }
     $butreg = 'color: Blue;
     padding: 5 1%;
     text-align: center;
     text-decoration: none;
     background-color: lightblue;';
- 
-    
-//declaring "id"
-$id= random(1000, 5000); 
-    
+
 $logout = $conn -> query("UPDATE userinfo SET active='0' WHERE id= '".$id."'");
 
 //style for registration button
@@ -73,19 +73,19 @@ $probutt= '<a href ="../<?php $url>/PHP/Profile.php" style="'.$butreg.'"> My Pro
 //logout
 $outbut= '<a href ="" style="'.$butreg.' float: left;" onclick="'. $logout . '"> Logout</a>';
 
-if("SELECT active FROM userinfo" !== 1){
+if($conn -> query("SELECT active FROM userinfo WHERE id = ' . $id . '") !== "1"){
     return $regbutt;
     }else{
-    return $probutt AND $outbut;
+    return $probutt && $outbut;
     }
 }
 }
 $curtim = date($str);
 
 //Creating function for creating a post if you're logged in
-if (!function_exists('button')) {
-function create_post($conn){
-    
+if (!function_exists('create_post()')) {
+function create_post(){
+  global $conn;
 //variable for selecting active
 $active = $conn -> query("SELECT active FROM userinfo"); 
 
@@ -97,7 +97,7 @@ $active = $conn -> query("SELECT active FROM userinfo");
 }
 }
 //creating a loop untill 12 months 
-if (!function_exists('button')) {
+if (!function_exists('month_loop')) {
 function month_loop(){
     for($month = 1; $month <=12; $month++){
         echo '<option value="monsel" name="mon' . $month . ' " id="mon' . $month . '" required>'.$month.'</option>';
@@ -105,7 +105,7 @@ function month_loop(){
     }
 }
  //creating a loop from current year - 120 to current year
-if (!function_exists('button')) {
+if (!function_exists('year_loop')) {
  function year_loop(){
     for($year = date("Y") - 117; $year <= date("Y"); $year++){
         echo '<option value="yearsel" name="year' . $year . ' " id="year' . $year . '" required>'.$year.'</option>';
@@ -114,7 +114,7 @@ if (!function_exists('button')) {
 }
           
 //Creating a loop for the amount of days in a month
-if (!function_exists('button')) {
+if (!function_exists('days_loop')) {
 function days_loop(){ 
 for($days = 1; $days <=31; $days++){
         echo '<option value="daysel" name="day' . $days . ' " required>'.$days.'</option>';
@@ -130,6 +130,7 @@ for($days = 1; $days <=31; $days++){
 //}
 
 //Function loop for testing posts on profile page
+if (!function_exists('my_loop')) {
 function my_loop(){
     for($l ="";$l <= 100; $l++){
         echo '               <div class="filler1"></div>
@@ -137,4 +138,5 @@ function my_loop(){
                <div class="box2 shadow"> Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum... <div class="btn">
                        <a href="<?php $url?>/PHP/Post.php">Read more...</a></div></div></div>';
     }
+}
 }

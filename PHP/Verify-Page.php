@@ -6,7 +6,7 @@ $urll = "../<?php $url?>/PHP/Profile.php";
 
 if($_SERVER['REQUEST_METHOD']== 'POST'){
     if(isset($_POST["inputiet"])){
-        $update = $conn -> query("UPDATE `userinfo` SET `Email`=[value-4] WHERE `active` = 1");
+        $update = $conn -> query("UPDATE `userinfo` SET `Email`=". $_POST["inputiet"] ."  WHERE `active` = 1");
     }
     if(isset($_POST['no'])){
         

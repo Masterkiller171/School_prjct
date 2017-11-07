@@ -32,7 +32,9 @@ nav > ul > li { display: inline-block; }
 .sub-menu {
   background: #2050b2;
 }
-
+.sub-menu a {
+    white-space: nowrap;
+}
 .filler {
     width: 1px;
     height: 10%;

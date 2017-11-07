@@ -1,6 +1,6 @@
 <?php
-include "../PHP/Functions.php";
-include "../PHP/Jobs.php";
+include "Functions.php";
+include "Jobs.php";
 
 session_start();
 $_SESSION['message'] = '';
@@ -8,8 +8,10 @@ $_SESSION['message'] = '';
 if($_SERVER['REQUEST_METHOD']== 'POST')
     {
     if(isset($_POST['password']) === isset($_POST['Passwordrpt']))//Checking if passwords are the same
-        {
-$id = rand(1000,5000);   
+        {   
+$id = rand(1000,5000);
+session_start();
+$_SESSION['id'] = $id;
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
 $Password= $_POST['password'];
