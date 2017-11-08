@@ -1,8 +1,9 @@
 <?php 
 $match="";
+if($_SERVER['REQUEST_METHOD']== 'POST'){
 if(isset($_POST['Email']) && !empty($_POST['Email']) AND isset($_POST['Password']) && !empty($_POST['Password']))
     {
-    $search = mysql_query("SELECT Username, Password, active FROM users WHERE username='".$Username."' AND password='".$Password."' AND active='1'") or die(mysql_error()); 
+    $search = $conn -> query("SELECT Username, Password, active FROM users WHERE id='. $id .' AND active='1'") or die(mysql_error()); 
     $match  = mysql_num_rows($search);
 }
 
@@ -12,16 +13,14 @@ if($match > 0){
     $msg = 'Login Failed! Please make sure that you enter the correct details and that you have activated your account.';
 }
 
-
+    }
 ?>
 <html lang=en>
     <head>
     <?php include 'Functions.php';?>
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Reg.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php echo $JSim ?>
-    <?php echo $JSimvs?>
 </head>
 
 <body>
@@ -47,7 +46,7 @@ if($match > 0){
             <a href="Reg.php">
                 <button class=" button buttonc">Sign Up!</button>
             </a>Or Go Back to the homepage here:
-            <a href="Main.php">
+            <a href="index.php">
                 <button type="button" class="button buttonc"> GoBack!</button>
             </a>
         </p>

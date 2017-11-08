@@ -85,36 +85,7 @@ return $Commentup;
        <A href="edit.html" >Logout</A>
        
        
-    <nav>
-          <ul>
-       <li class="sub-menu-parent"><a href="<?php $url ?>/PHP/Main.php" > Home</a>
-       </li>
-     <li class="sub-menu-parent">
-       <a> Posts</a>
-       <ul class="sub-menu">
-         <li><a href="../<?php $url ?>/PHP/Post-Page.php">New Posts</a></li>
-         <li><a href="../<?php $url ?>/PHP/Post-Page.php">Hot Posts</a></li>
-         <li><a href="../<?php $url ?>/PHP/Post-Page.php">Trending</a></li>
-       </ul>
-     </li>
-     <li class="sub-menu-parent"><a>Create post</a>
-       <ul class="sub-menu">
-         <li>
-             <a href="../<?php $url ?> /PHP/Post-input.php">Create post</a>
-         </li>
-       </ul>
-     </li>
-     <li class="sub-menu-parent"><a href="#">Projects</a>
-       <ul class="sub-menu">
-         <li><a href="#">Sub Item 1</a></li>
-       </ul></li>
-        <li class="sub-menu-parent"><a href="#">Support</a>
-       <ul class="sub-menu">
-         <li><a href="../<?php $url?>/PHP/Rules.php">Rules</a></li>
-         <li><a href="../<?php $url?>/PHP/Contact.php">Contact</a></li>
-       </ul></li>
-   </ul>
- </nav>
+    <?php navbar()?>
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad">

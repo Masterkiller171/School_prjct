@@ -17,8 +17,8 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 <html lang="en">
 <head>
     <title>Verify</title>
-    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Main.css">
-    <link rel="stylesheet" type="text/css" href="../<?php $url?>/CSS/Reg.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Main.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>

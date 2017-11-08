@@ -1,8 +1,12 @@
 
 <?php
+include "Libary.php";
 session_start();
 //Defining all global variables.
 $Username = $Name= $Surname= $Password= $Passwordrpt= $Comment= $Email = $gender= $id= $Specialty= $str = $mysqli = $jobs ="";
+
+//Declaring message session
+$_SESSION['message'] = '';
 
 //Setting time to London time
 date_default_timezone_set('GMT'); 
@@ -11,7 +15,7 @@ date_default_timezone_set('GMT');
 $today = date("F j, Y, g:i a");
 
 //Setting url for every page
-$url = 'http://' . $_SERVER['HTTP_HOST'];
+$url = '';
 
 //getting an hash code for verifaction
 $hash = md5($str);
@@ -25,7 +29,7 @@ $password = "usbw";
 $conn = new mysqli($servername, $username, $password, $DBname);
 // Check connection 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn -> connect_error);
 } 
 
 //create the database
@@ -51,32 +55,28 @@ if ($conn->connect_error) {
 //`year` INT(4) NOT NULL
 //);') or die($conn->error);
 if (!function_exists('button')) {
-function button($conn = null){ 
+function button($conn){ 
+    global $butreg;
     $id = '';
     if(isset($_SESSION['id'])) {
         $id = $_SESSION['id'];
     }
-    $butreg = 'color: Blue;
-    padding: 5 1%;
-    text-align: center;
-    text-decoration: none;
-    background-color: lightblue;';
 
-$logout = $conn -> query("UPDATE userinfo SET active='0' WHERE id= '".$id."'");
+$logout = $conn -> query("UPDATE userinfo SET active='0' WHERE id= '.$id.'");
 
 //style for registration button
-$regbutt= '<a href ="../<?php $url>/PHP/Reg.php" style="'.$butreg.'"> Login/Register</a>';
+$regbutt= '<a href ="Reg.php" style="'.$butreg.'"> Login/Register</a>';
 
 //Profile
-$probutt= '<a href ="../<?php $url>/PHP/Profile.php" style="'.$butreg.'"> My Profile</a>';
+$probutt= '<a href ="Profile.php" style="'.$butreg.'"> My Profile</a>';
 
 //logout
 $outbut= '<a href ="" style="'.$butreg.' float: left;" onclick="'. $logout . '"> Logout</a>';
 
-if($conn -> query("SELECT active FROM userinfo WHERE id = ' . $id . '") !== "1"){
-    return $regbutt;
+if($conn -> query("SELECT active FROM userinfo WHERE id = ' . $id . '") !== 1 || 2){
+    echo $regbutt;
     }else{
-    return $probutt && $outbut;
+    echo $probutt && $outbut;
     }
 }
 }
@@ -86,13 +86,15 @@ $curtim = date($str);
 if (!function_exists('create_post()')) {
 function create_post(){
   global $conn;
+  global $Login;
+  global $Create;
 //variable for selecting active
 $active = $conn -> query("SELECT active FROM userinfo"); 
 
  if($active !== "1" || "2"){
- echo '<a href ="<?php $url>/PHP/Reg.php"> Please Login</a>';
+ echo $Login;
  }else{
-     echo '<a href="<?php $url ?> /PHP/Post-input.php">Create post</a>';
+     echo $Create;
  }
 }
 }
@@ -132,11 +134,13 @@ for($days = 1; $days <=31; $days++){
 //Function loop for testing posts on profile page
 if (!function_exists('my_loop')) {
 function my_loop(){
+    global $myloop;
     for($l ="";$l <= 100; $l++){
-        echo '               <div class="filler1"></div>
-               <div class="cover left">
-               <div class="box2 shadow"> Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum... <div class="btn">
-                       <a href="<?php $url?>/PHP/Post.php">Read more...</a></div></div></div>';
+        echo $myloop ;
     }
 }
+}
+function navbar(){
+    global $navbar;
+    echo $navbar;
 }

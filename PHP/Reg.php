@@ -2,16 +2,12 @@
 include "Functions.php";
 include "Jobs.php";
 
-session_start();
-$_SESSION['message'] = '';
 
 if($_SERVER['REQUEST_METHOD']== 'POST')
     {
     if(isset($_POST['password']) === isset($_POST['Passwordrpt']))//Checking if passwords are the same
         {   
 $id = rand(1000,5000);
-session_start();
-$_SESSION['id'] = $id;
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
 $Password= $_POST['password'];
@@ -41,7 +37,7 @@ else
     $Specialty =  "" ;
 }
 
-////Putting a new job into an array (work in progress)
+//Putting a new job into an array (work in progress)
 //if(in_array($job,$jobs )){
 //    return $job;
 //}else{
@@ -86,12 +82,13 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
             $_SESSION['picture'] = $picture_path;
             
             $time = date('Y-m-d H:i:s');
-            $sql = "INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`)"
-            ."VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time')";
-            
+            $sql = $conn ->query("INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`)"
+            ."VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time')");
+            $_SESSION['id'] = $id;
               //Registration succesfull
               if($conn->quert($sql) === true){
                   $_SESSION['message'] = 'Registration is Succesfull!';
+                  $conn ->query("UPDATE `active` SET active = '1' WHERE id='. $id .'"); 
                   header("location: Profile.php"); 
 }else{
      $_SESSION['message'] = "Registration has failed!"; 
@@ -126,21 +123,21 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
 
 ?>
 <html lang='en'>
-    <body>
 <head>
    <title>Register</title>
-    <link rel="stylesheet" href="../<?php $url?>/CSS/Reg.css"> 
-    <link rel="stylesheet" href="../<?php $url?>/CSS/Main.css"> 
+    <link rel="stylesheet" href="../CSS/Reg.css"> 
+    <link rel="stylesheet" href="../CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
+<body>
     <div class="login-box">
         <div class="lb-header">
             <p3>Or if you don't have an account:</p3>
-            <a href="<?php $url?> Login.php" class="active" id="login-box-link">Login</a>
+            <a href="Login.php" class="active" id="login-box-link">Login</a>
         </div>
-        <p><?php echo $_SESSION['message']?></p>
+        <p style="color: red;"><?php echo $_SESSION['message']?></p>
         <div class="filler-small"></div>
         <form class="signup" method="post" autocomplete="off">
             <div class="u-form">
