@@ -1,29 +1,16 @@
 
 <?php
 include "Libary.php";
+
 session_start();
 //Defining all global variables.
-$Username = $Name= $Surname= $Password= $Passwordrpt= $Comment= $Email = $gender= $id= $Specialty= $str = $mysqli = $jobs ="";
+$Username = $Name = $Surname = $Password = $Passwordrpt = $Comment = $Email = $gender = $id = $Specialty = $str = $mysqli = $jobs = $match="";
 
-//Declaring message session
-$_SESSION['message'] = '';
+$DBname = "innoform"; //Database name
+$servername = "localhost:3307"; //Servername
+$username = "root"; //Username for datebase
+$password = "usbw"; //Password for database
 
-//Setting time to London time
-date_default_timezone_set('GMT'); 
-
-//Getting today's date
-$today = date("F j, Y, g:i a");
-
-//Setting url for every page
-$url = '';
-
-//getting an hash code for verifaction
-$hash = md5($str);
- 
-$DBname = "innoform";
-$servername = "localhost:3307";
-$username = "root";
-$password = "usbw";
 
 // Create connection to database
 $conn = new mysqli($servername, $username, $password, $DBname);
@@ -31,6 +18,22 @@ $conn = new mysqli($servername, $username, $password, $DBname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn -> connect_error);
 } 
+//Declaring message session
+$_SESSION['message'] = '';
+
+//Setting the session ID into a variable
+$id = '';
+    if(isset($_SESSION['id'])) {
+        $id = $_SESSION['id'];
+    }
+//Setting time to London time
+date_default_timezone_set('GMT'); 
+
+//Getting today's date
+$today = date("F j, Y, g:i a");
+
+//variable for selecting active
+$_SESSION['active'] = $conn -> query("SELECT active FROM userinfo WHERE id= '. $id .'"); 
 
 //create the database
 //if ( !$conn->query('CREATE DATABASE innoform') ) {
@@ -54,14 +57,16 @@ if ($conn->connect_error) {
 //`month` INT(2) NOT NULL, 
 //`year` INT(4) NOT NULL
 //);') or die($conn->error);
-if (!function_exists('button')) {
-function button($conn){ 
-    global $butreg;
-    $id = '';
-    if(isset($_SESSION['id'])) {
-        $id = $_SESSION['id'];
-    }
 
+//Checking if function button already exists
+if (!function_exists('button')) {
+    
+//Function for button on login
+function button($conn, $id){ 
+    
+    //Getting $butreg from PHP/Libary.php
+    global $butreg;
+    
 $logout = $conn -> query("UPDATE userinfo SET active='0' WHERE id= '.$id.'");
 
 //style for registration button
@@ -73,29 +78,41 @@ $probutt= '<a href ="Profile.php" style="'.$butreg.'"> My Profile</a>';
 //logout
 $outbut= '<a href ="" style="'.$butreg.' float: left;" onclick="'. $logout . '"> Logout</a>';
 
-if($conn -> query("SELECT active FROM userinfo WHERE id = ' . $id . '") !== 1 || 2){
+if($_SESSION['active'] !== 1 || 2){
     echo $regbutt;
     }else{
-    echo $probutt && $outbut;
-    }
-}
+    echo $probutt AND $outbut;
+  }
+ }
 }
 $curtim = date($str);
 
-//Creating function for creating a post if you're logged in
+//Checking if function already exists
 if (!function_exists('create_post()')) {
+//Creating function for creating a post if you're logged in
 function create_post(){
-  global $conn;
-  global $Login;
-  global $Create;
-//variable for selecting active
-$active = $conn -> query("SELECT active FROM userinfo"); 
+  global $Login; //Login text and make-up
+  global $Create; //Create post text and make-up
 
- if($active !== "1" || "2"){
+//Checking whether $active is one or two (logged-in and logged-out)
+ if($_SESSION['active'] !== "1" || "2"){
  echo $Login;
  }else{
      echo $Create;
+  }
  }
+}
+
+//Checking if user has admin permissions or not
+if (!function_exists('navbar')) {
+function navbar(){
+    global $navbaradmin; //Getting navbar for superior human beings from Libary.php
+    global $navbar; //Getting navbar for normies from Libary.php
+   //if(!empty($_SESSION['active'] 2) == 2){
+        echo $navbaradmin;
+//    }else{
+//        echo $navbar;
+//    }
 }
 }
 //creating a loop untill 12 months 
@@ -103,8 +120,8 @@ if (!function_exists('month_loop')) {
 function month_loop(){
     for($month = 1; $month <=12; $month++){
         echo '<option value="monsel" name="mon' . $month . ' " id="mon' . $month . '" required>'.$month.'</option>';
-    }
-    }
+  }
+ }
 }
  //creating a loop from current year - 120 to current year
 if (!function_exists('year_loop')) {
@@ -112,22 +129,23 @@ if (!function_exists('year_loop')) {
     for($year = date("Y") - 117; $year <= date("Y"); $year++){
         echo '<option value="yearsel" name="year' . $year . ' " id="year' . $year . '" required>'.$year.'</option>';
     } 
-        }
+  }
 }
           
 //Creating a loop for the amount of days in a month
 if (!function_exists('days_loop')) {
-function days_loop(){ 
-for($days = 1; $days <=31; $days++){
+ function days_loop(){ 
+  for($days = 1; $days <=31; $days++){
         echo '<option value="daysel" name="day' . $days . ' " required>'.$days.'</option>';
-    }
-    }
+  }
+ }
 }
 //function for myposts on profile page --only usefull when posts are finished
 //function my_posts(){
-//    foreach($posts as $$p){
+//    foreach($posts as $p){
 //        echo '<div class="filler1"></div>
 //              <div class="box2 shadow">'. $post .'</div>';
+//     $p++;
 //    }
 //}
 
@@ -137,10 +155,19 @@ function my_loop(){
     global $myloop;
     for($l ="";$l <= 100; $l++){
         echo $myloop ;
-    }
+  }
+ }
 }
-}
-function navbar(){
-    global $navbar;
-    echo $navbar;
-}
+
+//function indexpost(){ 
+  //  $count = "";
+  //  $bool = "";
+//do{
+// echo '<li><a href="Post-page.php">Post</a></li>'; $count++;       if($count = 10){
+//        return $bool ==  false;}
+//    while(
+//     $bool == true;
+//  }
+ //)
+//}
+

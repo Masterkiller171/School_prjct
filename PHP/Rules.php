@@ -10,9 +10,10 @@
 <body>
     <div class="right_floater">
         <div class="right_floater">
-        <?php button($conn) ?></div>
+        <?php button($conn, $id) ?></div>
     </div>
     <div class="filler"></div>
+    <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar()?>
     <div class="filler two"></div>
     <div class="left-filler"></div>

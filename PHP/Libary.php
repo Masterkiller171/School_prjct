@@ -25,9 +25,9 @@ $navbar =' <nav>
      <li class="sub-menu-parent">
        <a> Posts</a>
        <ul class="sub-menu">
-         <li><a href="../PHP/Post-page.php">New Posts</a></li>
-         <li><a href="../PHP/Post-page.php">Hot Posts</a></li>
-         <li><a href="../PHP/Post-page.php">Trending</a></li>
+         <li><a href="Post-page.php">New Posts</a></li>
+         <li><a href="Post-page.php">Hot Posts</a></li>
+         <li><a href="Post-page.php">Trending</a></li>
        </ul>
      </li>
      <li class="sub-menu-parent"><a>Create post</a>
@@ -62,5 +62,51 @@ $navbar =' <nav>
  </nav>
     <div class="filler two"></div>';
 
-
+$navbaradmin =' <nav>
+   <ul>
+       <li class="sub-menu-parent"><a href="../PHP/index.php"> Home</a>
+       </li>
+     <li class="sub-menu-parent">
+       <a> Posts</a>
+       <ul class="sub-menu">
+         <li><a href="Post-page.php">New Posts</a></li>
+         <li><a href="Post-page.php">Hot Posts</a></li>
+         <li><a href="Post-page.php">Trending</a></li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a>Create post</a>
+       <ul class="sub-menu">
+         <li>
+             <?php echo create_post() ?>
+         </li>
+       </ul>
+     </li>
+     <li class="sub-menu-parent"><a>Projects</a>
+       <ul class="sub-menu">
+         <li><a href="../PHP/Projects.php">New Projects</a></li>
+         <li><a href="../PHP/Projects.php">Hot Projects</a></li>
+         <li><a href="../PHP/Projects.php">Trending Projects</a></li>
+       </ul></li>
+        <li class="sub-menu-parent"><a>Support</a>
+       <ul class="sub-menu">
+         <li><a href="../PHP/Rules.php">Rules</a></li>
+         <li><a href="../PHP/Contact.php">Contact</a></li>
+       </ul></li>
+       <li class="sub-menu-parent"><a>History</a>
+       <ul class="sub-menu">
+         <li><a href="../PHP/">Post History</a></li>
+         <li><a href="../PHP/">Comment History</a></li>
+       </ul></li>
+       <li class="sub-menu-parent"><a>About us</a>
+       <ul class="sub-menu">
+         <li><a href="../PHP/Aboutus.php">Our project</a></li>
+         <li><a href="../PHP/">Background story</a></li>
+       </ul></li>
+       <li class="sub-menu-parent"><a>logboek</a>
+       <ul class="sub-menu">
+         <li><a href="../SCL/PHP/logboek.php">Our project</a></li>
+       </ul></li>
+   </ul>
+ </nav>
+    <div class="filler two"></div>';
 

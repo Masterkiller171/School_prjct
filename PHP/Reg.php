@@ -7,10 +7,10 @@ if($_SERVER['REQUEST_METHOD']== 'POST')
     {
     if(isset($_POST['password']) === isset($_POST['Passwordrpt']))//Checking if passwords are the same
         {   
-$id = rand(1000,5000);
+$id = md5(rand(1000,5000));
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Email = $conn-> real_escape_string($_POST['Email']);
-$Password= $_POST['password'];
+$Password= md5($_POST['password']);
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $days = $_POST['days'];
@@ -20,7 +20,6 @@ $monthname = $_POST['--'];
 $year = $_POST['year'];
 $yearname = $_POST['---'];
 $Comment = $conn-> real_escape_string($_POST['Comment']);
-
 if(isset($yearname) == false){
     
 if(isset($monthname) == false){
@@ -71,8 +70,7 @@ elseif($gender !== isset($_POST['Female']) || isset($_POST['Male'])){
 
 /*Checking if the file is an actual picture*/
 $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);//Path of picture
-    if (preg_match ("!image!",$_FILES['avatar']['type']))
-            {
+    if (preg_match ("!image!",$_FILES['avatar']['type'])){
         
 //Putting picture into database
         if(copy($_FILES['avatar']['tmp_name'], $picture_path))
@@ -82,7 +80,7 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
             $_SESSION['picture'] = $picture_path;
             
             $time = date('Y-m-d H:i:s');
-            $sql = $conn ->query("INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`)"
+            $sql = $conn -> query("INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`)"
             ."VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time')");
             $_SESSION['id'] = $id;
               //Registration succesfull
@@ -116,8 +114,7 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
      }
 }else{
      $_SESSION['message']= "The two given passwords don't match!";
-     }
-        
+     }     
 }
 
 
@@ -129,7 +126,6 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
     <link rel="stylesheet" href="../CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="login-box">
@@ -142,8 +138,8 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
         <form class="signup" method="post" autocomplete="off">
             <div class="u-form">
 <p3>What's your gender?</p3>
-<input value="1" name="Female" class="subject-list" type="checkbox" id="fem" >Female 
-<input value="2" name="Male" class="subject-list" type="checkbox" id="mal"  >Male
+<input value="1" name="Female" class="subject-list" type="checkbox" id="fem" /> Female 
+<input value="2" name="Male" class="subject-list" type="checkbox" id="mal"  /> Male
 
     <script type="text/javascript">
 	    $('.subject-list').on('change', 
@@ -151,6 +147,11 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
 		    $('.subject-list').not(this).prop('checked', false);  
 		});
              
+             var require1 = document.getElementById('fem').checked;
+             var require2 = document.getElementById('mal').checked;
+             if(require1 && require2 === false){
+                 document.getElementById("mal, fem").required = true;
+             }
     </script>
             </div>
    
@@ -209,7 +210,8 @@ var search = function() {
   prej = jobsArray.length === 1 ? "" : jobsArray.slice(0, -1).join(" ") + " ";
   jobc = jobsArray[jobsArray.length -1].toLowerCase();
   
-  for (var i = 0; i < job.length; i++) {
+    
+for (var i = 0; i < job.length; i++) {
     var a = job[i].toLowerCase(),
         t = a.indexOf(jobc);
     

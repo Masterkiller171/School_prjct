@@ -77,19 +77,19 @@ return $Commentup;
 <html lang="en">
     <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="../<?php $url?>/CSS/Profile.css"> 
-    <link rel="stylesheet" href="../<?php $url?>/CSS/Main.css"> 
+    <link rel="stylesheet" href="../CSS/Profile.css"> 
+    <link rel="stylesheet" href="../CSS/Main.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
        <A href="edit.html" >Logout</A>
        
-       
+  <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar()?>
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad">
-           <a href="../<?php $url?>/PHP/Editprof.php" >Apply to Profile</a>
+           <a href="Editprof.php" >Apply to Profile</a>
       </div>
           
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
@@ -128,9 +128,8 @@ return $Commentup;
                       </tr>
                              <tr>
                         <td>Gender</td>
-                        <td><input value="1" name="Female" class="subject-list" type="checkbox" id="fem" >Female 
-<input value="2" name="Male" class="subject-list" type="checkbox" id="mal"  >Male
-
+<td><input value="1" name="Female" class="subject-list" type="checkbox" id="fem">Female 
+<input value="2" name="Male" class="subject-list" type="checkbox" id="mal"> Male
     <script type="text/javascript">
 	    $('.subject-list').on('change', 
             function() {

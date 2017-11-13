@@ -13,9 +13,10 @@
 
     <div class="right_floater">
     <h4>
-    <?php button($conn) ?></a></h4></div>
+    <?php button($conn, $id) ?></a></h4></div>
     <div class="filler"></div>
-<?php navbar() ?>
+<!-- Function for navbar /PHP/Libary.php -->
+    <?php navbar() ?>
     
     <div class="left-filler"></div>
         <div class="right_box">

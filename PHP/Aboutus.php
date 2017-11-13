@@ -10,11 +10,12 @@
 </head>
 <body>
     <div class="right_floater">
-        <h4><a href="<?php $url?> /PHP/Reg.php" 
+        <h4><a href="../PHP/Reg.php" 
     style="<?php echo$butreg ?>">
-    <?php button($conn) ?></a></h4></div>
+    <?php button($conn, $id) ?></a></h4></div>
     </div>
     <div class="filler"></div>
+    <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar()?>
     <div class="filler two"></div>
     <div class="left-filler"></div>
