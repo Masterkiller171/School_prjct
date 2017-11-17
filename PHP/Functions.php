@@ -14,6 +14,7 @@ $password = "usbw"; //Password for database
 
 // Create connection to database
 $conn = new mysqli($servername, $username, $password, $DBname);
+$_SESSION['conn'] = $conn;
 // Check connection 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn -> connect_error);
@@ -21,16 +22,17 @@ if ($conn->connect_error) {
 //Declaring message session
 $_SESSION['message'] = '';
 
+//Setting default time to greenwich time
+date_default_timezone_set('GMT');
+
 //Setting the session ID into a variable
 $id = '';
     if(isset($_SESSION['id'])) {
         $id = $_SESSION['id'];
     }
-//Setting time to London time
-date_default_timezone_set('GMT'); 
 
 //Getting today's date
-$today = date("F j, Y, g:i a");
+$_SESSION['nowtime'] = date("F j, Y, g:i a");
 
 //variable for selecting active
 $_SESSION['active'] = $conn -> query("SELECT active FROM userinfo WHERE id= '. $id .'"); 
@@ -108,11 +110,11 @@ if (!function_exists('navbar')) {
 function navbar(){
     global $navbaradmin; //Getting navbar for superior human beings from Libary.php
     global $navbar; //Getting navbar for normies from Libary.php
-   //if(!empty($_SESSION['active'] 2) == 2){
+if(!empty($_SESSION['active']) == 2){
         echo $navbaradmin;
-//    }else{
-//        echo $navbar;
-//    }
+   }else{
+       echo $navbar;
+   }
 }
 }
 //creating a loop untill 12 months 
@@ -158,6 +160,11 @@ function my_loop(){
   }
  }
 }
+//function logout(){
+//  global  $id;
+//$_SESSION['conn'] -> query("UPDATE userinfo SET active='0' WHERE id= '. $id .'"); //Logging out onclick
+//session_destroy(); //Destroying all sessions
+//}
 
 //function indexpost(){ 
   //  $count = "";

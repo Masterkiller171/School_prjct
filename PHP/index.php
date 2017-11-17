@@ -17,8 +17,7 @@
     <div class="filler"></div>
 <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar() ?>
-    
-    <div class="left-filler"></div>
+    <div id="wrapper">
         <div class="right_box">
         <th>
             <li>
@@ -73,7 +72,7 @@
             Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
             </h5>
 </div>
-
+    </div>
    
     <div class="filler two">
     </div>

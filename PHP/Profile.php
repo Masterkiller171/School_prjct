@@ -43,7 +43,7 @@ include 'Functions.php';
             </div>
             <div class="panel-body">
               <div class="row">
-                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="#" style=""> </div>
+                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="<?php $_SESSION['Avatar'] ?>" style=""> </div>
                                                     
                 <div class=" col-md-9 col-lg-9 "> 
                    
@@ -51,7 +51,7 @@ include 'Functions.php';
                     <tbody>
                         <tr> 
                         <td>Username</td>
-                        <td><?php $conn-> query("SELECT `Username` FROM `userinfo` WHERE `id`='. $id .' AND `active`='1'")?>
+                        <td><?php echo $_SESSION['Username']?>
                       </tr>
                       <tr>
                         <td>Name</td>

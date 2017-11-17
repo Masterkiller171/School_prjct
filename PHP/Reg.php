@@ -76,10 +76,11 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
         if(copy($_FILES['avatar']['tmp_name'], $picture_path))
                 {
             
-            $_SESSION['Username'] = $Username;
-            $_SESSION['picture'] = $picture_path;
+            $_SESSION['Username'] = $Username; //Creating session for Username
+            $_SESSION['Avatar'] = $picture_path; //Creating session for avatar
             
             $time = date('Y-m-d H:i:s');
+            $_SESSION['time'] = $time;
             $sql = $conn -> query("INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`)"
             ."VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time')");
             $_SESSION['id'] = $id;
@@ -142,15 +143,17 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
 <input value="2" name="Male" class="subject-list" type="checkbox" id="mal"  /> Male
 
     <script type="text/javascript">
-	    $('.subject-list').on('change', 
+	    $('.subject-list').on('change', //Checking if checkbox is checked
             function() {
-		    $('.subject-list').not(this).prop('checked', false);  
+		    $('.subject-list').not(this).prop('checked', false);  //And so when it is checked there can noly be one checked
 		});
              
-             var require1 = document.getElementById('fem').checked;
-             var require2 = document.getElementById('mal').checked;
-             if(require1 && require2 === false){
-                 document.getElementById("mal, fem").required = true;
+             var require1 = document.getElementById('fem').checked; //Getting value from fem input
+             var require2 = document.getElementById('mal').checked; //Getting value from mal input
+        
+             /* will check if there is only one checked */
+             if(require1 && require2 === false){  
+                 document.getElementById("mal, fem").required = true; //And if not it will change to true
              }
     </script>
             </div>
@@ -159,19 +162,19 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
                                 <p3>When were you born?</p3>
                                 <select name="days">
                                     <option value="dayemp" name="-" id="dayemp" required>---</option>
-                                    <?php days_loop() ?>
+                                    <?php days_loop() //Loop from Funtions.php wich will output 30 days?>
 
                                 </select>
                                 
                                 <select name="month">
                                     <option value="monthemp" name="--" id="monthemp" required>---</option>
-                                   <?php month_loop() ?>
+                                   <?php month_loop() //Loop from Funtions.php wich will output 12 months?>
 
                                 </select>
                                 
                                 <select name="year">
                                     <option value="yearemp" name="---" id="yearemp" required>------</option>
-                                    <?php year_loop() ?>
+                                    <?php year_loop() //Loop from Funtions.php wich will output current-117 (117 because the oldest human was 117) ?>
 
                                 </select>
                             
@@ -210,7 +213,7 @@ var search = function() {
   prej = jobsArray.length === 1 ? "" : jobsArray.slice(0, -1).join(" ") + " ";
   jobc = jobsArray[jobsArray.length -1].toLowerCase();
   
-    
+//Checking length of string    
 for (var i = 0; i < job.length; i++) {
     var a = job[i].toLowerCase(),
         t = a.indexOf(jobc);
@@ -222,6 +225,8 @@ for (var i = 0; i < job.length; i++) {
   
   evaluateResults();
 };
+
+//Evualiting results on length(input)
 var evaluateResults = function() {
   if (results.length > 0 && jobs.length > 0 && jobc.length !== 0) {
     sortedResults = results.sort(sortResults);
@@ -231,11 +236,13 @@ var evaluateResults = function() {
     clearResults();
   }
 };
+//Sorting on results from input
 var sortResults = function (a,b) {
   if (a.indexOf(jobc) < b.indexOf(jobc)) return -1;
   if (a.indexOf(jobc) > b.indexOf(jobc)) return 1;
   return 0;
 };
+    
 //Odering results under input
 var oder = function () {
   clearResults();
@@ -251,6 +258,7 @@ var oder = function () {
     order.appendChild(ol);
   }
 };
+    
 // deleting histroy of type characters
 var clearResults = function() {
   order.innerHTML = "";
@@ -270,32 +278,33 @@ input.addEventListener("keyup", search, false);
 
 <script type="text/javascript">
  $(document).ready(function() {
-  $("#showHide").click(function() {
-    if ($(".password").attr("type") === "password") {
-      $(".password").attr("type", "text");
+  $("#showHide").click(function() { //Checking the button has been pressed
+    if ($(".password").attr("type") === "password"){ //Checking if text field is password
+      $(".password").attr("type", "text"); //If imput is password it will change to text(visible)
 
     } else {
-      $(".password").attr("type", "password");
+      $(".password").attr("type", "password"); //And if its already on text it will change to password
     }
   });
  });
 
  $(document).ready(function() {
-  $("#hideShow").click(function() {
-    if ($(".Passwordrpt").attr("type") === "password") {
-      $(".Passwordrpt").attr("type", "text");
+  $("#hideShow").click(function() {  //Checking the button has been pressed
+    if ($(".Passwordrpt").attr("type") === "password") {  //Checking if text field is password
+      $(".Passwordrpt").attr("type", "text"); //If imput is password it will change to text(visible)
 
     } else {
-      $(".Passwordrpt").attr("type", "password");
+      $(".Passwordrpt").attr("type", "password"); //And if its already on text it will change to password
     }
   });
 });
 
 function change()
 {
-   var Check = document.getElementById("showHide").value;
+   var Check = document.getElementById("showHide").value; //Getting value from hide/show button
    
-   if(Check === "show"){
+    /* will check whether check has a value of show and if not change it to show*/
+   if(Check === "show"){ 
       return  document.getElementById("showHide").value = "hide";
    }else{
      return  document.getElementById("showHide").value = "show";
@@ -304,8 +313,9 @@ function change()
 
 function changerpt()
 {
-   var Check = document.getElementById("hideShow").value;
-   
+   var Check = document.getElementById("hideShow").value;//Getting value from hide/show button
+    
+   /* will check whether check has a value of show and if not change it to show*/
    if(Check === "show"){
       return  document.getElementById("hideShow").value = "hide";
    }else{

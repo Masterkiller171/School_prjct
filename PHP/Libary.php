@@ -110,3 +110,10 @@ $navbaradmin =' <nav>
  </nav>
     <div class="filler two"></div>';
 
+//$logout = ' <A href="" style="color: Blue;
+//    padding: 5 1%;
+//    text-align: center;
+//    text-decoration: none;
+//    display: inline-block;
+//    background-color: lightblue;" onclick=" '. logout($conn)  . ' " >
+//    Logout</A>';
