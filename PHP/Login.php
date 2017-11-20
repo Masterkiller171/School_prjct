@@ -1,6 +1,8 @@
 <?php 
 include "Functions.php";
 
+$_SESSION['msg'] = '';
+
 if($_SERVER['REQUEST_METHOD']== 'POST'){
 if(isset($_POST['mail']) && !empty($_POST['mail']) AND isset($_POST['pass']) && !empty($_POST['pass'])){
     $search = $conn -> query("SELECT Username, Password FROM users") or die(mysql_error()); 
@@ -35,7 +37,7 @@ if($match > 0){
 <body>
 
    <text-align-cent>
-       <p> <i>Please login with your email and password</i> </p>
+       <p> <strong><i>Please login with your email and password</i></strong> </p>
     </text-align-cent>
 
     <form class="login">
@@ -44,10 +46,10 @@ if($match > 0){
             <input type="email" placeholder="Email" name="mail" required />
         </div>
         <div class="u-form">
-            <input type="password" placeholder="Password" name="pass"required />
+            <input type="password" placeholder="Password" name="pass" required />
         </div>
         <div class="u-form">
-            <input type="text" class="button" />Log in
+            <input type="submit" value="Log in" class="button" />
         </div>
     </form>
 

@@ -10,7 +10,7 @@
 <body>
 
     <div class="right_floater">
-        <?php button($conn) ?></div>
+        <?php button($conn, $id) ?></div>
     
     <div class="filler"></div>
 

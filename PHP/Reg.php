@@ -14,12 +14,11 @@ $Password= md5($_POST['password']);
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $days = $_POST['days'];
-$daysname = $_POST['-'];
 $month = $_POST['month'];
-$monthname = $_POST['--'];
 $year = $_POST['year'];
-$yearname = $_POST['---'];
 $Comment = $conn-> real_escape_string($_POST['Comment']);
+
+            
 if(isset($yearname) == false){
     
 if(isset($monthname) == false){
@@ -27,7 +26,7 @@ if(isset($monthname) == false){
 if(isset($daysname) == false){
     
 //Checking if Job is filled in
-if(isset($_POST["Job"]))
+if(!empty($_POST["Job"]))
 {
     $Specialty = $_POST["Job"] ;
 }
@@ -58,46 +57,50 @@ if(200 >= strlen($_POST['Comment'])){
 //Checking if gender equals male or female
 if($gender == isset($_POST['Female']))
     {
-    return $Gender = "F";
+    $Gender = "F";
 }
 elseif($gender == isset($_POST['Male']))
     {
-    return $Gender = "M";
-}
-elseif($gender !== isset($_POST['Female']) || isset($_POST['Male'])){
-    $_SESSION['message'] = "Please select a gender";
-}
+    $Gender = "M";
 
 /*Checking if the file is an actual picture*/
-$picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);//Path of picture
-    if (preg_match ("!image!",$_FILES['avatar']['type'])){
-        
-//Putting picture into database
-        if(copy($_FILES['avatar']['tmp_name'], $picture_path))
-                {
-            
+//print_r($_FILES);
+if(isset($_FILES['avatar'])){
+$picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name of avatar in images file
+    if (preg_match ("!image!",$_FILES['avatar']['type'])){  //Checking whether image file is allowed
+        //Copying image file from images directory
+      //  if(copy($_FILES['avatar']['tmp_name'], $picture_path)){
+
             $_SESSION['Username'] = $Username; //Creating session for Username
             $_SESSION['Avatar'] = $picture_path; //Creating session for avatar
             
-            $time = date('Y-m-d H:i:s');
-            $_SESSION['time'] = $time;
-            $sql = $conn -> query("INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`)"
-            ."VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time')");
-            $_SESSION['id'] = $id;
+            $time = date('Y-m-d H:i:s');//Setting time since account creation
+            $_SESSION['time'] = $time; //Setting time variable into a global session
+            
+            $sql =$conn -> query("INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`)
+            VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time')");
+            $_SESSION['id'] = $id;//Getting id
+            
               //Registration succesfull
-              if($conn->quert($sql) === true){
+            //  if($conn -> query($sql) === true){ 
                   $_SESSION['message'] = 'Registration is Succesfull!';
-                  $conn ->query("UPDATE `active` SET active = '1' WHERE id='. $id .'"); 
+                  $conn -> query("UPDATE `userinfo` SET active = '1' WHERE id='. $id .'"); 
                   header("location: Profile.php"); 
-}else{
-     $_SESSION['message'] = "Registration has failed!"; 
-     }
-}else{
-     $_SESSION['message'] = "File Upload Failed!";
-     }              
+//}else{
+  //   $_SESSION['message'] = "Registration has failed! Because that account already exists!"; 
+ //    }
+  //   $conn->close(); print_r('test');
+//}else{
+//     $_SESSION['message'] = "File Upload Failed!";
+//     }              
 }else{
      $_SESSION['message']= "Please only upload JPG, GIF or PNG images!";
      }
+}else{
+     $_SESSION['message']= "Please upload an avatar";
+     }
+}elseif($gender !== isset($_POST['Female']) || isset($_POST['Male'])){
+$_SESSION['message'] = "Please select a gender!";}
 }else{
      $_SESSION['message'] = 'Please keep your story below 200 characters please!';
      }
@@ -134,9 +137,9 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
             <p3>Or if you don't have an account:</p3>
             <a href="Login.php" class="active" id="login-box-link">Login</a>
         </div>
-        <p style="color: red;"><?php echo $_SESSION['message']?></p>
+        <p style="color: red; text-align: center;"><?php echo $_SESSION['message']?></p>
         <div class="filler-small"></div>
-        <form class="signup" method="post" autocomplete="off">
+        <form name="form1" class="signup" method="post" autocomplete="off" enctype="multipart/form-data" action="Reg.php">
             <div class="u-form">
 <p3>What's your gender?</p3>
 <input value="1" name="Female" class="subject-list" type="checkbox" id="fem" /> Female 
@@ -151,7 +154,7 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
              var require1 = document.getElementById('fem').checked; //Getting value from fem input
              var require2 = document.getElementById('mal').checked; //Getting value from mal input
         
-             /* will check if there is only one checked */
+             /* Will check if there is only one checked */
              if(require1 && require2 === false){  
                  document.getElementById("mal, fem").required = true; //And if not it will change to true
              }
@@ -161,41 +164,42 @@ $picture_path = $conn->real_escape_string('images/'.$_FILES['avatar']['name']);/
             
                                 <p3>When were you born?</p3>
                                 <select name="days">
-                                    <option value="dayemp" name="-" id="dayemp" required>---</option>
+                                    <option value="dayemp" name="dayemp" id="dayemp" required>---</option>
                                     <?php days_loop() //Loop from Funtions.php wich will output 30 days?>
 
                                 </select>
                                 
                                 <select name="month">
-                                    <option value="monthemp" name="--" id="monthemp" required>---</option>
+                                    <option value="monthemp" name="monthemp" id="monthemp" required>---</option>
                                    <?php month_loop() //Loop from Funtions.php wich will output 12 months?>
 
                                 </select>
                                 
                                 <select name="year">
-                                    <option value="yearemp" name="---" id="yearemp" required>------</option>
+                                    <option value="yearemp" name="yearemp" id="yearemp" required>------</option>
                                     <?php year_loop() //Loop from Funtions.php wich will output current-117 (117 because the oldest human was 117) ?>
 
                                 </select>
                             
     <div class="u-form">
-                <input type="username" placeholder="Username..." name='Username' required/>
+                                        <br>
+                                        <input type="username" placeholder="Username..." name='Username' autocomplete="on" required/>
             </div>
             <div class="u-form">
-                <input type="name" placeholder="Name..."name='Name' required/>
+                <input type="name" placeholder="Name..."name='Name' autocomplete="on" required/>
             </div>
             <div class="u-form">
-                <input type="sirname" placeholder="Surname..." name='Surname'required/>
+                <input type="sirname" placeholder="Surname..." name='Surname' autocomplete="on" required/>
             </div>
             
             <div class="u-form">
-                <input type="email" placeholder="Email..." name='Email'required/> 
+                <input type="email" placeholder="Email..." name='Email' autocomplete="on" required/> 
             </div>
             <div class="u-form">
-                <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website'/>
+                <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website'autocomplete="on"/>
             </div>
              <div class="u-form">   
-                 <input type="text" name='Job' id="searchBox" placeholder="Your job..." required/>
+                 <input type="text" name='Job' id="searchBox" placeholder="Your job..." autocomplete="on" required/>
                  <ul id="searchResults"></ul>
 <script type="text/javascript">
 var job = <?php echo json_encode($jobs)?>;
@@ -269,11 +273,11 @@ input.addEventListener("keyup", search, false);
 </script>
              </div>
             <div class="u-form">
-                <span><input class="password" type="password" placeholder="Password..." name='password' id="pass2" required/></span>
+                <span><input class="password" type="password" placeholder="Password..." name='password' id="pass2" autocomplete="on" required/></span>
                 <span><input type="button" class="buttonf" value="show" id="showHide"  onclick="change()"/></span>
             </div>
             <div class="u-form">
-                <span><input class="Passwordrpt" type="password" placeholder="Confirm Password..." name='Passwordrpt'id="rpt" required/></span>
+                <span><input class="Passwordrpt" type="password" placeholder="Confirm Password..." name='Passwordrpt'id="rpt" autocomplete="on" required/></span>
                 <span><input type="button" class="buttonf" id="hideShow" value="show" onclick="changerpt()"/></span>
 
 <script type="text/javascript">
