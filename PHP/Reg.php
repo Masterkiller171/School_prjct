@@ -43,25 +43,24 @@ else
 //}
 
 //Defining variables for input and comparing 
+if(isset($_POST['Website']) == TRUE){
 $string_url= $_POST['Website'];
 $reg_exp = "/^(http(s?):\/\/)?(www\.)+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/";
 
 //Checking if it's a valid url
-if(preg_match($reg_exp, $string_url) == TRUE){
-        
-$Website =$string_url;
-
+  if(preg_match($reg_exp, $string_url) == TRUE){      
+    $Website = $string_url;
+    
+      if(preg_match($reg_exp, $string_url) == FALSE){
+         $_SESSION['message'] = "Website is invalid";
+         $Website = '';
+}}} 
 //Checking if comment contains less than 200 characters
 if(200 >= strlen($_POST['Comment'])){
     
 //Checking if gender equals male or female
-if($gender == isset($_POST['Female']))
-    {
-    $Gender = "F";
-}
-elseif($gender == isset($_POST['Male']))
-    {
-    $Gender = "M";
+if(count($_POST['gender']) == 1){
+  $Gender = $_POST['gender'];
 
 /*Checking if the file is an actual picture*/
 //print_r($_FILES);
@@ -71,21 +70,32 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
         //Copying image file from images directory
       //  if(copy($_FILES['avatar']['tmp_name'], $picture_path)){
 
-            $_SESSION['Username'] = $Username; //Creating session for Username
-            $_SESSION['Avatar'] = $picture_path; //Creating session for avatar
-            
-            $time = date('Y-m-d H:i:s');//Setting time since account creation
-            $_SESSION['time'] = $time; //Setting time variable into a global session
-            
-            $sql =$conn -> query("INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`)
-            VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time')");
+        $time = date('Y-m-d H:i:s');//Setting time since account creation
+        
+        /*Creating sessions for all data */
+            $_SESSION['Username'] = $Username; 
+            $_SESSION['Avatar'] = $picture_path; 
+            $_SESSION['time'] = $time; 
+            $_SESSION['Name']= $Name; 
+            $_SESSION['Surname'] = $Surname; 
+            $_SESSION['Email'] = $Email;
+            $_SESSION['Password'] = $Password;
+            $_SESSION['Comment'] = $Comment;
+            $_SESSION['Gender'] = $Gender;
+            $_SESSION['Specialty'] = $Specialty;
+            $_SESSION['Website'] = $Website;
+            $_SESSION['days'] = $days;
+            $_SESSION['month'] = $month;
+            $_SESSION['year'] = $year;
+           
+            $sql =$conn -> query("INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`,`Website`)
+            VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time'.'$Website')");
             $_SESSION['id'] = $id;//Getting id
             
               //Registration succesfull
             //  if($conn -> query($sql) === true){ 
-                  $_SESSION['message'] = 'Registration is Succesfull!';
-                  $conn -> query("UPDATE `userinfo` SET active = '1' WHERE id='. $id .'"); 
-                  header("location: Profile.php"); 
+                  $_SESSION['message'] = 'Registration is Succesfull!'; 
+                  header("location: Verify-Page.php"); 
 //}else{
   //   $_SESSION['message'] = "Registration has failed! Because that account already exists!"; 
  //    }
@@ -99,13 +109,10 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
 }else{
      $_SESSION['message']= "Please upload an avatar";
      }
-}elseif($gender !== isset($_POST['Female']) || isset($_POST['Male'])){
-$_SESSION['message'] = "Please select a gender!";}
-}else{
-     $_SESSION['message'] = 'Please keep your story below 200 characters please!';
+}else{$_SESSION['message'] = "Please select a gender!";
      }
 }else{
-     $_SESSION['message'] = 'Invalid website url!';
+     $_SESSION['message'] = 'Please keep your story below 200 characters please!';
      }
 }else{
      $_SESSION['message'] = "Please choose a day";
@@ -142,15 +149,16 @@ $_SESSION['message'] = "Please select a gender!";}
         <form name="form1" class="signup" method="post" autocomplete="off" enctype="multipart/form-data" action="Reg.php">
             <div class="u-form">
 <p3>What's your gender?</p3>
-<input value="1" name="Female" class="subject-list" type="checkbox" id="fem" /> Female 
-<input value="2" name="Male" class="subject-list" type="checkbox" id="mal"  /> Male
+<input type="checkbox" name="gender" value="female" class="subject-list"  id="fem" /> Female 
+<input type="checkbox" name="gender" value="male" class="subject-list"  id="mal"  /> Male
 
     <script type="text/javascript">
 	    $('.subject-list').on('change', //Checking if checkbox is checked
             function() {
 		    $('.subject-list').not(this).prop('checked', false);  //And so when it is checked there can noly be one checked
 		});
-             
+                
+            function require(){ 
              var require1 = document.getElementById('fem').checked; //Getting value from fem input
              var require2 = document.getElementById('mal').checked; //Getting value from mal input
         
@@ -158,6 +166,7 @@ $_SESSION['message'] = "Please select a gender!";}
              if(require1 && require2 === false){  
                  document.getElementById("mal, fem").required = true; //And if not it will change to true
              }
+        }
     </script>
             </div>
    
@@ -334,7 +343,7 @@ function changerpt()
             <div class="u-form">
                 <textarea type='textarea' name='Comment' placeholder="Tell something about yourself" style="width:250px;height:150px;" required/></textarea>
                 <div class="u-form">
-                    <button type="submit" value="register" name="register" class="buttonc button" style="width: calc(50% - 22px);" id="submit" required/> Submit</button>
+                    <button type="submit" value="register" name="register" class="buttonc button" style="width: calc(50% - 22px);" id="submit" onclick="require()" required> Submit</button>
                 </div>
             </div>
         </form>

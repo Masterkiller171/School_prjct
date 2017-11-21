@@ -25,7 +25,7 @@ include 'Functions.php';
       <div class="col-md-5  toppad">
           <h4>Member Since:</h4>
           <br>
-          <h5><?php echo $today ?></h5>
+          <h5><?php echo $_SESSION['time'] ?></h5>
            <a href="Editprof.php" >Edit Profile</a>
            <div class="boxp shadow">
                <div class="cover left">
@@ -55,31 +55,31 @@ include 'Functions.php';
                       </tr>
                       <tr>
                         <td>Name</td>
-                        <td><?php $conn-> query("SELECT `Name` FROM `userinfo` WHERE `id`='. $id .' AND `active`='1'")?>
+                        <td><?php echo $_SESSION['Name']?>
                       </tr>
                       <tr>
                         <td>SurName</td>
-                        <td><?php $conn-> query("SELECT `Surname` FROM `userinfo` WHERE `id`='. $id .' AND `active`='1'")?>
+                        <td><?php echo $_SESSION['Surname']?>
                       </tr>
                       <tr>
                         <td>Department:</td>
-                        <td><?php $conn-> query("SELECT `Specialty` FROM `userinfo` WHERE `id`='$id ' AND `active`='1'")?>
+                        <td><?php echo $_SESSION['Specialty']?>
                       </tr>
                       <tr>
                         <td>Date of Birth</td>
-                        <td><?php $conn-> query("SELECT `days`, `month`, `year` FROM `userinfo` WHERE `id`='. $id .' AND `active`='1'")?>
+                        <td><?php echo $_SESSION['days']. "/" .$_SESSION['month']. "/" .$_SESSION['year'] ?>
                       </tr>
                              <tr>
                         <td>Gender</td>
-                        <td><?php $conn-> query("SELECT `Gender` FROM `userinfo` WHERE `id`='. $id .' AND `active`='1'")?>
+                        <td><?php echo $_SESSION['Gender']?>
                              </tr>
                       <tr>
                         <td>Email</td>
-                        <td><?php $conn-> query("SELECT `Email` FROM `userinfo` WHERE `id`='. $id .' AND `active`='1'")?>         
+                        <td><?php echo $_SESSION['Email']?>         
                       </tr>
                        <tr>
                         <td>Comment</td>
-                        <td><?php $conn-> query("SELECT `Comment` FROM userinfo WHERE id='. $id .' AND active='1'")?>
+                        <td><?php echo $_SESSION['Comment']?>
                      </tr>
                       </tbody>
                     </table>

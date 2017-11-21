@@ -7,20 +7,18 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 if(isset($_POST['mail']) && !empty($_POST['mail']) AND isset($_POST['pass']) && !empty($_POST['pass'])){
     $search = $conn -> query("SELECT Username, Password FROM users") or die(mysql_error()); 
     $match  = mysql_num_rows($search);
-}
+
 if(isset($_POST['mail']) == "specialemail@gmail.com" && isset($_POST['pass']) == "specialpassword"){
     $conn -> query("UPDATE userinfo SET active = 2"); //Setting 2 as actie for superior human beings (admins) 
     $_SESSION['Email'] = $_POST['mail']; //Getting Email from email input
     $_SESSION['Password'] = $_POST['pass']; //Geting  password from password input
-}else{
-    
-if($match > 0){
+}elseif($match > 0){
     $_SESSION['msg'] = 'Login Complete! You may now continue.';
     $conn -> query("UPDATE userinfo SET active = 1"); //Updatting active to 1 for normies(normal customers)
     $_SESSION['Email'] = $_POST['mail']; //Getting Email from email input for normies
     $_SESSION['Password'] = $_POST['pass']; //Geting  password from password input for normies
 }else{
-    $_SESSION['msg'] = 'Login Failed! Please make sure that you enter the correct details and that you have activated your account.'; //Fail message when there is no match in query search
+    $_SESSION['msg'] = 'Login Failed! Please make sure that you enter the correct details and that you have an activated account.'; //Fail message when there is no match in query search
   }
  }
 }

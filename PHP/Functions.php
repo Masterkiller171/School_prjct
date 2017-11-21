@@ -121,7 +121,7 @@ if(!empty($_SESSION['active']) == 2){
 if (!function_exists('month_loop')) {
 function month_loop(){
     for($month = 1; $month <=12; $month++){
-        echo '<option value="mon' . $month . '" name="mon' . $month . ' " id="mon' . $month . '" required>'.$month.'</option>';
+        echo '<option value="' . $month . '" name="mon' . $month . ' " id="mon' . $month . '" required>'.$month.'</option>';
   }
  }
 }
@@ -129,7 +129,7 @@ function month_loop(){
 if (!function_exists('year_loop')) {
  function year_loop(){
     for($year = date("Y") - 117; $year <= date("Y"); $year++){
-        echo '<option value="year' . $year . '" name="year' . $year . ' " id="year' . $year . '" required>'.$year.'</option>';
+        echo '<option value="' . $year . '" name="year' . $year . ' " id="year' . $year . '" required>'.$year.'</option>';
     } 
   }
 }
@@ -138,7 +138,7 @@ if (!function_exists('year_loop')) {
 if (!function_exists('days_loop')) {
  function days_loop(){ 
   for($days = 1; $days <=31; $days++){
-        echo '<option value="day'. $days .'" name="day' . $days . ' " required>'.$days.'</option>';
+        echo '<option value="'. $days .'" name="day' . $days . ' " required>'.$days.'</option>';
   }
  }
 }
