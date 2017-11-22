@@ -81,9 +81,9 @@ $probutt= '<a href ="Profile.php" style="'.$butreg.'"> My Profile</a>';
 $outbut= '<a href ="" style="'.$butreg.' float: left;" onclick="'. $logout . '"> Logout</a>';
 
 if($_SESSION['active'] !== 1 || 2){
-    echo $regbutt;
+    echo $probutt; //AND $outbut;
     }else{
-    echo $probutt AND $outbut;
+     echo $regbutt;
   }
  }
 }
@@ -97,7 +97,7 @@ function create_post(){
   global $Create; //Create post text and make-up
 
 //Checking whether $active is one or two (logged-in and logged-out)
- if($_SESSION['active'] !== "1" || "2"){
+ if($_SESSION['active'] !== 1 || 2){
  echo $Login;
  }else{
      echo $Create;

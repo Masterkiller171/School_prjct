@@ -1,15 +1,14 @@
 <?php
 include 'Functions.php';
 
-if($_SERVER['REQUEST_METHOD']== 'POST'){
-     if(isset($_POST["inputiet"])){
-        $conn -> query("UPDATE `userinfo` SET `active` = '1' AND SET `Email` = '".$_POST["inputiet"]."'  WHERE id=". $_SESSION['id'] ."");
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+     if($_POST["inputiet"] == ''){
+        header("location: Profile.php");
+    }else{
         $_SESSION['active'] = 1;
         $_SESSION['Email'] = $_POST["inputiet"];
-        header("location: Profile.php");
+        $conn -> query("UPDATE `userinfo` SET `active` = '1' AND SET `Email` = '".$_POST["inputiet"]."'");
     
-    }else{
-       header("location: Profile.php");
   }
 }
 ?>
@@ -23,7 +22,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 </head>
 <body onload="disabled()">
     <div class="filler"></div>
-    <form>
+    <form method="post">
     <div class="login-box" style="height: 15%;">
         <text-align-cent>
             <div class="u-form">
