@@ -9,14 +9,15 @@ if($_SERVER['REQUEST_METHOD']== 'POST')
         {   
 $id = md5(rand(1000,5000));
 $Username = $conn-> real_escape_string($_POST['Username']);
-$Email = $conn-> real_escape_string($_POST['Email']);
-$Password= md5($_POST['password']);
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
+$Email = $conn-> real_escape_string($_POST['Email']);
+$Password= md5($_POST['password']);
+$Comment = $conn-> real_escape_string($_POST['Comment']);
 $days = $_POST['days'];
 $month = $_POST['month'];
 $year = $_POST['year'];
-$Comment = $conn-> real_escape_string($_POST['Comment']);
+
 
             
 if(isset($yearname) == false){
@@ -87,18 +88,18 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
             $_SESSION['days'] = $days;
             $_SESSION['month'] = $month;
             $_SESSION['year'] = $year;
-           
-            $sql =$conn -> query("INSERT INTO userinfo (`Username`, `Name`, `Surname`, `Email`, `Password`, `avatar`, `Comment`, `Gender`, `Specialty`, `days`, `month`, `year`,`time`,`Website`)
-            VALUES ('$Username','$Name',' $Surname',' $Email',' $Password',' $picture_path ','$Comment','$Gender'.'$Specialty'.'$days'.'$month'.'$year'.'$time'.'$Website')");
-            $_SESSION['id'] = $id;//Getting id
+            $_SESSION['id'] = $id;
+            
+            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website)"
+            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$picture_path', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website')";
             
               //Registration succesfull
-            //  if($conn -> query($sql) === true){ 
+              if($conn -> query($sql) === true){ 
                   $_SESSION['message'] = 'Registration is Succesfull!'; 
                   header("location: Verify-Page.php"); 
-//}else{
-  //   $_SESSION['message'] = "Registration has failed! Because that account already exists!"; 
- //    }
+}else{
+     $_SESSION['message'] = "Registration has failed! $conn->error()"; 
+     }
   //   $conn->close(); print_r('test');
 //}else{
 //     $_SESSION['message'] = "File Upload Failed!";
@@ -109,7 +110,8 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
 }else{
      $_SESSION['message']= "Please upload an avatar";
      }
-}else{$_SESSION['message'] = "Please select a gender!";
+}else{
+     $_SESSION['message'] = "Please select a gender!";
      }
 }else{
      $_SESSION['message'] = 'Please keep your story below 200 characters please!';
@@ -141,7 +143,7 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
 <body>
     <div class="login-box">
         <div class="lb-header">
-            <p3>Or if you don't have an account:</p3>
+            <p3>Or if you already have an account:</p3>
             <a href="Login.php" class="active" id="login-box-link">Login</a>
         </div>
         <p style="color: red; text-align: center;"><?php echo $_SESSION['message']?></p>

@@ -3,8 +3,15 @@ $butreg = 'color: Blue;
     padding: 5 1%;
     text-align: center;
     text-decoration: none;
-    background-color: lightblue;';
+    background-color: lightblue;
+    float: right;';
 
+$butout = 'color: Blue;
+    padding: 5 1%;
+    text-align: center;
+    text-decoration: none;
+    background-color: lightblue;
+    float: left;';
 //Loop on profile page for posts
 $myloop='<div class="filler1"></div>
          <div class="cover left">

@@ -51,11 +51,11 @@ include 'Functions.php';
                     <tbody>
                         <tr> 
                         <td>Username</td>
-                        <td><?php echo $_SESSION['Username']?>
+                        <td><?php echo $_SESSION['Username'];?>
                       </tr>
                       <tr>
                         <td>Name</td>
-                        <td><?php echo $_SESSION['Name']?>
+                        <td><?php echo $_SESSION['Name'];?>
                       </tr>
                       <tr>
                         <td>SurName</td>

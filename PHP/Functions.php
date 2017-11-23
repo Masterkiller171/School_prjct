@@ -5,12 +5,11 @@ include "Libary.php";
 session_start();
 //Defining all global variables.
 $Username = $Name = $Surname = $Password = $Passwordrpt = $Comment = $Email = $gender = $id = $Specialty = $str = $mysqli = $jobs = $match="";
-
-$DBname = "innoform"; //Database name
+ 
+$DBname = "innofurm"; //Database name
 $servername = "localhost:3307"; //Servername
 $username = "root"; //Username for datebase
 $password = "usbw"; //Password for database
-
 
 // Create connection to database
 $conn = new mysqli($servername, $username, $password, $DBname);
@@ -22,6 +21,10 @@ if ($conn->connect_error) {
 //Declaring message session
 $_SESSION['message'] = '';
 
+//Checking whether active is set or not
+if(!isset($_SESSION['active'])) {
+   $_SESSION['active'] = 0;
+}
 //Setting default time to greenwich time
 date_default_timezone_set('GMT');
 
@@ -33,9 +36,6 @@ $id = '';
 
 //Getting today's date
 $_SESSION['nowtime'] = date("F j, Y, g:i a");
-
-//variable for selecting active
-$_SESSION['active'] = $conn -> query("SELECT active FROM userinfo WHERE id= '. $id .'"); 
 
 //create the database
 //if ( !$conn->query('CREATE DATABASE innoform') ) {
@@ -60,17 +60,23 @@ $_SESSION['active'] = $conn -> query("SELECT active FROM userinfo WHERE id= '. $
 //`year` INT(4) NOT NULL
 //);') or die($conn->error);
 
-//Checking if function button already exists
 if (!function_exists('button')) {
-    
+function logout(){
+ global  $conn;
+ $conn -> query("UPDATE userinfo SET active='0'"); //Logging out onclick
+ session_destroy(); //Destroying all sessions
+ $_SESSION['active'] = '0';
+}
+}
+
+//Checking if function button already exists
+if (!function_exists('button')) {  
 //Function for button on login
-function button($conn, $id){ 
+function button(){ 
     
     //Getting $butreg from PHP/Libary.php
     global $butreg;
-    
-$logout = $conn -> query("UPDATE userinfo SET active='0' WHERE id= '.$id.'");
-
+    global $butout;
 //style for registration button
 $regbutt= '<a href ="Reg.php" style="'.$butreg.'"> Login/Register</a>';
 
@@ -78,10 +84,10 @@ $regbutt= '<a href ="Reg.php" style="'.$butreg.'"> Login/Register</a>';
 $probutt= '<a href ="Profile.php" style="'.$butreg.'"> My Profile</a>';
 
 //logout
-$outbut= '<a href ="" style="'.$butreg.' float: left;" onclick="'. $logout . '"> Logout</a>';
+$outbut= '<a href ="" style="'. $butout .' float: left;" onclick="'. logout() . '"> Logout</a>';
 
-if($_SESSION['active'] !== 1 || 2){
-    echo $probutt; //AND $outbut;
+if($_SESSION['active'] == 1 || 2){
+    echo $probutt, $outbut;
     }else{
      echo $regbutt;
   }
@@ -97,10 +103,10 @@ function create_post(){
   global $Create; //Create post text and make-up
 
 //Checking whether $active is one or two (logged-in and logged-out)
- if($_SESSION['active'] !== 1 || 2){
- echo $Login;
- }else{
-     echo $Create;
+ if($_SESSION['active'] == 1 || 2){
+  echo $Create;
+   }else{
+     echo $Login;
   }
  }
 }
@@ -160,11 +166,7 @@ function my_loop(){
   }
  }
 }
-//function logout(){
-//  global  $id;
-//$_SESSION['conn'] -> query("UPDATE userinfo SET active='0' WHERE id= '. $id .'"); //Logging out onclick
-//session_destroy(); //Destroying all sessions
-//}
+
 
 //function indexpost(){ 
   //  $count = "";

@@ -4,22 +4,40 @@ include "Functions.php";
 $_SESSION['msg'] = '';
 
 if($_SERVER['REQUEST_METHOD']== 'POST'){
-if(isset($_POST['mail']) && !empty($_POST['mail']) AND isset($_POST['pass']) && !empty($_POST['pass'])){
+ if(isset($_POST['mail']) && !empty($_POST['mail']) AND isset($_POST['pass']) && !empty($_POST['pass'])){
     $search = $conn -> query("SELECT Username, Password FROM users") or die(mysql_error()); 
-    $match  = mysql_num_rows($search);
+    $match  = $search -> num_rows;
 
-if(isset($_POST['mail']) == "specialemail@gmail.com" && isset($_POST['pass']) == "specialpassword"){
-    $conn -> query("UPDATE userinfo SET active = 2"); //Setting 2 as actie for superior human beings (admins) 
+ if(isset($_POST['mail']) == "specialemail@gmail.com" && isset($_POST['pass']) == "specialpassword"){
     $_SESSION['Email'] = $_POST['mail']; //Getting Email from email input
     $_SESSION['Password'] = $_POST['pass']; //Geting  password from password input
-}elseif($match > 0){
-    $_SESSION['msg'] = 'Login Complete! You may now continue.';
+    $_SESSION['active'] = 2;
+    header('location: Profile.php');
+    
+ }elseif($match == 1){
     $conn -> query("UPDATE userinfo SET active = 1"); //Updatting active to 1 for normies(normal customers)
-    $_SESSION['Email'] = $_POST['mail']; //Getting Email from email input for normies
-    $_SESSION['Password'] = $_POST['pass']; //Geting  password from password input for normies
-}else{
-    $_SESSION['msg'] = 'Login Failed! Please make sure that you enter the correct details and that you have an activated account.'; //Fail message when there is no match in query search
+    $_SESSION['active'] = '1';
+    $query = $conn -> query("SELECT userinfo Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website");
+    $sql =  $query -> fetch_array;
+
+    $sql['Username'] = $_SESSION['Username'];
+    $sql['Name'] = $_SESSION['Name'];
+    $sql['Surname'] = $_SESSION['Surname'];
+    $sql['Email'] = $_SESSION['Email'];
+    $sql['Password'] = $_SESSION['Password'];
+    $sql['avatar'] = $_SESSION['avatar'];
+    $sql['Comment'] = $_SESSION['Comment'];
+    $sql['Gender'] = $_SESSION['Gender'];
+    $sql['Specialty'] = $_SESSION['Specialty'];
+    $sql['days'] = $_SESSION['days'];
+    $sql['month'] = $_SESSION['month'];
+    $sql['year'] = $_SESSION['year'];
+    $sql['time'] = $_SESSION['time'];
+    $sql['Website'] = $_SESSION['Website'];
+    
+    header('location: Profile.php');
   }
+ }else{$_SESSION['msg'] = 'Login Failed! Please make sure that you enter the correct details and that you have an activated account.'; //Fail message when there is no match in query search
  }
 }
 
@@ -38,7 +56,7 @@ if(isset($_POST['mail']) == "specialemail@gmail.com" && isset($_POST['pass']) ==
        <p> <strong><i>Please login with your email and password</i></strong> </p>
     </text-align-cent>
 
-    <form class="login">
+<form class="login" method="post">
         <p style="color: red;"><?php echo $_SESSION['msg'] ?></p>
         <div class="u-form">
             <input type="email" placeholder="Email" name="mail" required />
