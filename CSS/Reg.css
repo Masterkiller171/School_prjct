@@ -86,7 +86,7 @@ body {
 .u-form input[type="password"],
 .u-form input[type="website"],
 .u-form input[type="text"]{
-    width: calc(50% - 22px);
+    width: calc(50% - 24px);
     height: 45px;
     outline: none;
     border: 1px solid #ddd;

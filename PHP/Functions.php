@@ -29,10 +29,7 @@ if(!isset($_SESSION['active'])) {
 date_default_timezone_set('GMT');
 
 //Setting the session ID into a variable
-$id = '';
-    if(isset($_SESSION['id'])) {
-        $id = $_SESSION['id'];
-    }
+$_SESSION['id'] = $conn -> query("SELECT id FROM userinfo");
 
 //Getting today's date
 $_SESSION['nowtime'] = date("F j, Y, g:i a");
@@ -60,7 +57,27 @@ $_SESSION['nowtime'] = date("F j, Y, g:i a");
 //`year` INT(4) NOT NULL
 //);') or die($conn->error);
 
-if (!function_exists('button')) {
+
+    $quary = $conn -> query("SELECT Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website, active FROM userinfo WHERE id= ". $_SESSION['id'] ."");
+    $arra =  array();
+   while($sql = $quary -> fetch_array(MYSQLI_ASSOC)){ 
+       $arra[] = $sql;
+       return $sql['Username'] = $_SESSION['Username'];
+       return $sql['Name'] = $_SESSION['Name'];
+       return $sql['Surname'] = $_SESSION['Surname'];
+       return $sql['Email'] = $_SESSION['Email'];
+       return $sql['Password'] = $_SESSION['Password'];
+       return $sql['avatar'] = $_SESSION['avatar'];
+       return $sql['Comment'] = $_SESSION['Comment'];
+       return $sql['Gender'] = $_SESSION['Gender'];
+       return $sql['Specialty'] = $_SESSION['Specialty'];
+       return $sql['days'] = $_SESSION['days'];
+       return $sql['month'] = $_SESSION['month'];
+       return $sql['year'] = $_SESSION['year'];
+       return $sql['time'] = $_SESSION['time'];
+       return $sql['Website'] = $_SESSION['Website'];
+    }
+if (!function_exists('logout')) {
 function logout(){
  global  $conn;
  $conn -> query("UPDATE userinfo SET active='0'"); //Logging out onclick
@@ -126,12 +143,14 @@ if(!empty($_SESSION['active']) == 2){
 //creating a loop untill 12 months 
 if (!function_exists('month_loop')) {
 function month_loop(){
-    for($month = 1; $month <=12; $month++){
-        echo '<option value="' . $month . '" name="mon' . $month . ' " id="mon' . $month . '" required>'.$month.'</option>';
+    $months = array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec");
+    $counter = count($months);
+    for($month = 0; $month < $counter; $month++){
+        echo '<option value="' . $months[$month] . '" name="mon' . $months[$month] . ' " id="mon' . $months[$month] . '" required>'. $months[$month] .'</option>';
   }
  }
 }
- //creating a loop from current year - 120 to current year
+ //creating a loop from current year - 117 to current year
 if (!function_exists('year_loop')) {
  function year_loop(){
     for($year = date("Y") - 117; $year <= date("Y"); $year++){

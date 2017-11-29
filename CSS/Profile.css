@@ -53,10 +53,10 @@
 	height:30%;
 	background:grey;
 	margin:40px auto;
-        border-radius: 2px;   
-        border: 1px solid #000;
-        overflow: hidden;
-        padding: 10px;
+    border-radius: 2px;   
+    border: 1px solid #000;
+    overflow: hidden;
+    padding: 10px;
 }
 .btn a{
   color: #fff;

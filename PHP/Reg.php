@@ -7,7 +7,6 @@ if($_SERVER['REQUEST_METHOD']== 'POST')
     {
     if(isset($_POST['password']) === isset($_POST['Passwordrpt']))//Checking if passwords are the same
         {   
-$id = md5(rand(1000,5000));
 $Username = $conn-> real_escape_string($_POST['Username']);
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
@@ -17,8 +16,7 @@ $Comment = $conn-> real_escape_string($_POST['Comment']);
 $days = $_POST['days'];
 $month = $_POST['month'];
 $year = $_POST['year'];
-
-
+$active = 1;
             
 if(isset($yearname) == false){
     
@@ -88,10 +86,10 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
             $_SESSION['days'] = $days;
             $_SESSION['month'] = $month;
             $_SESSION['year'] = $year;
-            $_SESSION['id'] = $id;
-            
-            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website)"
-            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$picture_path', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website')";
+            $_SESSION['active'] = $active;
+        
+            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website, active)"
+            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$picture_path', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$active')";
             
               //Registration succesfull
               if($conn -> query($sql) === true){ 

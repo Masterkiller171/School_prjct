@@ -5,7 +5,8 @@ body{
 	padding: 20px 0 20px 30px;
 	margin: auto;
 }
-.sub-menu-parent { position: relative; }
+.sub-menu-parent { position: relative;
+}
 
 .sub-menu { 
   visibility: hidden;
@@ -24,7 +25,6 @@ body{
   transform: translateY(0%);
   transition-delay: 0s, 0s, 0.3s;
 }
-
 
 nav a { color: #93b7bc; display: block; padding: 0.5em 1em; text-decoration: none;}
 nav a:hover { color: #F55; }
@@ -114,8 +114,6 @@ nav > ul > li { display: inline-block; }
     transition: all 0.1s linear;
     background-color: aliceblue;
 }
-
-
 
 text-align-cent {
     text-align: center;

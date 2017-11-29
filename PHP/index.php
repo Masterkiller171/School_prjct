@@ -12,7 +12,7 @@
 <body>
 
     <h4>
-    <?php button($conn, $id) ?></a></h4>
+    <?php button($conn, $id) ?></h4>
     <div class="filler"></div>
 <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar() ?>

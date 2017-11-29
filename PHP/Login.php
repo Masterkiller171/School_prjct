@@ -15,11 +15,13 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     header('location: Profile.php');
     
  }elseif($match == 1){
-    $conn -> query("UPDATE userinfo SET active = 1"); //Updatting active to 1 for normies(normal customers)
-    $_SESSION['active'] = '1';
+    $conn -> query("UPDATE userinfo SET active = 1"); //Updatting active to 1 for normies(normal customers) in database
+    $_SESSION['active'] = 1;
     $query = $conn -> query("SELECT userinfo Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website");
-    $sql =  $query -> fetch_array;
-
+    $arr =  array();
+    while($sql = $conn-> fetch_array($query)){ 
+        
+    $array[] = $sql;     
     $sql['Username'] = $_SESSION['Username'];
     $sql['Name'] = $_SESSION['Name'];
     $sql['Surname'] = $_SESSION['Surname'];
@@ -34,10 +36,11 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     $sql['year'] = $_SESSION['year'];
     $sql['time'] = $_SESSION['time'];
     $sql['Website'] = $_SESSION['Website'];
-    
+    }
     header('location: Profile.php');
   }
- }else{$_SESSION['msg'] = 'Login Failed! Please make sure that you enter the correct details and that you have an activated account.'; //Fail message when there is no match in query search
+ }else{
+     $_SESSION['msg'] = 'Login Failed! Please make sure that you enter the correct details and that you have an activated account.'; //Fail message when there is no match in query search
  }
 }
 
@@ -51,7 +54,6 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 </head>
 
 <body>
-
    <text-align-cent>
        <p> <strong><i>Please login with your email and password</i></strong> </p>
     </text-align-cent>
