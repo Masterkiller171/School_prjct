@@ -1,9 +1,8 @@
-
+<?php include 'Functions.php'; ?>
 <html lang="en">
 
 <head>
-    <title>InnoForm</title>
-    <?php include 'Functions.php';?>
+    <title>Homepage -InnoForm</title>
     <link rel="stylesheet" type="text/css" href="../CSS/Main.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,7 @@
 <body>
 
     <h4>
-    <?php button($conn, $id) ?></h4>
+    <?php button(); ?></h4>
     <div class="filler"></div>
 <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar() ?>

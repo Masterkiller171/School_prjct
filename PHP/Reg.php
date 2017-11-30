@@ -95,6 +95,11 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
               if($conn -> query($sql) === true){ 
                   $_SESSION['message'] = 'Registration is Succesfull!'; 
                   header("location: Verify-Page.php"); 
+                   //Checking whether active is set or not
+                    $active = "SELECT id FROM userinfo WHERE Email='. $Email .' AND Password='. $Password .'";
+                      $actives = mysqli_query($conn, $active);
+                      $sql = mysqli_fetch_array($actives, MYSQLI_ASSOC);
+                      $sql['id'] = $_SESSION['id'];
 }else{
      $_SESSION['message'] = "Registration has failed! $conn->error()"; 
      }
@@ -159,8 +164,8 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
 		});
                 
             function require(){ 
-             var require1 = document.getElementById('fem').checked; //Getting value from fem input
-             var require2 = document.getElementById('mal').checked; //Getting value from mal input
+             var require1 = document.getElementById('fem').checked; //Getting value from female input
+             var require2 = document.getElementById('mal').checked; //Getting value from male input
         
              /* Will check if there is only one checked */
              if(require1 && require2 === false){  

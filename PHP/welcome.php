@@ -1,11 +1,11 @@
-<html lang="en">
+<!--<html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../CSS/Reg.css">
-<?php
+<?php/*
 include 'Functions';
 
-//Calling message session for alerts
+Calling message session for alerts
 session_start();
 $_SESSION['message'];
 ?>
@@ -16,3 +16,15 @@ $_SESSION['message'];
 <span class="user"><img src='<?php echo $_SESSION['avatar']?>'</span>
 </body>
 </html>
+ * Currently not used!
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+

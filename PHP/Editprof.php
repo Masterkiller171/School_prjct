@@ -8,7 +8,7 @@ $User = $_POST["Username"];
 
 if(isset($User)){
 $Usersel = $conn ->query("SELECT Username FROM userinfo");
-$Username = $conn ->query("UPDATE userinfo SET Username= ". $User . " WHERE Username = ". $Usersel . ""); 
+$Username = $conn ->query("UPDATE userinfo SET Username= ". $User . " WHERE id = ". $_SESSION['id'] . ""); 
 return $Username;
 }
 }
@@ -19,7 +19,7 @@ $Name = $_POST["Name"];
 
 if(isset($Name)){
 $Namesel = $conn ->query("SELECT Name FROM userinfo");
-$Nameup = $conn ->query("UPDATE userinfo SET Name = ". $Name . " WHERE Name = ". $Namesel . "");
+$Nameup = $conn ->query("UPDATE userinfo SET Name = ". $Name . " WHERE id = ". $_SESSION['id'] . "");
 return $Nameup;
 }
 }
@@ -29,7 +29,7 @@ $Surname = $_POST["Surname"];
 
 if(isset($Surname)){
 $Surnamesel = $conn ->query("SELECT Surname FROM userinfo");
-$Surnameup = $conn ->query("UPDATE userinfo SET Surname = ". $Surname . " WHERE Surname = ". $Surnamesel . ""); 
+$Surnameup = $conn ->query("UPDATE userinfo SET Surname = ". $Surname . " WHERE id = ". $_SESSION['id'] . ""); 
 return $Surnameup;
 }
 }
@@ -39,7 +39,7 @@ $Specialty = $_POST["Specialty"];
 
 if(isset($Specialty)){
 $Specialtysel = $conn ->query("SELECT Surname FROM userinfo");
-$Specialtyup = $conn ->query("UPDATE userinfo SET Specialty = ". $Specialty . " WHERE Specialty = ". $Specialtysel . ""); 
+$Specialtyup = $conn ->query("UPDATE userinfo SET Specialty = ". $Specialty . " WHERE id = ". $_SESSION['id'] . ""); 
 return $Specialtyup;
 }
 }
@@ -49,7 +49,7 @@ $Gender = $_POST["Male,Female"];
 
 if(isset($Gender)){
 $Gendersel = $conn ->query("SELECT Gender FROM userinfo");
-$Genderup = $conn ->query("UPDATE userinfo SET Gender = ". $Gender . " WHERE Gender = ". $Gendersel . ""); 
+$Genderup = $conn ->query("UPDATE userinfo SET Gender = ". $Gender . " WHERE id = ". $_SESSION['id'] . ""); 
 return $Genderup;
 }
 }
@@ -59,7 +59,7 @@ $Email = $_POST["Email"];
 
 if(isset($Email)){
 $Emailsel = $conn ->query("SELECT Email FROM userinfo");
-$Emailup = $conn ->query("UPDATE userinfo SET Email = ". $Email . " WHERE Email = ". $Emailsel . ""); 
+$Emailup = $conn ->query("UPDATE userinfo SET Email = ". $Email . " WHERE id = ". $_SESSION['id'] . ""); 
 return $Emailup;
 }
 }
@@ -69,7 +69,7 @@ $Comment = $_POST["Comment"];
 
 if(isset($Comment)){
 $Commentsel = $conn ->query("SELECT Comment FROM userinfo");
-$Commentup = $conn ->query("UPDATE userinfo SET Comment = ". $Comment . " WHERE Comment = ". $Commentsel . ""); 
+$Commentup = $conn ->query("UPDATE userinfo SET Comment = ". $Comment . " WHERE id = ". $_SESSION['id'] . ""); 
 return $Commentup;
 }
 }

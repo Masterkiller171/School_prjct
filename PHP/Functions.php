@@ -3,7 +3,7 @@
 include "Libary.php";
 
 session_start();
-//Defining all global variables.
+//Defining all variables whom'st were not defined
 $Username = $Name = $Surname = $Password = $Passwordrpt = $Comment = $Email = $gender = $id = $Specialty = $str = $mysqli = $jobs = $match="";
  
 $DBname = "innofurm"; //Database name
@@ -22,16 +22,21 @@ if ($conn->connect_error) {
 $_SESSION['message'] = '';
 
 //Checking whether active is set or not
-if(!isset($_SESSION['active'])) {
-   $_SESSION['active'] = 0;
-}
+$active = "SELECT id FROM userinfo";
+$actives = mysqli_query($conn, $active);
+$sql = mysqli_fetch_array($actives, MYSQLI_ASSOC);
+        $sql['id'] = $_SESSION['id'];
 //Setting default time to greenwich time
 date_default_timezone_set('GMT');
 
 //Setting the session ID into a variable
-$_SESSION['id'] = $conn -> query("SELECT id FROM userinfo");
-
-//Getting today's date
+$ids = $conn -> query("SELECT id FROM userinfo");
+$array =  array();
+   while($sql = $ids -> fetch_array(MYSQLI_ASSOC)){ 
+       $array[] = $sql;
+       $sql['id'] = $_SESSION['id'];
+    }
+//Getting today's date (current UK greenwich time)
 $_SESSION['nowtime'] = date("F j, Y, g:i a");
 
 //create the database
@@ -56,27 +61,37 @@ $_SESSION['nowtime'] = date("F j, Y, g:i a");
 //`month` INT(2) NOT NULL, 
 //`year` INT(4) NOT NULL
 //);') or die($conn->error);
-
-
-    $quary = $conn -> query("SELECT Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website, active FROM userinfo WHERE id= ". $_SESSION['id'] ."");
-    $arra =  array();
-   while($sql = $quary -> fetch_array(MYSQLI_ASSOC)){ 
+if (!function_exists('data')) {
+function data(){
+    
+    //Getting connection of database
+    global $conn;
+    
+/* Gathering all data from database*/
+$quary = $conn -> query("SELECT Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website, active FROM userinfo WHERE id= ". $_SESSION['id'] ."");
+  $arra =  array(); //Creating array for $sql splicing
+  
+   while($sql = $quary -> fetch_array(MYSQLI_ASSOC)){ //Splicing all data from from database values
        $arra[] = $sql;
-       return $sql['Username'] = $_SESSION['Username'];
-       return $sql['Name'] = $_SESSION['Name'];
-       return $sql['Surname'] = $_SESSION['Surname'];
-       return $sql['Email'] = $_SESSION['Email'];
-       return $sql['Password'] = $_SESSION['Password'];
-       return $sql['avatar'] = $_SESSION['avatar'];
-       return $sql['Comment'] = $_SESSION['Comment'];
-       return $sql['Gender'] = $_SESSION['Gender'];
-       return $sql['Specialty'] = $_SESSION['Specialty'];
-       return $sql['days'] = $_SESSION['days'];
-       return $sql['month'] = $_SESSION['month'];
-       return $sql['year'] = $_SESSION['year'];
-       return $sql['time'] = $_SESSION['time'];
-       return $sql['Website'] = $_SESSION['Website'];
+       
+       /* All data from database spliced up to sessions*/
+        $sql['Username'] = $_SESSION['Username']; //Username of normie
+        $sql['Name'] = $_SESSION['Name']; //Getting data of normie
+        $sql['Surname'] = $_SESSION['Surname'];
+        $sql['Email'] = $_SESSION['Email'];
+        $sql['Password'] = $_SESSION['Password'];
+        $sql['avatar'] = $_SESSION['avatar'];
+        $sql['Comment'] = $_SESSION['Comment'];
+        $sql['Gender'] = $_SESSION['Gender'];
+        $sql['Specialty'] = $_SESSION['Specialty'];
+        $sql['days'] = $_SESSION['days'];
+        $sql['month'] = $_SESSION['month'];
+        $sql['year'] = $_SESSION['year'];
+        $sql['time'] = $_SESSION['time'];
+        $sql['Website'] = $_SESSION['Website'];
     }
+}
+}
 if (!function_exists('logout')) {
 function logout(){
  global  $conn;
@@ -86,30 +101,38 @@ function logout(){
 }
 }
 
+//Transmitting logout function as variable
+$logout = logout();
+
+//Declaring logout function as global session
+$_SESSION['logout'] = $logout;
+
 //Checking if function button already exists
 if (!function_exists('button')) {  
 //Function for button on login
 function button(){ 
-    
     //Getting $butreg from PHP/Libary.php
     global $butreg;
+    
+    //Getting $butout from PHP/Libary.php
     global $butout;
-//style for registration button
-$regbutt= '<a href ="Reg.php" style="'.$butreg.'"> Login/Register</a>';
+    
+  //style for registration button
+  $regbutt= '<a href ="Reg.php" style="'.$butreg.'"> Login/Register</a>';
 
-//Profile
-$probutt= '<a href ="Profile.php" style="'.$butreg.'"> My Profile</a>';
+  //Profile
+  $probutt= '<a href ="Profile.php" style="'.$butreg.'"> My Profile</a>';
 
-//logout
-$outbut= '<a href ="" style="'. $butout .' float: left;" onclick="'. logout() . '"> Logout</a>';
-
-if($_SESSION['active'] == 1 || 2){
-    echo $probutt, $outbut;
-    }else{
+   //logout
+  $outbut= '<a href ="" style="'. $butout .' float: left;" onclick="'. $_SESSION['logout'] . '"> Logout</a>';
+ 
+   if($_SESSION['active'] == 1 || 2){
+     echo $probutt, $outbut;
+      }else{
      echo $regbutt;
+   }
   }
  }
-}
 $curtim = date($str);
 
 //Checking if function already exists
@@ -145,7 +168,7 @@ if (!function_exists('month_loop')) {
 function month_loop(){
     $months = array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec");
     $counter = count($months);
-    for($month = 0; $month < $counter; $month++){
+    for ($month = 0; $month < $counter; $month++){
         echo '<option value="' . $months[$month] . '" name="mon' . $months[$month] . ' " id="mon' . $months[$month] . '" required>'. $months[$month] .'</option>';
   }
  }
@@ -153,7 +176,7 @@ function month_loop(){
  //creating a loop from current year - 117 to current year
 if (!function_exists('year_loop')) {
  function year_loop(){
-    for($year = date("Y") - 117; $year <= date("Y"); $year++){
+    for ($year = date("Y") - 117; $year <= date("Y"); $year++){
         echo '<option value="' . $year . '" name="year' . $year . ' " id="year' . $year . '" required>'.$year.'</option>';
     } 
   }
@@ -162,7 +185,7 @@ if (!function_exists('year_loop')) {
 //Creating a loop for the amount of days in a month
 if (!function_exists('days_loop')) {
  function days_loop(){ 
-  for($days = 1; $days <=31; $days++){
+  for ($days = 1; $days <=31; $days++){
         echo '<option value="'. $days .'" name="day' . $days . ' " required>'.$days.'</option>';
   }
  }
