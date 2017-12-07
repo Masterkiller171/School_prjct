@@ -17,26 +17,25 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
  }elseif($match == 1){
     $conn -> query("UPDATE userinfo SET active = 1"); //Updatting active to 1 for normies(normal customers) in database
     $_SESSION['active'] = 1;
-    $query = $conn -> query("SELECT userinfo Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website");
-    $arr =  array();
-    while($sql = $conn-> fetch_array($query)){ 
-        
-    $array[] = $sql;     
-    $sql['Username'] = $_SESSION['Username'];
-    $sql['Name'] = $_SESSION['Name'];
-    $sql['Surname'] = $_SESSION['Surname'];
-    $sql['Email'] = $_SESSION['Email'];
-    $sql['Password'] = $_SESSION['Password'];
-    $sql['avatar'] = $_SESSION['avatar'];
-    $sql['Comment'] = $_SESSION['Comment'];
-    $sql['Gender'] = $_SESSION['Gender'];
-    $sql['Specialty'] = $_SESSION['Specialty'];
-    $sql['days'] = $_SESSION['days'];
-    $sql['month'] = $_SESSION['month'];
-    $sql['year'] = $_SESSION['year'];
-    $sql['time'] = $_SESSION['time'];
-    $sql['Website'] = $_SESSION['Website'];
-    }
+     
+    $quary = $conn -> query("SELECT * FROM userinfo");
+    $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
+             
+    $_SESSION['Username'] = $sql['Username'];
+    $_SESSION['Name'] = $sql['Name'];
+    $_SESSION['Surname'] = $sql['Surname'];
+    $_SESSION['Email'] = $sql['Email'];
+    $_SESSION['Password'] = $sql['Password'];
+    $_SESSION['avatar'] = $sql['avatar'];
+    $_SESSION['Comment'] = $sql['Comment'];
+    $_SESSION['Gender'] = $sql['Gender'];
+    $_SESSION['Specialty'] = $sql['Specialty'];
+    $_SESSION['days'] = $sql['days'];
+    $_SESSION['month'] = $sql['month'];
+    $_SESSION['year'] = $sql['year'];
+    $_SESSION['time'] = $sql['time'];
+    $_SESSION['Website'] = $sql['Website'];
+
     header('location: Profile.php');
   }
  }else{
@@ -49,38 +48,31 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 <html lang= en>
     <head>
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/Reg.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-   <text-align-cent>
-       <p> <strong><i>Please login with your email and password</i></strong> </p>
-    </text-align-cent>
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Login</h1>
+			</div>
+<form method="post">
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
 
-<form class="login" method="post">
-        <p style="color: red;"><?php echo $_SESSION['msg'] ?></p>
-        <div class="u-form">
-            <input type="email" placeholder="Email" name="mail" required />
-        </div>
-        <div class="u-form">
-            <input type="password" placeholder="Password" name="pass" required />
-        </div>
-        <div class="u-form">
-            <input type="submit" value="Log in" class="button" />
-        </div>
+				<div class="control-group">
+                                    <input type="password" class="login-field" value="" placeholder="password" id="login-pass" name="pass">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+                            <button type="submit" class="btn" required/>login
+			</div>
     </form>
-
-    <text-align-cent>
-        <p>Don't have an account yet? Sign one up here:
-            <a href="Reg.php">
-                <button class=" button buttonc">Sign Up!</button>
-            </a>Or Go Back to the homepage here:
-            <a href="index.php">
-                <button type="button" class="button buttonc"> GoBack!</button>
-            </a>
-        </p>
-    </text-align-cent>
-
+		</div>
+	</div>
 </body>
 </html>

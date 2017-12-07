@@ -1,4 +1,6 @@
-<?php include 'Functions.php'; ?>
+<?php include 'Functions.php'; 
+ error_reporting(E_ALL);
+?>
 <html lang="en">
 
 <head>
@@ -10,8 +12,7 @@
 
 <body>
 
-    <h4>
-    <?php button(); ?></h4>
+    <h4><?php button() ?></h4>
     <div class="filler"></div>
 <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar() ?>
@@ -42,13 +43,11 @@
         <strong><h1>Welcome To<bold> Innoform</bold></h1></strong>
 
         <h5>
-            bah 
+            <?php echo $_SESSION['active'] ?>
         </h5>
             <br>
             <h5>  
-            Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
-            Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. 
-            Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+            come come come come punk ass kid
             </h5>
             <br>
             <h5>  
@@ -74,7 +73,7 @@
     <div class="filler two">
     </div>
     <div class="footer">
-        <h1> Made By Tijmen And Youri</h1>
+        <h1> Made by Tijmen and Youri</h1>
     </div>
 </body>
 

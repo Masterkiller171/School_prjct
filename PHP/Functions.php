@@ -3,6 +3,7 @@
 include "Libary.php";
 
 session_start();
+
 //Defining all variables whom'st were not defined
 $Username = $Name = $Surname = $Password = $Passwordrpt = $Comment = $Email = $gender = $id = $Specialty = $str = $mysqli = $jobs = $match="";
  
@@ -21,21 +22,12 @@ if ($conn->connect_error) {
 //Declaring message session
 $_SESSION['message'] = '';
 
-//Checking whether active is set or not
-$active = "SELECT id FROM userinfo";
-$actives = mysqli_query($conn, $active);
-$sql = mysqli_fetch_array($actives, MYSQLI_ASSOC);
-        $sql['id'] = $_SESSION['id'];
+if(!isset($_SESSION['id'])){
+    $_SESSION['id'] = 1;
+}
 //Setting default time to greenwich time
 date_default_timezone_set('GMT');
 
-//Setting the session ID into a variable
-$ids = $conn -> query("SELECT id FROM userinfo");
-$array =  array();
-   while($sql = $ids -> fetch_array(MYSQLI_ASSOC)){ 
-       $array[] = $sql;
-       $sql['id'] = $_SESSION['id'];
-    }
 //Getting today's date (current UK greenwich time)
 $_SESSION['nowtime'] = date("F j, Y, g:i a");
 
@@ -61,42 +53,77 @@ $_SESSION['nowtime'] = date("F j, Y, g:i a");
 //`month` INT(2) NOT NULL, 
 //`year` INT(4) NOT NULL
 //);') or die($conn->error);
-if (!function_exists('data')) {
-function data(){
+//if (!function_exists('data')) {
+//function data(){
     
     //Getting connection of database
-    global $conn;
+  //  global $conn;
     
 /* Gathering all data from database*/
-$quary = $conn -> query("SELECT Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website, active FROM userinfo WHERE id= ". $_SESSION['id'] ."");
-  $arra =  array(); //Creating array for $sql splicing
-  
-   while($sql = $quary -> fetch_array(MYSQLI_ASSOC)){ //Splicing all data from from database values
-       $arra[] = $sql;
-       
+$quary = $conn -> query("SELECT * FROM userinfo");
+$sql = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from database values
+       //WHERE id= ". $_SESSION['id'] ."
        /* All data from database spliced up to sessions*/
-        $sql['Username'] = $_SESSION['Username']; //Username of normie
-        $sql['Name'] = $_SESSION['Name']; //Getting data of normie
-        $sql['Surname'] = $_SESSION['Surname'];
-        $sql['Email'] = $_SESSION['Email'];
-        $sql['Password'] = $_SESSION['Password'];
-        $sql['avatar'] = $_SESSION['avatar'];
-        $sql['Comment'] = $_SESSION['Comment'];
-        $sql['Gender'] = $_SESSION['Gender'];
-        $sql['Specialty'] = $_SESSION['Specialty'];
-        $sql['days'] = $_SESSION['days'];
-        $sql['month'] = $_SESSION['month'];
-        $sql['year'] = $_SESSION['year'];
-        $sql['time'] = $_SESSION['time'];
-        $sql['Website'] = $_SESSION['Website'];
-    }
-}
-}
+       if(!isset($_SESSION['Username'])){ 
+            $_SESSION['Username'] = $sql['Username'];
+       }
+
+        if(!isset($_SESSION['Name'])){
+            $_SESSION['Name'] = $sql['Name'];
+        } //Getting data of normie
+
+        if(!isset($_SESSION['Surname'])){ 
+            $_SESSION['Surname'] = $sql['Surname'];
+        }
+
+        if(!isset($_SESSION['Email'])){ 
+            $_SESSION['Email'] = $sql['Email'];
+        }
+
+        if(!isset($_SESSION['Password'])){
+            $_SESSION['Password'] = $sql['Password'];
+        }
+
+        if(!isset($_SESSION['avatar'])){
+            $_SESSION['avatar'] = $sql['avatar'];
+        }
+
+        if(!isset($_SESSION['Comment'])){
+            $_SESSION['Comment'] = $sql['Comment'];
+        }
+
+        if(!isset($_SESSION['Gender'])){
+            $_SESSION['Gender'] = $sql['Gender'];
+        }
+
+        if(!isset($_SESSION['Specialty'])){
+            $_SESSION['Specialty'] = $sql['Specialty'];
+        }
+
+        if(!isset($_SESSION['days'])){
+            $_SESSION['days'] = $sql['days'];
+        }
+
+        if(!isset($_SESSION['month'])){
+            $_SESSION['month'] = $sql['month'];
+        }
+
+        if(!isset($_SESSION['year'])){
+            $_SESSION['year'] = $sql['year'];
+        }
+
+        if(!isset($_SESSION['time'])){
+            $_SESSION['time'] = $sql['time'];
+        }
+
+        if(!isset($_SESSION['Website'])){
+            $_SESSION['Website'] = $sql['Website'];
+        }
 if (!function_exists('logout')) {
 function logout(){
  global  $conn;
  $conn -> query("UPDATE userinfo SET active='0'"); //Logging out onclick
- session_destroy(); //Destroying all sessions
+ //session_destroy();
  $_SESSION['active'] = '0';
 }
 }
@@ -126,10 +153,10 @@ function button(){
    //logout
   $outbut= '<a href ="" style="'. $butout .' float: left;" onclick="'. $_SESSION['logout'] . '"> Logout</a>';
  
-   if($_SESSION['active'] == 1 || 2){
-     echo $probutt, $outbut;
+   if($_SESSION['active'] !== 1 || 2){
+      echo $regbutt;
       }else{
-     echo $regbutt;
+     echo $probutt, $outbut;
    }
   }
  }

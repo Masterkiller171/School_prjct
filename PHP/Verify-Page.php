@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else{
         $_SESSION['active'] = 1;
         $_SESSION['Email'] = $_POST["inputiet"];
-        $conn -> query("UPDATE `userinfo` SET `Email` = '".$_POST["inputiet"]."'");
+        $conn -> query("UPDATE `userinfo` SET `Email` = '". $_POST["inputiet"] ."' WHERE id= ". $_SESSION['id'] ."");
     
   }
 }

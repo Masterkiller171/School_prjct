@@ -2,7 +2,8 @@
 include "Functions.php";
 include "Jobs.php";
 
-
+session_start();
+$_SESSION['message'] = "";
 if($_SERVER['REQUEST_METHOD']== 'POST')
     {
     if(isset($_POST['password']) === isset($_POST['Passwordrpt']))//Checking if passwords are the same
@@ -96,7 +97,7 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
                   $_SESSION['message'] = 'Registration is Succesfull!'; 
                   header("location: Verify-Page.php"); 
                    //Checking whether active is set or not
-                    $active = "SELECT id FROM userinfo WHERE Email='. $Email .' AND Password='. $Password .'";
+                    $actives = "SELECT id FROM userinfo WHERE Email='. $Email .' AND Password='. $Password .'";
                       $actives = mysqli_query($conn, $active);
                       $sql = mysqli_fetch_array($actives, MYSQLI_ASSOC);
                       $sql['id'] = $_SESSION['id'];
