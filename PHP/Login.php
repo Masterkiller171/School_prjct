@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     $search = $conn -> query("SELECT Username, Password FROM users") or die(mysql_error()); 
     $match  = $search -> num_rows;
 
- if(isset($_POST['mail']) == "specialemail@gmail.com" && isset($_POST['pass']) == "specialpassword"){
+ if(isset($_POST['mail']) == "pepenormie@gmail.com" && isset($_POST['pass']) == "normiepass"){
     $_SESSION['Email'] = $_POST['mail']; //Getting Email from email input
     $_SESSION['Password'] = $_POST['pass']; //Geting  password from password input
     $_SESSION['active'] = 2;
@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     header('location: Profile.php');
   }
  }else{
-     $_SESSION['msg'] = 'Login Failed! Please make sure that you enter the correct details and that you have an activated account.'; //Fail message when there is no match in query search
+     $_SESSION['msg'] = '<bigfc>*Please fill in all the fields!</bigfc>'; //Fail message when there is no match in query search
  }
 }
 
@@ -52,26 +52,62 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<div class="wrapper">
 	<div class="login">
 		<div class="login-screen">
+                    <div class="lb-header">
+            <p3>Or if you already have an account:</p3>
+            <a href="Login.php" class="active" id="login-box-link">Login</a>
+        </div>
 			<div class="app-title">
 				<h1>Login</h1>
+            
 			</div>
+            <?php $_SESSION['msg']; ?>
+                    <aligner><small>Please fill in your name and password</small></aligner>
+            <br>
 <form method="post">
 			<div class="login-form">
 				<div class="control-group">
-				<input type="text" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail">
+				<input type="email" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail" required/>
 				<label class="login-field-icon fui-user" for="login-name"></label>
 				</div>
-
+                <br>
 				<div class="control-group">
-                                    <input type="password" class="login-field" value="" placeholder="password" id="login-pass" name="pass">
+                <span><input type="password" placeholder="Password..." name='pass' autocomplete="on" required/></span>
+                <span><input type="button" value="show" id="showHide"  onclick="change()"/></span>
+                                    <script type="text/javascript">
+                                        $(document).ready(function() {
+  $("#showHide").click(function() { //Checking the button has been pressed
+    if ($(".password").attr("type") === "password"){ //Checking if text field is password
+      $(".password").attr("type", "text"); //If imput is password it will change to text(visible)
+
+    } else {
+      $(".password").attr("type", "password"); //And if its already on text it will change to password
+    }
+  });
+ });
+ 
+function change()
+{
+   var Check = document.getElementById("showHide").value; //Getting value from hide/show button
+   
+    /* will check whether check has a value of show and if not change it to show*/
+   if(Check === "show"){ 
+      return  document.getElementById("showHide").value = "hide";
+   }else{
+     return  document.getElementById("showHide").value = "show";
+   }
+};
+                                        </script>
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
-
+<br>
                             <button type="submit" class="btn" required/>login
 			</div>
+			
     </form>
+            </div>
 		</div>
 	</div>
 </body>

@@ -2,7 +2,6 @@
 include "Functions.php";
 include "Jobs.php";
 
-session_start();
 $_SESSION['message'] = "";
 if($_SERVER['REQUEST_METHOD']== 'POST')
     {
@@ -146,10 +145,7 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
 </head>
 <body>
     <div class="login-box">
-        <div class="lb-header">
-            <p3>Or if you already have an account:</p3>
-            <a href="Login.php" class="active" id="login-box-link">Login</a>
-        </div>
+
         <p style="color: red; text-align: center;"><?php echo $_SESSION['message']?></p>
         <div class="filler-small"></div>
         <form name="form1" class="signup" method="post" autocomplete="off" enctype="multipart/form-data" action="Reg.php">

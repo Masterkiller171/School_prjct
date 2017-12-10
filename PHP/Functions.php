@@ -64,61 +64,90 @@ $quary = $conn -> query("SELECT * FROM userinfo");
 $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from database values
        //WHERE id= ". $_SESSION['id'] ."
        /* All data from database spliced up to sessions*/
-       if(!isset($_SESSION['Username'])){ 
-            $_SESSION['Username'] = $sql['Username'];
+	   switch($sql){
+       case $sql['Username']: 
+	   if(!isset($_SESSION['Username'])){
+       $_SESSION['Username'] = $sql['Username'];
        }
-
+       break;
+	   
+	   case $sql['Name']:
         if(!isset($_SESSION['Name'])){
             $_SESSION['Name'] = $sql['Name'];
         } //Getting data of normie
-
+        break;
+		
+		case $sql['Surname']:
         if(!isset($_SESSION['Surname'])){ 
             $_SESSION['Surname'] = $sql['Surname'];
         }
-
+        break;
+		
+		case $sql['Name']:
         if(!isset($_SESSION['Email'])){ 
             $_SESSION['Email'] = $sql['Email'];
         }
-
+        break;
+		
+		case $sql['Password']:
         if(!isset($_SESSION['Password'])){
             $_SESSION['Password'] = $sql['Password'];
         }
-
+        break;
+		
+		case $sql['avatar']:
         if(!isset($_SESSION['avatar'])){
             $_SESSION['avatar'] = $sql['avatar'];
         }
-
+        break;
+		
+		case $sql['Comment']:
         if(!isset($_SESSION['Comment'])){
             $_SESSION['Comment'] = $sql['Comment'];
         }
-
+        break;
+		
+		case $sql['Gender']:
         if(!isset($_SESSION['Gender'])){
             $_SESSION['Gender'] = $sql['Gender'];
         }
-
+        break;
+		
+		case $sql['Specialty']:
         if(!isset($_SESSION['Specialty'])){
             $_SESSION['Specialty'] = $sql['Specialty'];
         }
-
+        break;
+		
+		case $sql['days']:
         if(!isset($_SESSION['days'])){
             $_SESSION['days'] = $sql['days'];
         }
-
+        break;
+		
+		case $sql['month']:
         if(!isset($_SESSION['month'])){
             $_SESSION['month'] = $sql['month'];
         }
-
+        break;
+		
+		case $sql['year']:
         if(!isset($_SESSION['year'])){
             $_SESSION['year'] = $sql['year'];
         }
 
+		case $sql['time']:
         if(!isset($_SESSION['time'])){
             $_SESSION['time'] = $sql['time'];
         }
-
+        break;
+		
+		case $sql['Website']:
         if(!isset($_SESSION['Website'])){
             $_SESSION['Website'] = $sql['Website'];
         }
+		break;
+	   }
 if (!function_exists('logout')) {
 function logout(){
  global  $conn;
@@ -145,7 +174,7 @@ function button(){
     global $butout;
     
   //style for registration button
-  $regbutt= '<a href ="Reg.php" style="'.$butreg.'"> Login/Register</a>';
+  $regbutt= '<a href ="Login.php" style="'.$butreg.'"> Login/Register</a>';
 
   //Profile
   $probutt= '<a href ="Profile.php" style="'.$butreg.'"> My Profile</a>';
