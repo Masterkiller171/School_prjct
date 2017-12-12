@@ -39,6 +39,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     header('location: Profile.php');
   }
  }else{
+     header("location: Login.php");
      $_SESSION['msg'] = '<bigfc>*Please fill in all the fields!</bigfc>'; //Fail message when there is no match in query search
  }
 }
@@ -50,6 +51,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="../CSS/Login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -57,7 +59,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 		<div class="login-screen">
                     <div class="lb-header">
             <p3>Or if you already have an account:</p3>
-            <a href="Login.php" class="active" id="login-box-link">Login</a>
+            <a href="Reg.php" class="active" id="login-box-link">Register</a>
         </div>
 			<div class="app-title">
 				<h1>Login</h1>
@@ -65,31 +67,36 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 			</div>
             <?php $_SESSION['msg']; ?>
                     <aligner><small>Please fill in your name and password</small></aligner>
-            <br>
+       
 <form method="post">
 			<div class="login-form">
 				<div class="control-group">
-				<input type="email" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail" required/>
+                                    <table>
+                                 <tr>
+				<label>Email: </label><input type="email" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail" required/>
 				<label class="login-field-icon fui-user" for="login-name"></label>
+                                </tr>
 				</div>
-                <br>
+                            
 				<div class="control-group">
-                <span><input type="password" placeholder="Password..." name='pass' autocomplete="on" required/></span>
-                <span><input type="button" value="show" id="showHide"  onclick="change()"/></span>
-                                    <script type="text/javascript">
-                                        $(document).ready(function() {
-  $("#showHide").click(function() { //Checking the button has been pressed
-    if ($(".password").attr("type") === "password"){ //Checking if text field is password
-      $(".password").attr("type", "text"); //If imput is password it will change to text(visible)
+                                    <tr>
+                                    <label>Password: </label><input class="Password" type="password"  placeholder="Password..." name='pass' autocomplete="on" required/>
+                                    </tr>
+                                    <input type="button" value="show" id="showHide"  onclick="change()" style="width: 60px;"/>
+                                </table>
+ <script type="text/javascript">
+  $(document).ready(function() {
+  $("#showHide").click(function() {  //Checking the button has been pressed
+    if ($(".Password").attr("type") === "password") {  //Checking if text field is password
+      $(".Password").attr("type", "text"); //If imput is password it will change to text(visible)
 
     } else {
-      $(".password").attr("type", "password"); //And if its already on text it will change to password
+      $(".Password").attr("type", "password"); //And if its already on text it will change to password
     }
   });
- });
+});
  
-function change()
-{
+function change(){
    var Check = document.getElementById("showHide").value; //Getting value from hide/show button
    
     /* will check whether check has a value of show and if not change it to show*/
@@ -97,13 +104,18 @@ function change()
       return  document.getElementById("showHide").value = "hide";
    }else{
      return  document.getElementById("showHide").value = "show";
-   }
+        }
 };
-                                        </script>
+ </script>
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
-<br>
                             <button type="submit" class="btn" required/>login
+        </div>
+    <br>
+               <div class="lb-header">
+            <p3>Or if you want to go back:</p3>
+            <a href="index.php" class="active" id="login-box-link">Go Back!</a>
+        </div>
 			</div>
 			
     </form>

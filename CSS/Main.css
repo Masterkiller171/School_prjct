@@ -1,5 +1,6 @@
 body{
-    background-color: lightblue;
+    background-image: url(../Images/Working.jpg);
+    background-size:cover;
 }
 #wrapper {
 	padding: 20px 0 20px 30px;

@@ -6,7 +6,6 @@
 <head>
     <title>Homepage -InnoForm</title>
     <link rel="stylesheet" type="text/css" href="../CSS/Main.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/Reg.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -47,7 +46,7 @@
         </h5>
             <br>
             <h5>  
-            come come come come punk ass kid
+            test u test
             </h5>
             <br>
             <h5>  
