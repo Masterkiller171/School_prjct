@@ -17,24 +17,26 @@
     <?php navbar() ?>
     <div id="wrapper">
         <div class="right_box">
+            <div class="bruv">
         <th>
-            <li>
+            <ol>
                 <a href="Post-page.php">Post</a>
-            </li>
-            <li>
+            </ol>
+            <ol>
                 <a href="Post-page.php">Latest posts</a>
-            </li>
-            <li>
+            </ol>
+            <ol>
                 <a href="Post-page.php">New Posts</a>
-            </li>
-            <li>
+            </ol>
+            <ol>
                 <a href="Projects.php">Projects</a>
-            </li>
-            <li>
+            </ol>
+            <ol>
                 <a href="Post-page.php">Popular posts</a>
-            </li>
+            </ol>
 
         </th>
+            </div>
     </div>
     
     <div class="left-filler"></div>
