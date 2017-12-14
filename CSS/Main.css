@@ -31,7 +31,7 @@ nav a { color: #93b7bc; display: block; padding: 0.5em 1em; text-decoration: non
 nav a:hover { color: #F55; }
 nav ul,
 nav ul li { list-style-type: none; padding: 0; margin: 0; }
-nav > ul { background: #2050b2; }
+nav > ul { background: grey; }
 nav > ul > li { display: inline-block; }
 
 .sub-menu {

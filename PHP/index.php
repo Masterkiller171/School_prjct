@@ -12,31 +12,28 @@
 <body>
 
     <h4><?php button() ?></h4>
-    <div class="filler"></div>
 <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar() ?>
     <div id="wrapper">
-        <div class="right_box">
-            <div class="bruv">
+        <div class="right_box">         
         <th>
             <ol>
-                <a href="Post-page.php">Post</a>
+                <a href="Post-page.php" class="bruv">Post</a>
             </ol>
             <ol>
-                <a href="Post-page.php">Latest posts</a>
+                <a href="Post-page.php" class="bruv">Latest posts</a>
             </ol>
             <ol>
-                <a href="Post-page.php">New Posts</a>
+                <a href="Post-page.php" class="bruv">New Posts</a>
             </ol>
             <ol>
-                <a href="Projects.php">Projects</a>
+                <a href="Projects.php" class="bruv">Projects</a>
             </ol>
             <ol>
-                <a href="Post-page.php">Popular posts</a>
+                <a href="Post-page.php" class="bruv">Popular posts</a>
             </ol>
 
         </th>
-            </div>
     </div>
     
     <div class="left-filler"></div>

@@ -70,20 +70,14 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
        
 <form method="post">
 			<div class="login-form">
-				<div class="control-group">
-                                    <table>
-                                 <tr>
-				<label>Email: </label><input type="email" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail" required/>
-				<label class="login-field-icon fui-user" for="login-name"></label>
-                                </tr>
-				</div>
-                            
-				<div class="control-group">
-                                    <tr>
-                                    <label>Password: </label><input class="Password" type="password"  placeholder="Password..." name='pass' autocomplete="on" required/>
-                                    </tr>
+				<div class="control-group">                               
+                                <label>Email: </label><input type="email" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail" required/>
+				<label class="login-field-icon fui-user" for="login-name"></label>                          
+				</div>                           
+				<div class="control-group">                                   
+                                    <label>Password: </label><input class="Password" type="password"  placeholder="Password..." name='pass' autocomplete="on" required/>                                   
                                     <input type="button" value="show" id="showHide"  onclick="change()" style="width: 60px;"/>
-                                </table>
+                                
  <script type="text/javascript">
   $(document).ready(function() {
   $("#showHide").click(function() {  //Checking the button has been pressed
@@ -106,11 +100,12 @@ function change(){
      return  document.getElementById("showHide").value = "show";
         }
 };
- </script>
+ </script><br>
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
                             <button type="submit" class="btn" required/>login
         </div>
+    </form>
     <br>
                <div class="lb-header">
             <p3>Or if you want to go back:</p3>
@@ -118,7 +113,7 @@ function change(){
         </div>
 			</div>
 			
-    </form>
+    
             </div>
 		</div>
 	</div>
