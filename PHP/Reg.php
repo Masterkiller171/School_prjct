@@ -16,6 +16,7 @@ $Comment = $conn-> real_escape_string($_POST['Comment']);
 $days = $_POST['days'];
 $month = $_POST['month'];
 $year = $_POST['year'];
+$id = rand(1000,5000);
 $active = 1;
             
 if(isset($yearname) == false){
@@ -61,11 +62,11 @@ if(200 >= strlen($_POST['Comment'])){
 if(count($_POST['gender']) == 1){
   $Gender = $_POST['gender'];
 
-/*Checking if the file is an actual picture*/
+/*Checking if the file is an actual picture (temporarly disabled*/
 //print_r($_FILES);
-if(isset($_FILES['avatar'])){
-$picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name of avatar in images file
-    if (preg_match ("!image!",$_FILES['avatar']['type'])){  //Checking whether image file is allowed
+//if(isset($_FILES['avatar'])){
+//$picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name of avatar in images file
+  //  if (preg_match ("!image!",$_FILES['avatar']['type'])){  //Checking whether image file is allowed
         //Copying image file from images directory
       //  if(copy($_FILES['avatar']['tmp_name'], $picture_path)){
 
@@ -73,7 +74,7 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
         
         /*Creating sessions for all data */
             $_SESSION['Username'] = $Username; 
-            $_SESSION['Avatar'] = $picture_path; 
+            //$_SESSION['Avatar'] = $picture_path; 
             $_SESSION['time'] = $time; 
             $_SESSION['Name']= $Name; 
             $_SESSION['Surname'] = $Surname; 
@@ -87,9 +88,9 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
             $_SESSION['month'] = $month;
             $_SESSION['year'] = $year;
             $_SESSION['active'] = $active;
-        
-            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, avatar, Comment, Gender, Specialty, days, month, year, time, Website, active)"
-            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$picture_path', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$active')";
+            $_SESSION['id'] = $id;
+            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, active, id)"
+            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$active','$id')";
             
               //Registration succesfull
               if($conn -> query($sql) === true){ 
@@ -107,12 +108,12 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
 //}else{
 //     $_SESSION['message'] = "File Upload Failed!";
 //     }              
-}else{
-     $_SESSION['message']= "Please only upload JPG, GIF or PNG images!";
-     }
-}else{
-     $_SESSION['message']= "Please upload an avatar";
-     }
+//}else{
+//     $_SESSION['message']= "Please only upload JPG, GIF or PNG images!";
+//     }
+//}else{
+//     $_SESSION['message']= "Please upload an avatar";
+//     }
 }else{
      $_SESSION['message'] = "Please select a gender!";
      }
@@ -145,7 +146,10 @@ $picture_path = 'images/'.$_FILES['avatar']['name']; //Getting avatar and name o
 </head>
 <body>
     <div class="login-box">
-
+   <div class="lb-header">
+            <p3>Or if you already have an account:</p3>
+            <a href="Login.php" class="active" id="login-box-link">Login</a>
+        </div>
         <p style="color: red; text-align: center;"><?php echo $_SESSION['message']?></p>
         <div class="filler-small"></div>
         <form name="form1" class="signup" method="post" autocomplete="off" enctype="multipart/form-data" action="Reg.php">
@@ -339,9 +343,9 @@ function changerpt()
 };
                 </script>
             </div>                            
-                <div class="filler-small"></div>
-            <div class="avatar"><label>Select profile picture: </label>
-                <input type="file" name="avatar" accept="image/*" required/></div>
+              <!--  <div class="filler-small"></div>
+            <div class="avatar"><label>Select profile picture: </label> 
+                <input type="file" name="avatar" accept="image/*" required/></div> -->
             <div class="u-form">
                 <textarea type='textarea' name='Comment' placeholder="Tell something about yourself" style="width:250px;height:150px;" required/></textarea>
                 <div class="u-form">

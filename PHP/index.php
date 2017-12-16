@@ -11,7 +11,7 @@
 
 <body>
 
-    <h4><?php button() ?></h4>
+    <h4><?php button() ?></h4><br><br>
 <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar() ?>
     <div id="wrapper">
@@ -37,7 +37,7 @@
     </div>
     
     <div class="left-filler"></div>
-    <div class="body">
+    <div class="body" style="height: 80%;">
         <strong><h1>Welcome To<bold> Innoform</bold></h1></strong>
 
         <h5>

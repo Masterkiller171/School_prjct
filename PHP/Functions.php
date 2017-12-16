@@ -174,10 +174,10 @@ function button(){
     global $butout;
     
   //style for registration button
-  $regbutt= '<a href ="Login.php" style="'.$butreg.'"> Login/Register</a>';
+  $regbutt= '<a href ="Login.php" style="'.$butreg.' class="href"> Login/Register</a>';
 
   //Profile
-  $probutt= '<a href ="Profile.php" style="'.$butreg.'"> My Profile</a>';
+  $probutt= '<a href ="Profile.php" style="'.$butreg.' class="href"> My Profile</a>';
 
    //logout
   $outbut= '<a href ="" style="'. $butout .' float: left;" onclick="'. $_SESSION['logout'] . '"> Logout</a>';

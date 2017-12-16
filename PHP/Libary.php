@@ -1,15 +1,17 @@
 <?php
-$butreg = 'color: #93b7bc;
+$butreg = 'color: #705090;
     padding: 5 1%;
     text-align: center;
     text-decoration: none;
-    float: right;';
+    float: right;
+    display: absolute;';
 
-$butout = 'color: #93b7bc;
+$butout = 'color: #705090;
     padding: 5 1%;
     text-align: center;
     text-decoration: none;
-    float: left;';
+    float: left;
+    display: absolute;';
 //Loop on profile page for posts
 $myloop='<div class="filler1"></div>
          <div class="cover left">
@@ -32,7 +34,6 @@ $navbar =' <nav>
        <ul class="sub-menu">
          <li><a href="Post-page.php">New Posts</a></li>
          <li><a href="Post-page.php">Hot Posts</a></li>
-         <li><a href="Post-page.php">Trending</a></li>
        </ul>
      </li>
      <li class="sub-menu-parent"><a>Create post</a>
@@ -46,7 +47,6 @@ $navbar =' <nav>
        <ul class="sub-menu">
          <li><a href="../PHP/Projects.php">New Projects</a></li>
          <li><a href="../PHP/Projects.php">Hot Projects</a></li>
-         <li><a href="../PHP/Projects.php">Trending Projects</a></li>
        </ul></li>
         <li class="sub-menu-parent"><a>Support</a>
        <ul class="sub-menu">

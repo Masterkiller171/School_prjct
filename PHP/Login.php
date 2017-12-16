@@ -71,12 +71,12 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 <form method="post">
 			<div class="login-form">
 				<div class="control-group">                               
-                                <label>Email: </label><input type="email" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail" required/>
+                                <input type="email" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail" required/>
 				<label class="login-field-icon fui-user" for="login-name"></label>                          
 				</div>                           
 				<div class="control-group">                                   
-                                    <label>Password: </label><input class="Password" type="password"  placeholder="Password..." name='pass' autocomplete="on" required/>                                   
-                                    <input type="button" value="show" id="showHide"  onclick="change()" style="width: 60px;"/>
+                <input class="Password" type="password"  placeholder="Password..." name='pass' autocomplete="on" required/>                                   
+                <input type="button" value="show" id="showHide"  onclick="change()" style="width: 60px;"/>
                                 
  <script type="text/javascript">
   $(document).ready(function() {
@@ -116,6 +116,5 @@ function change(){
     
             </div>
 		</div>
-	</div>
 </body>
 </html>

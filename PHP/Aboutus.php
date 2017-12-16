@@ -1,6 +1,7 @@
 <?php
 
 ?>
+<html>
 <head>
     <title>InnoForm</title>
     <?php include 'Functions.php';?>
@@ -13,7 +14,6 @@
         <h4><a href="../PHP/Reg.php" 
     style="<?php echo$butreg ?>">
     <?php button($conn, $id) ?></a></h4></div>
-    </div>
     <div class="filler"></div>
     <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar()?>
@@ -25,3 +25,4 @@
 
 
 </body>
+</html>
