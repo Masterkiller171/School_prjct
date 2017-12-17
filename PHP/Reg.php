@@ -17,7 +17,6 @@ $days = $_POST['days'];
 $month = $_POST['month'];
 $year = $_POST['year'];
 $id = rand(1000,5000);
-$active = 1;
             
 if(isset($yearname) == false){
     
@@ -89,6 +88,7 @@ if(count($_POST['gender']) == 1){
             $_SESSION['year'] = $year;
             $_SESSION['active'] = $active;
             $_SESSION['id'] = $id;
+            
             $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, active, id)"
             . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$active','$id')";
             

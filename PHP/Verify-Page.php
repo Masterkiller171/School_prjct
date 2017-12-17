@@ -4,6 +4,7 @@ include 'Functions.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
      if($_POST["inputiet"] == ''){
         header("location: Profile.php");
+        $_SESSION['active'] = 1;
     }else{
         $_SESSION['active'] = 1;
         $_SESSION['Email'] = $_POST["inputiet"];

@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <title>Homepage -InnoForm</title>
+    <title>Homepage - InnoForm</title>
     <link rel="stylesheet" type="text/css" href="../CSS/Main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>

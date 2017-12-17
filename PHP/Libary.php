@@ -25,7 +25,8 @@ $Login ='<a href ="Reg.php"> Please Login</a>';
 $Create ='<a href="Post-input.php">Create post</a>';
 
 //The navbar for (almost) every page
-$navbar =' <nav>
+$navbar =' 
+    <nav>
    <ul>
        <li class="sub-menu-parent"><a href="../PHP/index.php"> Home</a>
        </li>
@@ -36,13 +37,7 @@ $navbar =' <nav>
          <li><a href="Post-page.php">Hot Posts</a></li>
        </ul>
      </li>
-     <li class="sub-menu-parent"><a>Create post</a>
-       <ul class="sub-menu">
-         <li>
-             <?php echo create_post() ?>
-         </li>
-       </ul>
-     </li>
+     <a href="Post-input.php" class="sub-menu-parent">Create post</a>
      <li class="sub-menu-parent"><a>Projects</a>
        <ul class="sub-menu">
          <li><a href="../PHP/Projects.php">New Projects</a></li>
@@ -79,13 +74,7 @@ $navbaradmin =' <nav>
          <li><a href="Post-page.php">Trending</a></li>
        </ul>
      </li>
-     <li class="sub-menu-parent"><a>Create post</a>
-       <ul class="sub-menu">
-         <li>
-             <?php echo create_post() ?>
-         </li>
-       </ul>
-     </li>
+<a href="Post-input.php" class="sub-menu-parent">Create post</a>
      <li class="sub-menu-parent"><a>Projects</a>
        <ul class="sub-menu">
          <li><a href="../PHP/Projects.php">New Projects</a></li>

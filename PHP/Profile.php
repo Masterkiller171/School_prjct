@@ -3,6 +3,7 @@ include 'Functions.php';
 ?>
 <html lang="en">
     <head>
+    <title>Innoform - <?php echo $_SESSION['Username'] ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/Profile.css"> 
     <link rel="stylesheet" href="../CSS/Main.css"> 
@@ -10,19 +11,19 @@ include 'Functions.php';
     </head>
     
     <body>
-<A href="" style="color: Blue;
+<A href="" style="
     padding: 5 1%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    background-color: lightblue;" onclick="" >
+    "onclick= >
     Logout</A>
        
        
     <?php navbar()?>
      <div class="container">
       <div class="row">
-      <div class="col-md-5  toppad">
+          <div class="col-md-5  toppad" style="background-color: white; opacity: 0.85;">
           <h4>Member Since:</h4>
           <br>
           <h5><?php echo $_SESSION['time'] ?></h5>
@@ -39,16 +40,13 @@ include 'Functions.php';
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <div class="panel-title"><h3><?php ?></h3>
+              <div class="panel-title"><h3></h3>
             </div>
             <div class="panel-body">
-              <div class="row">
-                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="<?php $_SESSION['Avatar'] ?>" style=""> </div>
-                                                    
+              <div class="row">                                           
                 <div class=" col-md-9 col-lg-9 "> 
-                   
-                  <table class="table table-user-information">
-                    <tbody>
+                  <table class="table table-user-information">                      
+                      <tbody>
                         <tr> 
                         <td>Username</td>
                         <td><?php echo $_SESSION['Username'];?>
@@ -81,13 +79,16 @@ include 'Functions.php';
                         <td>Comment</td>
                         <td><?php echo $_SESSION['Comment']?>
                      </tr>
-                      </tbody>
+                     <tr>
+                        <td>Website</td>
+                        <td><?php echo $_SESSION['Website']?>
+                     </tr>
+                      </tbody>                     
                     </table>
-      </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            
+            </div>           
           </div>
         </div>
       </div>

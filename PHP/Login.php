@@ -21,19 +21,19 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     $quary = $conn -> query("SELECT * FROM userinfo");
     $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
              
-    $_SESSION['Username'] = $sql['Username'];
-    $_SESSION['Name'] = $sql['Name'];
+    $_SESSION['Username']= $sql['Username'];
+    $_SESSION['Name']    = $sql['Name'];
     $_SESSION['Surname'] = $sql['Surname'];
-    $_SESSION['Email'] = $sql['Email'];
-    $_SESSION['Password'] = $sql['Password'];
-    $_SESSION['avatar'] = $sql['avatar'];
+    $_SESSION['Email']   = $sql['Email'];
+    $_SESSION['Password']= $sql['Password'];
+    $_SESSION['avatar']  = $sql['avatar'];
     $_SESSION['Comment'] = $sql['Comment'];
-    $_SESSION['Gender'] = $sql['Gender'];
-    $_SESSION['Specialty'] = $sql['Specialty'];
-    $_SESSION['days'] = $sql['days'];
-    $_SESSION['month'] = $sql['month'];
-    $_SESSION['year'] = $sql['year'];
-    $_SESSION['time'] = $sql['time'];
+    $_SESSION['Gender']  = $sql['Gender'];
+    $_SESSION['Specialty']= $sql['Specialty'];
+    $_SESSION['days']    = $sql['days'];
+    $_SESSION['month']   = $sql['month'];
+    $_SESSION['year']    = $sql['year'];
+    $_SESSION['time']    = $sql['time'];
     $_SESSION['Website'] = $sql['Website'];
 
     header('location: Profile.php');

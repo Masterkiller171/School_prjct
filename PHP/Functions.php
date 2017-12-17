@@ -22,9 +22,6 @@ if ($conn->connect_error) {
 //Declaring message session
 $_SESSION['message'] = '';
 
-if(!isset($_SESSION['id'])){
-    $_SESSION['id'] = 1;
-}
 //Setting default time to greenwich time
 date_default_timezone_set('GMT');
 
@@ -56,11 +53,13 @@ $_SESSION['nowtime'] = date("F j, Y, g:i a");
 //if (!function_exists('data')) {
 //function data(){
     
-    //Getting connection of database
+   //Getting connection of database
   //  global $conn;
     
 /* Gathering all data from database*/
-$quary = $conn -> query("SELECT * FROM userinfo");
+if(isset($_SESSION['id'])){
+$id= $_SESSION['id'];
+$quary = $conn -> query("SELECT * FROM userinfo WHERE id='$id'");
 $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from database values
        //WHERE id= ". $_SESSION['id'] ."
        /* All data from database spliced up to sessions*/
@@ -71,105 +70,88 @@ $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from d
        }
        break;
 	   
-	   case $sql['Name']:
+	case $sql['Name']:
         if(!isset($_SESSION['Name'])){
             $_SESSION['Name'] = $sql['Name'];
         } //Getting data of normie
         break;
 		
-		case $sql['Surname']:
+	case $sql['Surname']:
         if(!isset($_SESSION['Surname'])){ 
             $_SESSION['Surname'] = $sql['Surname'];
         }
         break;
 		
-		case $sql['Name']:
+	case $sql['Name']:
         if(!isset($_SESSION['Email'])){ 
             $_SESSION['Email'] = $sql['Email'];
         }
         break;
 		
-		case $sql['Password']:
+	case $sql['Password']:
         if(!isset($_SESSION['Password'])){
             $_SESSION['Password'] = $sql['Password'];
         }
         break;
-		
-		case $sql['avatar']:
-        if(!isset($_SESSION['avatar'])){
-            $_SESSION['avatar'] = $sql['avatar'];
-        }
-        break;
-		
-		case $sql['Comment']:
+				
+	case $sql['Comment']:
         if(!isset($_SESSION['Comment'])){
             $_SESSION['Comment'] = $sql['Comment'];
         }
         break;
 		
-		case $sql['Gender']:
+	case $sql['Gender']:
         if(!isset($_SESSION['Gender'])){
             $_SESSION['Gender'] = $sql['Gender'];
         }
         break;
 		
-		case $sql['Specialty']:
+	case $sql['Specialty']:
         if(!isset($_SESSION['Specialty'])){
             $_SESSION['Specialty'] = $sql['Specialty'];
         }
         break;
 		
-		case $sql['days']:
+	case $sql['days']:
         if(!isset($_SESSION['days'])){
             $_SESSION['days'] = $sql['days'];
         }
         break;
 		
-		case $sql['month']:
+	case $sql['month']:
         if(!isset($_SESSION['month'])){
             $_SESSION['month'] = $sql['month'];
         }
         break;
 		
-		case $sql['year']:
+	case $sql['year']:
         if(!isset($_SESSION['year'])){
             $_SESSION['year'] = $sql['year'];
         }
 
-		case $sql['time']:
+	case $sql['time']:
         if(!isset($_SESSION['time'])){
             $_SESSION['time'] = $sql['time'];
         }
         break;
 		
-		case $sql['Website']:
+	case $sql['Website']:
         if(!isset($_SESSION['Website'])){
             $_SESSION['Website'] = $sql['Website'];
         }
-		break;
-	   }
-if (!function_exists('logout')) {
-function logout(){
- global  $conn;
- $conn -> query("UPDATE userinfo SET active='0'"); //Logging out onclick
- //session_destroy();
- $_SESSION['active'] = '0';
+        break;              
 }
 }
-
-//Transmitting logout function as variable
-$logout = logout();
-
-//Declaring logout function as global session
-$_SESSION['logout'] = $logout;
 
 //Checking if function button already exists
 if (!function_exists('button')) {  
 //Function for button on login
 function button(){ 
+global $conn;
+
     //Getting $butreg from PHP/Libary.php
     global $butreg;
-    
+
     //Getting $butout from PHP/Libary.php
     global $butout;
     
@@ -180,15 +162,21 @@ function button(){
   $probutt= '<a href ="Profile.php" style="'.$butreg.' class="href"> My Profile</a>';
 
    //logout
-  $outbut= '<a href ="" style="'. $butout .' float: left;" onclick="'. $_SESSION['logout'] . '"> Logout</a>';
- 
-   if($_SESSION['active'] !== 1 || 2){
-      echo $regbutt;
-      }else{
-     echo $probutt, $outbut;
-   }
-  }
+  $outbut= '<a href ="Logout.php" style="'. $butout .' float: left;""> Logout</a>';
+if(isset($_SESSION['id'])){
+$id= $_SESSION['id'];
+$quary = $conn -> query("SELECT * FROM userinfo WHERE id='$id'");
+$sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
+if(!empty($sql)){
+   if($_SESSION['active'] = 1 || 2){
+      echo $probutt, $outbut;
+}
+}
+}else{
+  echo $regbutt;  
  }
+}
+}
 $curtim = date($str);
 
 //Checking if function already exists
@@ -212,7 +200,7 @@ if (!function_exists('navbar')) {
 function navbar(){
     global $navbaradmin; //Getting navbar for superior human beings from Libary.php
     global $navbar; //Getting navbar for normies from Libary.php
-if(!empty($_SESSION['active']) == 2){
+if(!empty($_SESSION['active']) > 1){
         echo $navbaradmin;
    }else{
        echo $navbar;
