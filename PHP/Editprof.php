@@ -1,14 +1,13 @@
 <?php
-include 'Functions.php';
-
-    
+include 'Functions.php'; 
 //User update
 function Username($conn){
 $User = $_POST["Username"];
 
 if(isset($User)){
-$Usersel = $conn ->query("SELECT Username FROM userinfo");
+$Usersel = $conn ->query("SELECT Username FROM userinfo WHERE id= ". $_SESSION['id'] ."");
 $Username = $conn ->query("UPDATE userinfo SET Username= ". $User . " WHERE id = ". $_SESSION['id'] . ""); 
+$_SESSION['Username'] = $User;
 return $Username;
 }
 }
@@ -18,8 +17,9 @@ function Name($conn){
 $Name = $_POST["Name"];
 
 if(isset($Name)){
-$Namesel = $conn ->query("SELECT Name FROM userinfo");
+$Namesel = $conn ->query("SELECT Name FROM userinfo WHERE id= ". $_SESSION['id'] ."");
 $Nameup = $conn ->query("UPDATE userinfo SET Name = ". $Name . " WHERE id = ". $_SESSION['id'] . "");
+$_SESSION['Name'] = $_POST["Name"];
 return $Nameup;
 }
 }
@@ -28,18 +28,20 @@ function Surname($conn){
 $Surname = $_POST["Surname"];
 
 if(isset($Surname)){
-$Surnamesel = $conn ->query("SELECT Surname FROM userinfo");
+$Surnamesel = $conn ->query("SELECT Surname FROM userinfo WHERE id= ". $_SESSION['id'] ."");
 $Surnameup = $conn ->query("UPDATE userinfo SET Surname = ". $Surname . " WHERE id = ". $_SESSION['id'] . ""); 
+$_SESSION['Surname'] = $_POST["Surname"];
 return $Surnameup;
-}
+ }
 }
 function Specialty($conn){
 //Specialty update
 $Specialty = $_POST["Specialty"];
 
 if(isset($Specialty)){
-$Specialtysel = $conn ->query("SELECT Surname FROM userinfo");
+$Specialtysel = $conn ->query("SELECT Specialty FROM userinfo WHERE id= ". $_SESSION['id'] ."");
 $Specialtyup = $conn ->query("UPDATE userinfo SET Specialty = ". $Specialty . " WHERE id = ". $_SESSION['id'] . ""); 
+$_SESSION['Specialty'] = $_POST["Specialty"];
 return $Specialtyup;
 }
 }
@@ -48,8 +50,9 @@ function Gender($conn){
 $Gender = $_POST["Male,Female"];
 
 if(isset($Gender)){
-$Gendersel = $conn ->query("SELECT Gender FROM userinfo");
+$Gendersel = $conn ->query("SELECT Gender FROM userinfo WHERE id= ". $_SESSION['id'] ."");
 $Genderup = $conn ->query("UPDATE userinfo SET Gender = ". $Gender . " WHERE id = ". $_SESSION['id'] . ""); 
+$_SESSION['Gender'] = $Gender; 
 return $Genderup;
 }
 }
@@ -58,8 +61,9 @@ function Email($conn){
 $Email = $_POST["Email"];
 
 if(isset($Email)){
-$Emailsel = $conn ->query("SELECT Email FROM userinfo");
+$Emailsel = $conn ->query("SELECT Email FROM userinfo WHERE id= ". $_SESSION['id'] ."");
 $Emailup = $conn ->query("UPDATE userinfo SET Email = ". $Email . " WHERE id = ". $_SESSION['id'] . ""); 
+$_SESSION['Email'] = $Email;
 return $Emailup;
 }
 }
@@ -68,11 +72,47 @@ function Comment($conn){
 $Comment = $_POST["Comment"];
 
 if(isset($Comment)){
-$Commentsel = $conn ->query("SELECT Comment FROM userinfo");
+$Commentsel = $conn ->query("SELECT Comment FROM userinfo WHERE id= ". $_SESSION['id'] ."");
 $Commentup = $conn ->query("UPDATE userinfo SET Comment = ". $Comment . " WHERE id = ". $_SESSION['id'] . ""); 
+$_SESSION['Comment'] = $_POST["Comment"];
 return $Commentup;
 }
 }
+
+function days($conn){
+//Days update
+$days = $_POST["days"];
+
+if(isset($days)){
+$Commentsel = $conn ->query("SELECT days FROM userinfo WHERE id= ". $_SESSION['id'] ."");
+$Commentup = $conn ->query("UPDATE userinfo SET days = ". $days . " WHERE id = ". $_SESSION['id'] . ""); 
+$_SESSION['days'] = $_POST["days"];
+return $daysup;
+}
+}
+function month($conn){
+//Month update
+$month = $_POST["month"];
+
+if(isset($month)){
+$Commentsel = $conn ->query("SELECT month FROM userinfo WHERE id= ". $_SESSION['id'] ."");
+$Commentup = $conn ->query("UPDATE userinfo SET month = ". $month . " WHERE id = ". $_SESSION['id'] . ""); 
+$_SESSION['month'] = $_POST["month"];
+return $monthup;
+}
+}
+function year($conn){
+//Year update
+$Comment = $_POST["year"];
+
+if(isset($year)){
+$Commentsel = $conn ->query("SELECT year FROM userinfo WHERE id= ". $_SESSION['id'] ."");
+$Commentup = $conn ->query("UPDATE userinfo SET year = ". $Comment . " WHERE id = ". $_SESSION['id'] . ""); 
+$_SESSION['year'] = $_POST["year"];
+return $Commentup;
+}
+}
+
 ?>
 <html lang="en">
     <head>
@@ -99,9 +139,7 @@ return $Commentup;
               <div class="panel-title"><h3> <?php  echo $names =$conn-> query("Username FROM userinfo WHERE id='".$id."'" );?></h3>
             </div>
             <div class="panel-body">
-              <div class="row">
-                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="#" style=""> </div>
-                                                    
+              <div class="row">                                              
                 <div class=" col-md-9 col-lg-9 "> 
                    
                   <table class="table table-user-information">
@@ -129,16 +167,35 @@ return $Commentup;
                              <tr>
                         <td>Gender</td>
 <td><input value="1" name="Female" class="subject-list" type="checkbox" id="fem">Female 
-<input value="2" name="Male" class="subject-list" type="checkbox" id="mal"> Male
+<input value="2" name="Male" class="subject-list" type="checkbox" id="mal"> Male</td>
     <script type="text/javascript">
 	    $('.subject-list').on('change', 
             function() {
 		    $('.subject-list').not(this).prop('checked', false);  
 		});
              
-    </script></td>
+    </script>
                         <td><span><button onclick="<?php Gender()?>"> Apply</button></span></td>
                              </tr>
+							    <tr>                          <p3>When were you born?</p3>
+                                <span><select name="days">
+                                    <option value="dayemp" name="dayemp" id="dayemp" required>---</option>
+                                    <?php days_loop() //Loop from Funtions.php wich will output 30 days?>
+
+                                </select></span>
+                                
+                                <span><select name="month">
+                                    <option value="monthemp" name="monthemp" id="monthemp" required>---</option>
+                                   <?php month_loop() //Loop from Funtions.php wich will output 12 months?>
+
+                                </select></span>
+                                
+                                <select name="year">
+                                    <option value="yearemp" name="yearemp" id="yearemp" required>------</option>
+                                    <?php year_loop() //Loop from Funtions.php wich will output current - 117 (117 because the oldest human was 117) ?>
+
+                                </select>
+								<span><button onclick="<?php days(); month(); year(); ?>"> Apply</button></span></tr>
                       <tr>
                         <td>Email</td>
                         <td><input type="email" name="Username" style="width:250px;"></td>

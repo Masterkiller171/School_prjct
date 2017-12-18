@@ -11,7 +11,7 @@ $Username = $conn-> real_escape_string($_POST['Username']);
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $Email = $conn-> real_escape_string($_POST['Email']);
-$Password= md5($_POST['password']);
+$Password= $conn-> real_escape_string($_POST['password']);
 $Comment = $conn-> real_escape_string($_POST['Comment']);
 $days = $_POST['days'];
 $month = $_POST['month'];
@@ -89,8 +89,8 @@ if(count($_POST['gender']) == 1){
             $_SESSION['active'] = $active;
             $_SESSION['id'] = $id;
             
-            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, active, id)"
-            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$active','$id')";
+            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, id)"
+            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$id')";
             
               //Registration succesfull
               if($conn -> query($sql) === true){ 

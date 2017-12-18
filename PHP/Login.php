@@ -2,25 +2,22 @@
 include "Functions.php";
 
 $_SESSION['msg'] = '';
+if($_SERVER['REQUEST_METHOD']== 'POST'){   
+$email = $conn -> escape_string($_POST['mail']);
+$result = $conn -> query("SELECT * FROM userinfo WHERE Email='$email'");
 
-if($_SERVER['REQUEST_METHOD']== 'POST'){
- if(isset($_POST['mail']) && !empty($_POST['mail']) AND isset($_POST['pass']) && !empty($_POST['pass'])){
-    $search = $conn -> query("SELECT Username, Password FROM users") or die(mysql_error()); 
-    $match  = $search -> num_rows;
-
- if(isset($_POST['mail']) == "pepenormie@gmail.com" && isset($_POST['pass']) == "normiepass"){
-    $_SESSION['Email'] = $_POST['mail']; //Getting Email from email input
-    $_SESSION['Password'] = $_POST['pass']; //Geting  password from password input
-    $_SESSION['active'] = 2;
-    header('location: Profile.php');
-    
- }elseif($match == 1){
-    $conn -> query("UPDATE userinfo SET active = 1"); //Updatting active to 1 for normies(normal customers) in database
-    $_SESSION['active'] = 1;
-     
-    $quary = $conn -> query("SELECT * FROM userinfo");
+if ( $result -> num_rows == 0 ){ // User doesn't exist
+    $_SESSION['msg'] = "User with that email doesn't exist!";
+    header("location: Login.php");
+}else{ // User exists
+    $quary = $conn -> query("SELECT * FROM userinfo WHERE Email=' $email' ") or die("Error: ". mysqli_error($conn));
+    //if (!$check1_res) {
+    //printf("Error: %s\n", mysqli_error($conn));
+    //exit();
+//}
     $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
-             
+
+    if($_POST['pass'] ==  $sql['Password']){         
     $_SESSION['Username']= $sql['Username'];
     $_SESSION['Name']    = $sql['Name'];
     $_SESSION['Surname'] = $sql['Surname'];
@@ -35,16 +32,12 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     $_SESSION['year']    = $sql['year'];
     $_SESSION['time']    = $sql['time'];
     $_SESSION['Website'] = $sql['Website'];
-
-    header('location: Profile.php');
-  }
- }else{
-     header("location: Login.php");
-     $_SESSION['msg'] = '<bigfc>*Please fill in all the fields!</bigfc>'; //Fail message when there is no match in query search
- }
+    $_SESSION['id']      = $sql['id'];
+    $_SESSION['active' ]  = 1;
+    
 }
-
-
+}
+}
 ?>
 <html lang= en>
     <head>
@@ -65,7 +58,7 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 				<h1>Login</h1>
             
 			</div>
-            <?php $_SESSION['msg']; ?>
+            <?php echo $_SESSION['msg']; ?>
                     <aligner><small>Please fill in your name and password</small></aligner>
        
 <form method="post">
@@ -80,9 +73,9 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
                                 
  <script type="text/javascript">
   $(document).ready(function() {
-  $("#showHide").click(function() {  //Checking the button has been pressed
-    if ($(".Password").attr("type") === "password") {  //Checking if text field is password
-      $(".Password").attr("type", "text"); //If imput is password it will change to text(visible)
+   $("#showHide").click(function() {  //Checking the button has been pressed
+    if($(".Password").attr("type") === "password") {  //Checking if text field is password
+     $(".Password").attr("type", "text"); //If imput is password it will change to text(visible)
 
     } else {
       $(".Password").attr("type", "password"); //And if its already on text it will change to password
