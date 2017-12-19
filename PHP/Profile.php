@@ -11,23 +11,24 @@ include 'Functions.php';
     </head>
     
     <body>
-<A href="" style="
+<A href="<?php Logout.php ?>" style="
     padding: 5 1%;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    "onclick= >
+    display: inline-block;">
     Logout</A>
        
        
-    <?php navbar()?>
+        <?php navbar()?>
      <div class="container">
       <div class="row">
-          <div class="col-md-5  toppad" style="background-color: white; opacity: 0.85;">
-          <h4>Member Since:</h4>
+      <div class="col-md-5  toppad">
+          
+          <strong><h4 class="shad">Member Since:</h4></strong>
           <br>
-          <h5><?php echo $_SESSION['time'] ?></h5>
+          <strong><h5 class="shad"><?php echo $_SESSION['time'] ?></h5></strong>
            <a href="Editprof.php" >Edit Profile</a>
+          
            <div class="boxp shadow">
                <div class="cover left">
                <p style="text-align: center;">My posts</p>
@@ -40,13 +41,16 @@ include 'Functions.php';
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <div class="panel-title"><h3></h3>
+              <div class="panel-title"><h3><?php ?></h3>
             </div>
             <div class="panel-body">
-              <div class="row">                                           
+              <div class="row">
+                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../Images/Home.png" style=""> </div>
+                  <tabb>
                 <div class=" col-md-9 col-lg-9 "> 
-                  <table class="table table-user-information">                      
-                      <tbody>
+                   
+                  <table class="table table-user-information">
+                    <tbody>
                         <tr> 
                         <td>Username</td>
                         <td><?php echo $_SESSION['Username'];?>
@@ -79,20 +83,17 @@ include 'Functions.php';
                         <td>Comment</td>
                         <td><?php echo $_SESSION['Comment']?>
                      </tr>
-                     <tr>
-                        <td>Website</td>
-                        <td><?php echo $_SESSION['Website']?>
-                     </tr>
-                      </tbody>                     
+                      </tbody>
                     </table>
-                  </div>
+                </div>
+                  </tabb>
                 </div>
               </div>
-            </div>           
+            </div>
+            
           </div>
         </div>
       </div>
     </div>
     </body>
 </html>
-

@@ -1,43 +1,47 @@
 <?php 
 include "Functions.php";
+ if($_SERVER['REQUEST_METHOD']== 'POST'){
 
-$_SESSION['msg'] = '';
-if($_SERVER['REQUEST_METHOD']== 'POST'){   
-$email = $conn -> escape_string($_POST['mail']);
-$result = $conn -> query("SELECT * FROM userinfo WHERE Email='$email'");
+$email = $conn->escape_string($_POST['mail']);
+$result = $conn->query("SELECT * FROM userinfo WHERE email='$email'");
 
-if ( $result -> num_rows == 0 ){ // User doesn't exist
-    $_SESSION['msg'] = "User with that email doesn't exist!";
+if ($result->num_rows == 0 ){ // User doesn't exist
+    $_SESSION['message'] = "User with that email doesn't exist!";
     header("location: Login.php");
-}else{ // User exists
-    $quary = $conn -> query("SELECT * FROM userinfo WHERE Email=' $email' ") or die("Error: ". mysqli_error($conn));
-    //if (!$check1_res) {
-    //printf("Error: %s\n", mysqli_error($conn));
-    //exit();
-//}
-    $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
-
-    if($_POST['pass'] ==  $sql['Password']){         
-    $_SESSION['Username']= $sql['Username'];
-    $_SESSION['Name']    = $sql['Name'];
-    $_SESSION['Surname'] = $sql['Surname'];
-    $_SESSION['Email']   = $sql['Email'];
-    $_SESSION['Password']= $sql['Password'];
-    $_SESSION['avatar']  = $sql['avatar'];
-    $_SESSION['Comment'] = $sql['Comment'];
-    $_SESSION['Gender']  = $sql['Gender'];
+}
+else { // User exists
+    $sql = $result->fetch_assoc();
+ 
+    if(isset($_POST['pass']) == $sql['Password']) {
+        
+    $_SESSION['Username'] = $sql['Username'];
+    $_SESSION['Name']     = $sql['Name'];
+    $_SESSION['Surname']  = $sql['Surname'];
+    $_SESSION['Password'] = $sql['Password'];
+    $_SESSION['Comment']  = $sql['Comment'];
+    $_SESSION['Gender']   = $sql['Gender'];
     $_SESSION['Specialty']= $sql['Specialty'];
-    $_SESSION['days']    = $sql['days'];
-    $_SESSION['month']   = $sql['month'];
-    $_SESSION['year']    = $sql['year'];
-    $_SESSION['time']    = $sql['time'];
-    $_SESSION['Website'] = $sql['Website'];
-    $_SESSION['id']      = $sql['id'];
-    $_SESSION['active' ]  = 1;
+    $_SESSION['days']     = $sql['days'];
+    $_SESSION['month']    = $sql['month'];
+    $_SESSION['year']     = $sql['year'];
+    $_SESSION['time']     = $sql['time'];
+    $_SESSION['Website']  = $sql['Website'];
+    $_SESSION['id']       = $sql['id'];
+    $_SESSION['Email']    = $email;  
     
+ if(isset($_POST['pass']) == 'P4s$W0rd' && isset($_POST['mail']) == 'Admin171@gmail.com'){
+     $_SESSION['active']  = 2;
+     header("location: Profile.php");
+   }else{
+     $_SESSION['active']  = 1;
+     header("location: Profile.php");
+   }
+    }else{
+        $_SESSION['message'] = "You have entered wrong password, try again!";
+        header("location: Login.php");
+    }
 }
-}
-}
+ }
 ?>
 <html lang= en>
     <head>
@@ -58,10 +62,9 @@ if ( $result -> num_rows == 0 ){ // User doesn't exist
 				<h1>Login</h1>
             
 			</div>
-            <?php echo $_SESSION['msg']; ?>
+            <?php echo $_SESSION['message']; ?>
                     <aligner><small>Please fill in your name and password</small></aligner>
-       
-<form method="post">
+       <form method="post">
 			<div class="login-form">
 				<div class="control-group">                               
                                 <input type="email" class="login-field" value="" placeholder="Email Adress" id="login-name" name="mail" required/>
