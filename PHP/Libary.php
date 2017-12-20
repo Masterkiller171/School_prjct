@@ -101,7 +101,8 @@ $navbaradmin =' <nav>
        </ul></li>
        <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>logboek</a>
        <ul class="sub-menu">
-         <li><a href="../SCL/PHP/logboek.php" '. $_SESSION['dec'] .'>Our project</a></li>
+         <li><a href="../SCL/PHP/Verslag.php" '. $_SESSION['dec'] .'>Verslag</a></li>
+             <li><a href="../SCL/PHP/logboek.php" '. $_SESSION['dec'] .'>Logboek</a></li>
        </ul></li>
    </ul>
  </nav>

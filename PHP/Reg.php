@@ -16,8 +16,8 @@ $Comment = $conn-> real_escape_string($_POST['Comment']);
 $days = $_POST['days'];
 $month = $_POST['month'];
 $year = $_POST['year'];
-$id = rand(1000,5000);
-            
+$id = rand(0,9999999999);
+$perm = 1;
 if(isset($yearname) == false){
     
 if(isset($monthname) == false){
@@ -88,9 +88,10 @@ if(count($_POST['gender']) == 1){
             $_SESSION['year'] = $year;
             $_SESSION['active'] = $active;
             $_SESSION['id'] = $id;
+            $_SESSION['perm'] = $perm;
             
-            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, id)"
-            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$id')";
+            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, id, Perm)"
+            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$id', '$perm')";
             
               //Registration succesfull
               if($conn -> query($sql) === true){ 

@@ -168,15 +168,16 @@ $id= $_SESSION['id'];
 $quary = $conn -> query("SELECT * FROM userinfo WHERE id='$id'");
 $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
 if(!empty($sql)){
-   if($_SESSION['active'] = 1 || 2){
+   if($_SESSION['active'] = 1){
       echo $probutt, $outbut;
 }
-}
+ } 
 }else{
-  echo $regbutt;  
- }
+  echo $regbutt;
+}  
 }
 }
+
 $curtim = date($str);
 
 //Checking if function already exists
@@ -187,7 +188,7 @@ function create_post(){
   global $Create; //Create post text and make-up
 
 //Checking whether $active is one or two (logged-in and logged-out)
- if($_SESSION['active'] == 1 || 2){
+ if($_SESSION['active'] == 1){
   echo $Create;
    }else{
      echo $Login;
@@ -200,9 +201,17 @@ if (!function_exists('navbar')) {
 function navbar(){
     global $navbaradmin; //Getting navbar for superior human beings from Libary.php
     global $navbar; //Getting navbar for normies from Libary.php
-if(!empty($_SESSION['active']) > 1){
+    global $conn;
+    if(isset($_SESSION['id'])){
+    $id = $_SESSION['id'];
+$quary = $conn -> query("SELECT * FROM userinfo WHERE id='$id'");
+$sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
+if($sql['Perm'] == 2){
         echo $navbaradmin;
    }else{
+       echo $navbar;
+   }
+}else{
        echo $navbar;
    }
 }

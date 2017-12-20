@@ -11,7 +11,6 @@ if ($result->num_rows == 0 ){ // User doesn't exist
 }
 else { // User exists
     $sql = $result->fetch_assoc();
- 
     if(isset($_POST['pass']) == $sql['Password']) {
         
     $_SESSION['Username'] = $sql['Username'];
@@ -28,14 +27,10 @@ else { // User exists
     $_SESSION['Website']  = $sql['Website'];
     $_SESSION['id']       = $sql['id'];
     $_SESSION['Email']    = $email;  
+    $_SESSION['perm']     = $sql['Perm'];
+    $_SESSION['active']   = 1;
     
- if(isset($_POST['pass']) == 'P4s$W0rd' && isset($_POST['mail']) == 'Admin171@gmail.com'){
-     $_SESSION['active']  = 2;
      header("location: Profile.php");
-   }else{
-     $_SESSION['active']  = 1;
-     header("location: Profile.php");
-   }
     }else{
         $_SESSION['message'] = "You have entered wrong password, try again!";
         header("location: Login.php");
