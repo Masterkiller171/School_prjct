@@ -29,32 +29,26 @@ date_default_timezone_set('GMT');
 $_SESSION['nowtime'] = date("F j, Y, g:i a");
 
 //create the database
-//if ( !$conn->query('CREATE DATABASE innoform') ) {
-//   printf("Errormessage: %s\n", $conn->error);
-//}
-
-//create users table with all the fields
-//$conn->query('
-//CREATE TABLE `userinfo`(
-//`Username` varchar(255) NOT NULL, 
-//`Name` varchar(255) NOT NULL, 
-//`Surname` varchar(255) NOT NULL, 
-//`Email` varchar(255) NOT NULL, 
-//`Password` varchar(255) NOT NULL, 
-//`avatar` VARCHAR(100) NOT NULL, 
-//`Comment` varchar(255) NOT NULL, 
-//`Gender` varchar(255) NOT NULL, 
-//`Specialty` varchar(255) NOT NULL, 
-//`id` varchar(255) NOT NULL, 
-//`days` INT(2) NOT NULL, 
-//`month` INT(2) NOT NULL, 
-//`year` INT(4) NOT NULL
-//);') or die($conn->error);
-//if (!function_exists('data')) {
-//function data(){
-    
-   //Getting connection of database
-  //  global $conn;
+$conn -> query('CREATE TABLE IF NOT EXISTS `sserinfo` (
+  `Username` varchar(255) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Surname` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Comment` longtext NOT NULL,
+  `Gender` varchar(255) NOT NULL,
+  `Specialty` varchar(255) NOT NULL,
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `days` int(2) NOT NULL,
+  `month` varchar(3) NOT NULL,
+  `year` int(4) NOT NULL,
+  `time` text NOT NULL,
+  `Website` varchar(100) NOT NULL,
+  `Perm` int(99) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=545642987 ;');
+$quary = $conn -> query("SELECT * FROM userinfo");
+$sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
     
 /* Gathering all data from database*/
 if(isset($_SESSION['id'])){
@@ -168,7 +162,7 @@ $id= $_SESSION['id'];
 $quary = $conn -> query("SELECT * FROM userinfo WHERE id='$id'");
 $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
 if(!empty($sql)){
-   if($_SESSION['active'] = 1){
+ if($_SESSION['active'] = 1){
       echo $probutt, $outbut;
 }
  } 

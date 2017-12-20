@@ -3,7 +3,7 @@ require ("../../PHP/Functions.php");
 ?>
 <html lang="en">
 <head>
-    <title>Logboek ?></title>
+    <title>Logboek </title>
     <link rel="stylesheet" type="text/css" href="../../CSS/Main.css">
     <link rel="stylesheet" type="text/css" href="../../CSS/Logboek.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,46 @@ require ("../../PHP/Functions.php");
 
     <h4><?php button() ?></h4><br><br>
 <!-- Function for navbar /PHP/Libary.php -->
-    <?php navbar() ?>
+    <nav>
+     <ul>
+       <li class="sub-menu-parent"><a href="../../PHP/index.php" style='<?php echo $_SESSION['dec'] ?>'> Home</a>
+       </li>
+     <li class="sub-menu-parent">
+       <a style='<?php echo $_SESSION['dec'] ?>'> Posts</a>
+       <ul class="sub-menu">
+         <li><a href="../../PHP/Post-page.php" style='<?php echo $_SESSION['dec'] ?>'>New Posts</a></li>
+         <li><a href="../../PHP/Post-page.php" style='<?php echo $_SESSION['dec'] ?>'>Hot Posts</a></li>
+       </ul>
+     </li>
+     <a href="Post-input.php" class="sub-menu-parent" style='<?php echo $_SESSION['dec'] ?>'>Create post</a>
+     <li class="sub-menu-parent"><a style='<?php echo $_SESSION['dec'] ?>' >Projects</a>
+       <ul class="sub-menu">
+         <li><a href="../../PHP/Projects.php" style='<?php echo $_SESSION['dec'] ?>'>New Projects</a></li>
+         <li><a href="../../PHP/Projects.php" style='<?php echo $_SESSION['dec'] ?>'>Hot Projects</a></li>
+       </ul></li>
+        <li class="sub-menu-parent"><a style='<?php echo $_SESSION['dec'] ?>'>Support</a>
+       <ul class="sub-menu">
+         <li><a href="../../PHP/Rules.php" style='<?php echo $_SESSION['dec'] ?>'>Rules</a></li>
+         <li><a href="../../PHP/Contact.php" style='<?php echo $_SESSION['dec'] ?>'>Contact</a></li>
+       </ul></li>
+       <li class="sub-menu-parent"><a style='<?php echo $_SESSION['dec'] ?>'>History</a>
+       <ul class="sub-menu">
+         <li><a href="../../PHP/" style='<?php echo $_SESSION['dec'] ?>'>Post History</a></li>
+         <li><a href="../../PHP/" style='<?php echo $_SESSION['dec'] ?>'>Comment History</a></li>
+       </ul></li>
+       <li class="sub-menu-parent"><a style='<?php echo $_SESSION['dec'] ?>'>About us</a>
+       <ul class="sub-menu">
+         <li><a href="../../PHP/Aboutus.php" style='<?php echo $_SESSION['dec'] ?>'>Our project</a></li>
+         <li><a href="../../PHP/" style='<?php echo $_SESSION['dec'] ?>'>Background story</a></li>
+       </ul></li>
+       <li class="sub-menu-parent"><a style='<?php echo $_SESSION['dec'] ?>'>logboek</a>
+       <ul class="sub-menu">
+         <li><a href="../SCL/PHP/Verslag.php" style='<?php echo $_SESSION['dec'] ?>'>Verslag</a></li>
+             <li><a href="../SCL/PHP/logboek.php" style='<?php echo $_SESSION['dec'] ?>'>Logboek</a></li>
+       </ul></li>
+   </ul>
+ </nav>
+    <div class="filler two"></div>';
     <div id="wrapperr">
     <div class="body" style="height: auto;">
         <strong><h1>Logboek</h1></strong>
@@ -431,12 +470,16 @@ require ("../../PHP/Functions.php");
                 *Added Verslag.php<br>
                 *Filled in all of the info on Logboek.php<br>
                 *Added an admin account<br>
-                -Only the admin can acces this page
+                -Only the admin can acces this page<br>
+                *Fixed navbar on <br>
+                *Added automatic database make script<br>
+                *Added button on index.php to create an admin account
             </td>
             <td>Te veel vrije tijd</td>
-            <td>150 Minuten</td>
+            <td>250 Minuten</td>
            </tr>
-           <strong><h2>Totale uren: 98 uur</h2></strong>
+           
+           <strong><h2>Totale uren: 100 uur</h2></strong>
         </table>
 </div>
     </div>
@@ -444,7 +487,7 @@ require ("../../PHP/Functions.php");
     <div class="filler two">
     </div>
     <div class="footer">
-        <h1> Made by Tijmen and Youri</h1>
+        <h1> Made by Youri Bontekoe</h1>
     </div>
 </body>
 </html>

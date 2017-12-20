@@ -11,7 +11,7 @@ $Username = $conn-> real_escape_string($_POST['Username']);
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $Email = $conn-> real_escape_string($_POST['Email']);
-$Password= $conn-> real_escape_string($_POST['password']);
+$Password= md5($_POST['password']);
 $Comment = $conn-> real_escape_string($_POST['Comment']);
 $days = $_POST['days'];
 $month = $_POST['month'];
@@ -69,7 +69,7 @@ if(count($_POST['gender']) == 1){
         //Copying image file from images directory
       //  if(copy($_FILES['avatar']['tmp_name'], $picture_path)){
 
-        $time = date('Y-m-d H:i:s');//Setting time since account creation
+            $time = date('d-m-Y H:i:s');//Setting time since account creation
         
         /*Creating sessions for all data */
             $_SESSION['Username'] = $Username; 

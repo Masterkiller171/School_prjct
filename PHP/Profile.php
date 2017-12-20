@@ -11,7 +11,7 @@ include 'Functions.php';
     </head>
     
     <body>
-<A href="<?php Logout.php ?>" style="
+<A href="Logout.php" style="
     padding: 5 1%;
     text-align: center;
     text-decoration: none;

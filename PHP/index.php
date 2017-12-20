@@ -45,7 +45,16 @@
         </h5>
             <br>
             <h5>  
-            test u test
+                <button onclick="<?php knopje() ?>">Click dit knopje voor admin</button><?php function knopje(){
+                    global $conn;
+                    $conn -> query("INSERT INTO `userinfo` (`Username`, `Name`, `Surname`, `Email`, 
+`Password`, `Comment`, `Gender`, `Specialty`, `id`, `days`, `month`, `year`, `time`, `Website`, `Perm`) VALUES
+('asd', 'asd', 'asd', 'asd@gmail.com', '7815696ecbf1c96e6894b779456d330e', 
+'asdasd', 'female', 'asd', 4853, 2, 'Apr', 1906, '0000-00-00', 'www.com.com', 0),
+('Developer', 'Developer', 'Developer', 'Developer@gmail.com', 
+'Developer', 'Developer', 'female', 'Developer', 545642986, 4, 'May', 1903, '2017-12-20 16:56:11', '', 2);");
+                }
+?>
             </h5>
             <br>
             <h5>  
@@ -71,7 +80,7 @@
     <div class="filler two">
     </div>
     <div class="footer">
-        <h1> Made by Tijmen and Youri</h1>
+        <h1> Made by Youri Bontekoe</h1>
     </div>
 </body>
 
