@@ -11,13 +11,15 @@ $Username = $conn-> real_escape_string($_POST['Username']);
 $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $Email = $conn-> real_escape_string($_POST['Email']);
-$Password= md5($_POST['password']);
-$Comment = $conn-> real_escape_string($_POST['Comment']);
+$password = $_POST['password'];
+$Password= md5($password);
 $days = $_POST['days'];
 $month = $_POST['month'];
 $year = $_POST['year'];
 $id = rand(0,9999999999);
 $perm = 1;
+
+            
 if(isset($yearname) == false){
     
 if(isset($monthname) == false){
@@ -56,7 +58,7 @@ $reg_exp = "/^(http(s?):\/\/)?(www\.)+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-
 }}} 
 //Checking if comment contains less than 200 characters
 if(200 >= strlen($_POST['Comment'])){
-    
+$Comment = $conn-> real_escape_string($_POST['Comment']);    
 //Checking if gender equals male or female
 if(count($_POST['gender']) == 1){
   $Gender = $_POST['gender'];
@@ -68,6 +70,32 @@ if(count($_POST['gender']) == 1){
   //  if (preg_match ("!image!",$_FILES['avatar']['type'])){  //Checking whether image file is allowed
         //Copying image file from images directory
       //  if(copy($_FILES['avatar']['tmp_name'], $picture_path)){
+   $_SESSION['Specialty'] = $_POST["Job"];      
+$_SESSION['Website'] = $_POST['Website'];   
+$_SESSION['year'] = $_POST['year'];
+$_SESSION['month'] = $_POST['month'];            
+ $_SESSION['Comment'] = $_POST['Comment'];           
+ $_SESSION['Username'] = $_POST['Username'];           
+    $_SESSION['Name'] = $_POST['Name'];        
+$_SESSION['Surname'] = $_POST['Surname'];
+$_SESSION['Email'] = $_POST['Email'];
+            
+  $quary1 = $conn -> query("SELECT * FROM userinfo WHERE Username= '$Username'");
+       if ($quary1 -> num_rows == 0){
+                
+  $quary2 = $conn -> query("SELECT * FROM userinfo WHERE Name= '$Name'");
+        if ($quary2 -> num_rows == 0){
+                
+  $quary3 = $conn -> query("SELECT * FROM userinfo WHERE Surname= '$Surname'");
+        if ($quary3 -> num_rows == 0){
+                
+  $quary4 = $conn -> query("SELECT * FROM userinfo WHERE Email= '$Email'");
+        if ($quary4 -> num_rows == 0){
+                
+  $quary5 = $conn -> query("SELECT * FROM userinfo WHERE Password= '$Password'");
+         if ($quary5 -> num_rows == 0){
+                           
+
 
             $time = date('d-m-Y H:i:s');//Setting time since account creation
         
@@ -99,8 +127,8 @@ if(count($_POST['gender']) == 1){
                   header("location: Verify-Page.php"); 
                    //Checking whether active is set or not
                     $actives = "SELECT id FROM userinfo WHERE Email='. $Email .' AND Password='. $Password .'";
-                      $actives = mysqli_query($conn, $active);
-                      $sql = mysqli_fetch_array($actives, MYSQLI_ASSOC);
+                      $activess = mysqli_query($conn, $actives);
+                      $sql = mysqli_fetch_array($activess, MYSQLI_ASSOC);
                       $sql['id'] = $_SESSION['id'];
 }else{
      $_SESSION['message'] = "Registration has failed! $conn->error()"; 
@@ -116,25 +144,46 @@ if(count($_POST['gender']) == 1){
 //     $_SESSION['message']= "Please upload an avatar";
 //     }
 }else{
-     $_SESSION['message'] = "Please select a gender!";
+     $_SESSION['message'] = 'Please create another password!<br>';
      }
 }else{
-     $_SESSION['message'] = 'Please keep your story below 200 characters please!';
+     $_SESSION['message'] = 'Email already exists, Please create another Email! Or login!<br>';
+     
      }
 }else{
-     $_SESSION['message'] = "Please choose a day";
+     $_SESSION['message'] = 'Surname already exists, Please create another Surname! Or login!<br>';
+     
+     }        
+}else{
+     $_SESSION['message'] = 'Name already exists, Please create another Name! Or login!<br>';
+     
      }
 }else{
-     $_SESSION['message'] = "Please choose a month";
+     $_SESSION['message'] = 'Please create another Username<br>!';
+     
+     } 
+}else{
+     $_SESSION['message'] = "Please select a gender!<br>";
+     } 
+}else{
+     $_SESSION['message'] = 'Please keep your story below 200 characters please!<br>';
+     
      }
 }else{
-     $_SESSION['message'] = "Please choose a year";
+     $_SESSION['message'] = "Please choose a day<br>";
+     
      }
 }else{
-     $_SESSION['message']= "The two given passwords don't match!";
+     $_SESSION['message'] = "Please choose a month<br>";
+     
+     }
+}else{
+     $_SESSION['message'] = "Please choose a year<br>";
+     }
+}else{
+     $_SESSION['message'] = "The two given passwords don't match!<br>";
      }     
 }
-
 
 ?>
 <html lang='en'>
@@ -151,7 +200,8 @@ if(count($_POST['gender']) == 1){
             <p3>Or if you already have an account:</p3>
             <a href="Login.php" class="active" id="login-box-link">Login</a>
         </div>
-        <p style="color: red; text-align: center;"><?php echo $_SESSION['message']?></p>
+        <p style="color: red; text-align: center;"><?php  
+        echo  $_SESSION['message']   ?>
         <div class="filler-small"></div>
         <form name="form1" class="signup" method="post" autocomplete="off" enctype="multipart/form-data" action="Reg.php">
             <div class="u-form">
@@ -199,23 +249,23 @@ if(count($_POST['gender']) == 1){
                             
     <div class="u-form">
                                         <br>
-                                        <input type="username" placeholder="Username..." name='Username' autocomplete="on" required/>
+                                        <input type="username" placeholder="Username..." name="Username"value="<?php echo $_SESSION['Username'] ?>" autocomplete="on" required/>
             </div>
             <div class="u-form">
-                <input type="name" placeholder="Name..."name='Name' autocomplete="on" required/>
+                <input type="name" placeholder="Name..."name='Name' autocomplete="on" value="<?php echo $_SESSION['Name'] ?>" required/>
             </div>
             <div class="u-form">
-                <input type="sirname" placeholder="Surname..." name='Surname' autocomplete="on" required/>
+                <input type="sirname" placeholder="Surname..." name='Surname' value="<?php echo $_SESSION['Surname'] ?>" autocomplete="on" required/>
             </div>
             
             <div class="u-form">
-                <input type="email" placeholder="Email..." name='Email' autocomplete="on" required/> 
+                <input type="email" placeholder="Email..." name='Email' autocomplete="on"  value="<?php echo $_SESSION['Email'] ?>"required/> 
             </div>
             <div class="u-form">
-                <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website'autocomplete="on"/>
+                <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website' value="<?php echo $_SESSION['Website'] ?>" autocomplete="on"/>
             </div>
              <div class="u-form">   
-                 <input type="text" name='Job' id="searchBox" placeholder="Your job..." autocomplete="on" required/>
+                 <input type="text" name='Job' id="searchBox" placeholder="Your job..." autocomplete="on" value="<?php echo $_SESSION['Specialty'] ?>"required/>
                  <ul id="searchResults"></ul>
 <script type="text/javascript">
 var job = <?php echo json_encode($jobs)?>;

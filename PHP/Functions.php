@@ -1,141 +1,23 @@
         
 <?php
 include "Libary.php";
-
+include "Connector.php";
 session_start();
 
+//Declaring message session
+$_SESSION['message'] = $_SESSION['message'] = $_SESSION['pass'] = $_SESSION['Email'] = $_SESSION['Surname'] = $_SESSION['Name'] = $_SESSION['Username'] = '';
+//Setting default time to greenwich time
+date_default_timezone_set('GMT');
+//Getting today's date (current UK greenwich time)
+$_SESSION['nowtime'] = date("F j, Y, g:i a");
 //Defining all variables whom'st were not defined
 $Username = $Name = $Surname = $Password = $Passwordrpt = $Comment = $Email = $gender = $id = $Specialty = $str = $mysqli = $jobs = $match="";
- 
-$DBname = "innofurm"; //Database name
-$servername = "localhost:3307"; //Servername
-$username = "root"; //Username for datebase
-$password = "usbw"; //Password for database
-
-// Create connection to database
-$conn = new mysqli($servername, $username, $password, $DBname);
-$_SESSION['conn'] = $conn;
-// Check connection 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn -> connect_error);
-} 
-//Declaring message session
-$_SESSION['message'] = '';
 
 //Setting default time to greenwich time
 date_default_timezone_set('GMT');
 
 //Getting today's date (current UK greenwich time)
 $_SESSION['nowtime'] = date("F j, Y, g:i a");
-
-//create the database
-$conn -> query('CREATE TABLE IF NOT EXISTS `sserinfo` (
-  `Username` varchar(255) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Surname` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL,
-  `Password` varchar(255) NOT NULL,
-  `Comment` longtext NOT NULL,
-  `Gender` varchar(255) NOT NULL,
-  `Specialty` varchar(255) NOT NULL,
-  `id` int(255) NOT NULL AUTO_INCREMENT,
-  `days` int(2) NOT NULL,
-  `month` varchar(3) NOT NULL,
-  `year` int(4) NOT NULL,
-  `time` text NOT NULL,
-  `Website` varchar(100) NOT NULL,
-  `Perm` int(99) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=545642987 ;');
-$quary = $conn -> query("SELECT * FROM userinfo");
-$sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
-    
-/* Gathering all data from database*/
-if(isset($_SESSION['id'])){
-$id= $_SESSION['id'];
-$quary = $conn -> query("SELECT * FROM userinfo WHERE id='$id'");
-$sql = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from database values
-       //WHERE id= ". $_SESSION['id'] ."
-       /* All data from database spliced up to sessions*/
-	   switch($sql){
-       case $sql['Username']: 
-	   if(!isset($_SESSION['Username'])){
-       $_SESSION['Username'] = $sql['Username'];
-       }
-       break;
-	   
-	case $sql['Name']:
-        if(!isset($_SESSION['Name'])){
-            $_SESSION['Name'] = $sql['Name'];
-        } //Getting data of normie
-        break;
-		
-	case $sql['Surname']:
-        if(!isset($_SESSION['Surname'])){ 
-            $_SESSION['Surname'] = $sql['Surname'];
-        }
-        break;
-		
-	case $sql['Name']:
-        if(!isset($_SESSION['Email'])){ 
-            $_SESSION['Email'] = $sql['Email'];
-        }
-        break;
-		
-	case $sql['Password']:
-        if(!isset($_SESSION['Password'])){
-            $_SESSION['Password'] = $sql['Password'];
-        }
-        break;
-				
-	case $sql['Comment']:
-        if(!isset($_SESSION['Comment'])){
-            $_SESSION['Comment'] = $sql['Comment'];
-        }
-        break;
-		
-	case $sql['Gender']:
-        if(!isset($_SESSION['Gender'])){
-            $_SESSION['Gender'] = $sql['Gender'];
-        }
-        break;
-		
-	case $sql['Specialty']:
-        if(!isset($_SESSION['Specialty'])){
-            $_SESSION['Specialty'] = $sql['Specialty'];
-        }
-        break;
-		
-	case $sql['days']:
-        if(!isset($_SESSION['days'])){
-            $_SESSION['days'] = $sql['days'];
-        }
-        break;
-		
-	case $sql['month']:
-        if(!isset($_SESSION['month'])){
-            $_SESSION['month'] = $sql['month'];
-        }
-        break;
-		
-	case $sql['year']:
-        if(!isset($_SESSION['year'])){
-            $_SESSION['year'] = $sql['year'];
-        }
-
-	case $sql['time']:
-        if(!isset($_SESSION['time'])){
-            $_SESSION['time'] = $sql['time'];
-        }
-        break;
-		
-	case $sql['Website']:
-        if(!isset($_SESSION['Website'])){
-            $_SESSION['Website'] = $sql['Website'];
-        }
-        break;              
-}
-}
 
 //Checking if function button already exists
 if (!function_exists('button')) {  

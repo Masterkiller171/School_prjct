@@ -5,7 +5,7 @@ include "Functions.php";
 $email = $conn->escape_string($_POST['mail']);
 $result = $conn->query("SELECT * FROM userinfo WHERE email='$email'");
 
-if ($result->num_rows == 0 ){ // User doesn't exist
+if ($result->num_rows == 0){ // User doesn't exist
     $_SESSION['message'] = "User with that email doesn't exist!";
     header("location: Login.php");
 }
