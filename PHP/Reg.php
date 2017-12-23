@@ -70,16 +70,16 @@ if(count($_POST['gender']) == 1){
   //  if (preg_match ("!image!",$_FILES['avatar']['type'])){  //Checking whether image file is allowed
         //Copying image file from images directory
       //  if(copy($_FILES['avatar']['tmp_name'], $picture_path)){
-   $_SESSION['Specialty'] = $_POST["Job"];      
-$_SESSION['Website'] = $_POST['Website'];   
-$_SESSION['year'] = $_POST['year'];
-$_SESSION['month'] = $_POST['month'];            
- $_SESSION['Comment'] = $_POST['Comment'];           
- $_SESSION['Username'] = $_POST['Username'];           
-    $_SESSION['Name'] = $_POST['Name'];        
-$_SESSION['Surname'] = $_POST['Surname'];
-$_SESSION['Email'] = $_POST['Email'];
-            
+$_SESSION['Specialtytmp'] = $_POST["Job"];      
+$_SESSION['Websitetmp']   = $_POST['Website'];  
+$_SESSION['yeartmp']      = $_POST['year'];
+$_SESSION['monthtmp']     = $_POST['month'];           
+$_SESSION['Commenttmp']   = $_POST['Comment'];     
+$_SESSION['Usernametmp']  = $_POST['Username'];      
+$_SESSION['Nametmp']      = $_POST['Name'];        
+$_SESSION['Surnametmp']   = $_POST['Surname'];
+$_SESSION['Emailtmp']     = $_POST['Email'];
+
   $quary1 = $conn -> query("SELECT * FROM userinfo WHERE Username= '$Username'");
        if ($quary1 -> num_rows == 0){
                 
@@ -93,7 +93,7 @@ $_SESSION['Email'] = $_POST['Email'];
         if ($quary4 -> num_rows == 0){
                 
   $quary5 = $conn -> query("SELECT * FROM userinfo WHERE Password= '$Password'");
-         if ($quary5 -> num_rows == 0){
+        if ($quary5 -> num_rows == 0){
                            
 
 
@@ -200,8 +200,8 @@ $_SESSION['Email'] = $_POST['Email'];
             <p3>Or if you already have an account:</p3>
             <a href="Login.php" class="active" id="login-box-link">Login</a>
         </div>
-        <p style="color: red; text-align: center;"><?php  
-        echo  $_SESSION['message']   ?>
+        <p style="color: red; text-align: center; white-space: nowrap;"><?php  
+        echo  $_SESSION['message']   ?></p> 
         <div class="filler-small"></div>
         <form name="form1" class="signup" method="post" autocomplete="off" enctype="multipart/form-data" action="Reg.php">
             <div class="u-form">
@@ -249,23 +249,46 @@ $_SESSION['Email'] = $_POST['Email'];
                             
     <div class="u-form">
                                         <br>
-                                        <input type="username" placeholder="Username..." name="Username"value="<?php echo $_SESSION['Username'] ?>" autocomplete="on" required/>
+                                        <input type="username" placeholder="Username..." name="Username"value="<?php 
+                                        if(isset($_SESSION['Usernametmp']) == TRUE){
+                                           echo $_SESSION['Usernametmp'];
+                                        }
+                                                ?>" autocomplete="on" required/>
             </div>
             <div class="u-form">
-                <input type="name" placeholder="Name..."name='Name' autocomplete="on" value="<?php echo $_SESSION['Name'] ?>" required/>
+                <input type="name" placeholder="Name..."name='Name' autocomplete="on" value="<?php  
+                if(isset($_SESSION['Nametmp']) == TRUE){
+                  echo  $_SESSION['Nametmp'];
+                }
+                ?>" required/>
             </div>
             <div class="u-form">
-                <input type="sirname" placeholder="Surname..." name='Surname' value="<?php echo $_SESSION['Surname'] ?>" autocomplete="on" required/>
+                <input type="sirname" placeholder="Surname..." name='Surname' value="<?php 
+                if(isset($_SESSION['Surnametmp']) == TRUE){
+                 echo   $_SESSION['Surnametmp'];
+                    }?>" autocomplete="on" required/>
+                
             </div>
             
             <div class="u-form">
-                <input type="email" placeholder="Email..." name='Email' autocomplete="on"  value="<?php echo $_SESSION['Email'] ?>"required/> 
+                <input type="email" placeholder="Email..." name='Email' autocomplete="on"  value="<?php 
+                if(isset($_SESSION['Emailtmp']) == TRUE){
+                  echo  $_SESSION['Emailtmp'];
+                     }?>"required/> 
+               
             </div>
             <div class="u-form">
-                <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website' value="<?php echo $_SESSION['Website'] ?>" autocomplete="on"/>
+                <input type="website" placeholder="www.yourwebsite.com (not required)" name='Website' value="<?php
+                if(isset($_SESSION['Websitetmp']) == TRUE){ 
+                echo $_SESSION['Websitetmp'];
+                } ?>" autocomplete="on"/>
             </div>
              <div class="u-form">   
-                 <input type="text" name='Job' id="searchBox" placeholder="Your job..." autocomplete="on" value="<?php echo $_SESSION['Specialty'] ?>"required/>
+                 <input type="text" name='Job' id="searchBox" placeholder="Your job..." autocomplete="on" value="<?php  
+                 if(isset($_SESSION['Specialtytmp']) == TRUE){ 
+                 $_SESSION['Specialtytmp'];
+                 } ?>"required/>
+                 
                  <ul id="searchResults"></ul>
 <script type="text/javascript">
 var job = <?php echo json_encode($jobs)?>;
@@ -398,7 +421,10 @@ function changerpt()
             <div class="avatar"><label>Select profile picture: </label> 
                 <input type="file" name="avatar" accept="image/*" required/></div> -->
             <div class="u-form">
-                <textarea type='textarea' name='Comment' placeholder="Tell something about yourself" style="width:250px;height:150px;" required/></textarea>
+                <textarea type='textarea' name='Comment' placeholder="Tell something about yourself" style="width:250px;height:150px;" value="<?php  
+                 if(isset($_SESSION['Commenttmp']) == TRUE){ 
+                 $_SESSION['Commenttmp'];
+                 } ?>" required/></textarea>
                 <div class="u-form">
                     <button type="submit" value="register" name="register" class="buttonc button" style="width: calc(50% - 22px);" id="submit" onclick="require()" required> Submit</button>
                 </div>
