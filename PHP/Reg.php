@@ -5,6 +5,17 @@ include "Jobs.php";
 $_SESSION['message'] = "";
 if($_SERVER['REQUEST_METHOD']== 'POST')
     {
+$_SESSION['Specialtytmp'] = $_POST["Job"];      
+$_SESSION['Websitetmp']   = $_POST['Website'];  
+$_SESSION['yeartmp']      = $_POST['year'];
+$_SESSION['monthtmp']     = $_POST['month'];           
+$_SESSION['Commenttmp']   = $_POST['Comment'];     
+$_SESSION['Usernametmp']  = $_POST['Username'];      
+$_SESSION['Nametmp']      = $_POST['Name'];        
+$_SESSION['Surnametmp']   = $_POST['Surname'];
+$_SESSION['Emailtmp']     = $_POST['Email'];
+$_SESSION['passtmp']      = $_POST['password'];
+$_SESSION['passrpttmp']   = $_POST['Passwordrpt'];
     if(isset($_POST['password']) === isset($_POST['Passwordrpt']))//Checking if passwords are the same
         {   
 $Username = $conn-> real_escape_string($_POST['Username']);
@@ -70,15 +81,7 @@ if(count($_POST['gender']) == 1){
   //  if (preg_match ("!image!",$_FILES['avatar']['type'])){  //Checking whether image file is allowed
         //Copying image file from images directory
       //  if(copy($_FILES['avatar']['tmp_name'], $picture_path)){
-$_SESSION['Specialtytmp'] = $_POST["Job"];      
-$_SESSION['Websitetmp']   = $_POST['Website'];  
-$_SESSION['yeartmp']      = $_POST['year'];
-$_SESSION['monthtmp']     = $_POST['month'];           
-$_SESSION['Commenttmp']   = $_POST['Comment'];     
-$_SESSION['Usernametmp']  = $_POST['Username'];      
-$_SESSION['Nametmp']      = $_POST['Name'];        
-$_SESSION['Surnametmp']   = $_POST['Surname'];
-$_SESSION['Emailtmp']     = $_POST['Email'];
+
 
   $quary1 = $conn -> query("SELECT * FROM userinfo WHERE Username= '$Username'");
        if ($quary1 -> num_rows == 0){
@@ -198,7 +201,10 @@ $_SESSION['Emailtmp']     = $_POST['Email'];
     <div class="login-box">
    <div class="lb-header">
             <p3>Or if you already have an account:</p3>
-            <a href="Login.php" class="active" id="login-box-link">Login</a>
+            <a href="Login.php" class="active" id="login-box-link">Login</a></div>
+            <div class="lb-header">
+            <p3>Or if you want to go back:</p3>
+            <a href="index.php" class="active" id="login-box-link">Go Back</a>
         </div>
         <p style="color: red; text-align: center; white-space: nowrap;"><?php  
         echo  $_SESSION['message']   ?></p> 
@@ -362,11 +368,15 @@ input.addEventListener("keyup", search, false);
 </script>
              </div>
             <div class="u-form">
-                <span><input class="password" type="password" placeholder="Password..." name='password' id="pass2" autocomplete="on" required/></span>
+                <span><input class="password" type="password" placeholder="Password..." name='password' id="pass2" autocomplete="on" value="<?php if(isset($_SESSION['passtmp']) == TRUE){
+                                           echo $_SESSION['passtmp'];
+                                        }?>" required/></span>
                 <span><input type="button" class="buttonf" value="show" id="showHide"  onclick="change()"/></span>
             </div>
             <div class="u-form">
-                <span><input class="Passwordrpt" type="password" placeholder="Confirm Password..." name='Passwordrpt'id="rpt" autocomplete="on" required/></span>
+                <span><input class="Passwordrpt" type="password" placeholder="Confirm Password..." name='Passwordrpt'id="rpt" autocomplete="on" value="<?php if(isset($_SESSION['passrpttmp']) == TRUE){
+                                           echo $_SESSION['passrpttmp'];
+                                        }?>" required/></span>
                 <span><input type="button" class="buttonf" id="hideShow" value="show" onclick="changerpt()"/></span>
 
 <script type="text/javascript">

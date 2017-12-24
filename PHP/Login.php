@@ -10,7 +10,7 @@ if ($result->num_rows == 0){ // User doesn't exist
     header("location: Login.php");
 }
 else { // User exists
-    $sql = $result->fetch_assoc();
+    $sql = $result -> fetch_assoc();
     if(isset($_POST['pass']) == $sql['Password']) {
         
     $_SESSION['Username'] = $sql['Username'];
