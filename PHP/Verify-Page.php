@@ -1,9 +1,9 @@
 <?php
 include 'Functions.php';
-
+require('Reg.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
      if($_POST["inputiet"] == ''){
-        header("location: Login.php");
+            header("location: Mailver.php");
     }else{
         $_SESSION['Email'] = $_POST["inputiet"];
         $conn -> query("UPDATE `userinfo` SET `Email` = '". $_POST["inputiet"] ."' WHERE id= ". $_SESSION['id'] ."");

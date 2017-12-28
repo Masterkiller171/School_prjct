@@ -2,7 +2,6 @@
 <?php
 include "Libary.php";
 include "Connector.php";
-session_start();
 
 //Declaring message session
 $_SESSION['message'] = $_SESSION['message'] = $_SESSION['pass'] = $_SESSION['Email'] = $_SESSION['Surname'] = $_SESSION['Name'] = $_SESSION['Username'] = '';
@@ -57,7 +56,7 @@ if(!empty($sql)){
 $curtim = date($str);
 
 //Checking if function already exists
-if (!function_exists('create_post()')) {
+if (!function_exists('create_post')) {
 //Creating function for creating a post if you're logged in
 function create_post(){
   global $Login; //Login text and make-up

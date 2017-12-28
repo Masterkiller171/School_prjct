@@ -3,8 +3,7 @@ include "Functions.php";
 include "Jobs.php";
 
 $_SESSION['message'] = "";
-if($_SERVER['REQUEST_METHOD']== 'POST')
-    {
+if($_SERVER['REQUEST_METHOD']== 'POST'){
 $_SESSION['Specialtytmp'] = $_POST["Job"];      
 $_SESSION['Websitetmp']   = $_POST['Website'];  
 $_SESSION['yeartmp']      = $_POST['year'];
@@ -97,15 +96,10 @@ if(count($_POST['gender']) == 1){
                 
   $quary5 = $conn -> query("SELECT * FROM userinfo WHERE Password= '$Password'");
         if ($quary5 -> num_rows == 0){
-                           
-
-
-            $time = date('d-m-Y H:i:s');//Setting time since account creation
-        
-        /*Creating sessions for all data */
+            
+           /*Creating sessions for all data */
             $_SESSION['Username'] = $Username; 
-            //$_SESSION['Avatar'] = $picture_path; 
-            $_SESSION['time'] = $time; 
+            //$_SESSION['Avatar'] = $picture_path;  
             $_SESSION['Name']= $Name; 
             $_SESSION['Surname'] = $Surname; 
             $_SESSION['Email'] = $Email;
@@ -117,25 +111,10 @@ if(count($_POST['gender']) == 1){
             $_SESSION['days'] = $days;
             $_SESSION['month'] = $month;
             $_SESSION['year'] = $year;
-            $_SESSION['active'] = $active;
             $_SESSION['id'] = $id;
             $_SESSION['perm'] = $perm;
             
-            $sql = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, id, Perm)"
-            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$id', '$perm')";
-            
-              //Registration succesfull
-              if($conn -> query($sql) === true){ 
-                  $_SESSION['message'] = 'Registration is Succesfull!'; 
-                  header("location: Verify-Page.php"); 
-                   //Checking whether active is set or not
-                    $actives = "SELECT id FROM userinfo WHERE Email='. $Email .' AND Password='. $Password .'";
-                      $activess = mysqli_query($conn, $actives);
-                      $sql = mysqli_fetch_array($activess, MYSQLI_ASSOC);
-                      $sql['id'] = $_SESSION['id'];
-}else{
-     $_SESSION['message'] = "Registration has failed! $conn->error()"; 
-     }
+            header("location: Verify-Page.php"); 
   //   $conn->close(); print_r('test');
 //}else{
 //     $_SESSION['message'] = "File Upload Failed!";
