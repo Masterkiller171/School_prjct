@@ -1,7 +1,6 @@
 <?php
 include "Functions.php";
 include "Jobs.php";
-
 $_SESSION['message'] = "";
 if($_SERVER['REQUEST_METHOD']== 'POST'){
 $_SESSION['Specialtytmp'] = $_POST["Job"];      
@@ -22,7 +21,7 @@ $Name = $conn-> real_escape_string($_POST['Name']);
 $Surname = $conn-> real_escape_string($_POST['Surname']);
 $Email = $conn-> real_escape_string($_POST['Email']);
 $password = $_POST['password'];
-$Password= md5($password);
+$Password = md5($password);
 $days = $_POST['days'];
 $month = $_POST['month'];
 $year = $_POST['year'];
@@ -83,7 +82,7 @@ if(count($_POST['gender']) == 1){
 
 
   $quary1 = $conn -> query("SELECT * FROM userinfo WHERE Username= '$Username'");
-       if ($quary1 -> num_rows == 0){
+        if ($quary1 -> num_rows == 0){
                 
   $quary2 = $conn -> query("SELECT * FROM userinfo WHERE Name= '$Name'");
         if ($quary2 -> num_rows == 0){
@@ -102,8 +101,8 @@ if(count($_POST['gender']) == 1){
             //$_SESSION['Avatar'] = $picture_path;  
             $_SESSION['Name']= $Name; 
             $_SESSION['Surname'] = $Surname; 
-            $_SESSION['Email'] = $Email;
-            $_SESSION['Password'] = $Password;
+            $_SESSION['Email'] = $_POST['Email'];
+            $_SESSION['Password'] = $password;
             $_SESSION['Comment'] = $Comment;
             $_SESSION['Gender'] = $Gender;
             $_SESSION['Specialty'] = $Specialty;
@@ -114,7 +113,21 @@ if(count($_POST['gender']) == 1){
             $_SESSION['id'] = $id;
             $_SESSION['perm'] = $perm;
             
-            header("location: Verify-Page.php"); 
+           if(isset($_SESSION['Username']) 
+                   && isset($_SESSION['Name']) 
+                   && isset($_SESSION['Surname']) 
+                   && isset($_SESSION['Email']) 
+                   && isset($_SESSION['Password'])
+                   && isset($_SESSION['Comment']) 
+                   && isset($_SESSION['Gender']) 
+                   && isset($_SESSION['Specialty']) 
+                   && isset($_SESSION['days']) 
+                   && isset($_SESSION['month']) 
+                   && isset($_SESSION['year'])
+                   && isset($_SESSION['id']) 
+                   && isset($_SESSION['perm'])){
+            header("Location: Verify-Page.php"); 
+                    }
   //   $conn->close(); print_r('test');
 //}else{
 //     $_SESSION['message'] = "File Upload Failed!";
@@ -129,35 +142,29 @@ if(count($_POST['gender']) == 1){
      $_SESSION['message'] = 'Please create another password!<br>';
      }
 }else{
-     $_SESSION['message'] = 'Email already exists, Please create another Email! Or login!<br>';
-     
+     $_SESSION['message'] = 'Email already exists, Please create another Email! Or login!<br>';    
      }
 }else{
-     $_SESSION['message'] = 'Surname already exists, Please create another Surname! Or login!<br>';
-     
+     $_SESSION['message'] = 'Surname already exists, Please create another Surname! Or login!<br>';    
      }        
 }else{
-     $_SESSION['message'] = 'Name already exists, Please create another Name! Or login!<br>';
-     
+     $_SESSION['message'] = 'Name already exists, Please create another Name! Or login!<br>';     
      }
 }else{
-     $_SESSION['message'] = 'Please create another Username<br>!';
-     
+     $_SESSION['message'] = 'Username already exists, please create another Username<br>!';     
      } 
 }else{
-     $_SESSION['message'] = "Please select a gender!<br>";
+     $_SESSION['message'] = "Please select a gender!";
      } 
 }else{
-     $_SESSION['message'] = 'Please keep your story below 200 characters please!<br>';
-     
+     $_SESSION['message'] = 'Please keep your story below 200 characters please!<br>';    
      }
 }else{
      $_SESSION['message'] = "Please choose a day<br>";
      
      }
 }else{
-     $_SESSION['message'] = "Please choose a month<br>";
-     
+     $_SESSION['message'] = "Please choose a month<br>";    
      }
 }else{
      $_SESSION['message'] = "Please choose a year<br>";

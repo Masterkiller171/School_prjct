@@ -1,10 +1,9 @@
-        
 <?php
 include "Libary.php";
 include "Connector.php";
-
+session_start();
 //Declaring message session
-$_SESSION['message'] = $_SESSION['message'] = $_SESSION['pass'] = $_SESSION['Email'] = $_SESSION['Surname'] = $_SESSION['Name'] = $_SESSION['Username'] = '';
+$_SESSION['message'] = '';
 //Setting default time to greenwich time
 date_default_timezone_set('GMT');
 //Getting today's date (current UK greenwich time)
@@ -43,9 +42,7 @@ $id= $_SESSION['id'];
 $quary = $conn -> query("SELECT * FROM userinfo WHERE id='$id'");
 $sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);
 if(!empty($sql)){
- if($_SESSION['active'] = 1){
       echo $probutt, $outbut;
-}
  } 
 }else{
   echo $regbutt;
@@ -150,3 +147,91 @@ function my_loop(){
  //)
 //}
 
+$quary = $conn -> query("SELECT * FROM userinfo");
+$sql = mysqli_fetch_array($quary, MYSQLI_ASSOC);  
+/* Gathering all data from database*/
+if(isset($_SESSION['id'])){
+$id= $_SESSION['id'];
+$quary = $conn -> query("SELECT * FROM userinfo WHERE id='$id'");
+$sqlll = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from database values
+       //WHERE id= ". $_SESSION['id'] ."
+       /* All data from database spliced up to sessions*/
+switch($sqlll){
+       case $sqlll['Username']: 
+       if(!isset($_SESSION['Username'])){
+       $_SESSION['Username'] = $sqlll['Username'];
+       }
+       break;
+	   
+	case $sqlll['Name']:
+        if(!isset($_SESSION['Name'])){
+            $_SESSION['Name'] = $sqlll['Name'];
+        } //Getting data of normie
+        break;
+		
+	case $sqlll['Surname']:
+        if(!isset($_SESSION['Surname'])){ 
+            $_SESSION['Surname'] = $sqlll['Surname'];
+        }
+        break;
+		
+	case $sqlll['Email']:
+        if(!isset($_SESSION['Email'])){ 
+            $_SESSION['Email'] = $sqlll['Email'];
+        }
+        break;
+		
+	case $sqlll['Password']:
+        if(!isset($_SESSION['Password'])){
+            $_SESSION['Password'] = $sqlll['Password'];
+        }
+        break;
+				
+	case $sqlll['Comment']:
+        if(!isset($_SESSION['Comment'])){
+            $_SESSION['Comment'] = $sqlll['Comment'];
+        }
+        break;
+		
+	case $sqlll['Gender']:
+        if(!isset($_SESSION['Gender'])){
+            $_SESSION['Gender'] = $sqlll['Gender'];
+        }
+        break;
+		
+	case $sqlll['Specialty']:
+        if(!isset($_SESSION['Specialty'])){
+            $_SESSION['Specialty'] = $sqlll['Specialty'];
+        }
+        break;
+		
+	case $sqlll['days']:
+        if(!isset($_SESSION['days'])){
+            $_SESSION['days'] = $sqlll['days'];
+        }
+        break;
+		
+	case $sqlll['month']:
+        if(!isset($_SESSION['month'])){
+            $_SESSION['month'] = $sqlll['month'];
+        }
+        break;
+		
+	case $sqlll['year']:
+        if(!isset($_SESSION['year'])){
+            $_SESSION['year'] = $sqlll['year'];
+        }
+
+	case $sqlll['time']:
+        if(!isset($_SESSION['time'])){
+            $_SESSION['time'] = $sqlll['time'];
+        }
+        break;
+		
+	case $sqlll['Website']:
+        if(!isset($_SESSION['Website'])){
+            $_SESSION['Website'] = $sqlll['Website'];
+        }
+        break;              
+}
+}

@@ -1,5 +1,5 @@
 <?php
-$_SESSION['dec'] = 'style="text-decoration: none;" color: #705090;';
+$dec = 'style="text-decoration: none;" color: #705090;';
 
 $butreg = '
     color: #705090;
@@ -33,35 +33,35 @@ $Create ='<a href="Post-input.php">Create post</a>';
 $navbar =' 
     <nav>
    <ul>
-       <li class="sub-menu-parent"><a href="../PHP/index.php" '. $_SESSION['dec'] .'> Home</a>
+       <li class="sub-menu-parent"><a href="../PHP/index.php" '. $dec .'> Home</a>
        </li>
      <li class="sub-menu-parent">
-       <a '. $_SESSION['dec'] .'> Posts</a>
+       <a '. $dec .'> Posts</a>
        <ul class="sub-menu">
-         <li><a href="Post-page.php" '. $_SESSION['dec'] .'>New Posts</a></li>
-         <li><a href="Post-page.php" '. $_SESSION['dec'] .'>Hot Posts</a></li>
+         <li><a href="Post-page.php" '. $dec .'>New Posts</a></li>
+         <li><a href="Post-page.php" '. $dec .'>Hot Posts</a></li>
        </ul>
      </li>
      <a href="Post-input.php" class="sub-menu-parent" >Create post</a>
-     <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>Projects</a>
+     <li class="sub-menu-parent"><a '. $dec .'>Projects</a>
        <ul class="sub-menu">
-         <li><a href="../PHP/Projects.php" '. $_SESSION['dec'] .'>New Projects</a></li>
-         <li><a href="../PHP/Projects.php" '. $_SESSION['dec'] .'>Hot Projects</a></li>
+         <li><a href="../PHP/Projects.php" '. $dec .'>New Projects</a></li>
+         <li><a href="../PHP/Projects.php" '. $dec .'>Hot Projects</a></li>
        </ul></li>
-        <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>Support</a>
+        <li class="sub-menu-parent"><a '. $dec .'>Support</a>
        <ul class="sub-menu">
-         <li><a href="../PHP/Rules.php" '. $_SESSION['dec'] .'>Rules</a></li>
-         <li><a href="../PHP/Contact.php" '. $_SESSION['dec'] .'>Contact</a></li>
+         <li><a href="../PHP/Rules.php" '. $dec .'>Rules</a></li>
+         <li><a href="../PHP/Contact.php" '. $dec .'>Contact</a></li>
        </ul></li>
-       <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>History</a>
+       <li class="sub-menu-parent"><a '. $dec .'>History</a>
        <ul class="sub-menu">
-         <li><a href="../PHP/" '. $_SESSION['dec'] .'>Post History</a></li>
-         <li><a href="../PHP/" '. $_SESSION['dec'] .'>Comment History</a></li>
+         <li><a href="../PHP/" '. $dec .'>Post History</a></li>
+         <li><a href="../PHP/" '. $dec .'>Comment History</a></li>
        </ul></li>
-       <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>About us</a>
+       <li class="sub-menu-parent"><a '. $dec .'>About us</a>
        <ul class="sub-menu">
-         <li><a href="../PHP/Aboutus.php" '. $_SESSION['dec'] .'>Our project</a></li>
-         <li><a href="../PHP/" '. $_SESSION['dec'] .'>Background story</a></li>
+         <li><a href="../PHP/Aboutus.php" '. $dec .'>Our project</a></li>
+         <li><a href="../PHP/" '. $dec .'>Background story</a></li>
        </ul></li>
    </ul>
  </nav>
@@ -69,40 +69,40 @@ $navbar ='
 
 $navbaradmin =' <nav>
      <ul>
-       <li class="sub-menu-parent"><a href="../PHP/index.php" '. $_SESSION['dec'] .'> Home</a>
+       <li class="sub-menu-parent"><a href="../PHP/index.php" '. $dec .'> Home</a>
        </li>
      <li class="sub-menu-parent">
-       <a '. $_SESSION['dec'] .'> Posts</a>
+       <a '. $dec .'> Posts</a>
        <ul class="sub-menu">
-         <li><a href="Post-page.php" '. $_SESSION['dec'] .'>New Posts</a></li>
-         <li><a href="Post-page.php" '. $_SESSION['dec'] .'>Hot Posts</a></li>
+         <li><a href="Post-page.php" '. $dec .'>New Posts</a></li>
+         <li><a href="Post-page.php" '. $dec .'>Hot Posts</a></li>
        </ul>
      </li>
-     <a href="Post-input.php" class="sub-menu-parent" '. $_SESSION['dec'] .'>Create post</a>
-     <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>Projects</a>
+     <a href="Post-input.php" class="sub-menu-parent" '. $dec .'>Create post</a>
+     <li class="sub-menu-parent"><a '. $dec .'>Projects</a>
        <ul class="sub-menu">
-         <li><a href="../PHP/Projects.php" '. $_SESSION['dec'] .'>New Projects</a></li>
-         <li><a href="../PHP/Projects.php" '. $_SESSION['dec'] .'>Hot Projects</a></li>
+         <li><a href="../PHP/Projects.php" '. $dec .'>New Projects</a></li>
+         <li><a href="../PHP/Projects.php" '. $dec .'>Hot Projects</a></li>
        </ul></li>
-        <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>Support</a>
+        <li class="sub-menu-parent"><a '. $dec .'>Support</a>
        <ul class="sub-menu">
-         <li><a href="../PHP/Rules.php" '. $_SESSION['dec'] .'>Rules</a></li>
-         <li><a href="../PHP/Contact.php" '. $_SESSION['dec'] .'>Contact</a></li>
+         <li><a href="../PHP/Rules.php" '. $dec .'>Rules</a></li>
+         <li><a href="../PHP/Contact.php" '. $dec .'>Contact</a></li>
        </ul></li>
-       <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>History</a>
+       <li class="sub-menu-parent"><a '. $dec .'>History</a>
        <ul class="sub-menu">
-         <li><a href="../PHP/" '. $_SESSION['dec'] .'>Post History</a></li>
-         <li><a href="../PHP/" '. $_SESSION['dec'] .'>Comment History</a></li>
+         <li><a href="../PHP/" '. $dec .'>Post History</a></li>
+         <li><a href="../PHP/" '. $dec .'>Comment History</a></li>
        </ul></li>
-       <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>About us</a>
+       <li class="sub-menu-parent"><a '. $dec .'>About us</a>
        <ul class="sub-menu">
-         <li><a href="../PHP/Aboutus.php" '. $_SESSION['dec'] .'>Our project</a></li>
-         <li><a href="../PHP/" '. $_SESSION['dec'] .'>Background story</a></li>
+         <li><a href="../PHP/Aboutus.php" '. $dec .'>Our project</a></li>
+         <li><a href="../PHP/" '. $dec .'>Background story</a></li>
        </ul></li>
-       <li class="sub-menu-parent"><a '. $_SESSION['dec'] .'>logboek</a>
+       <li class="sub-menu-parent"><a '. $dec .'>logboek</a>
        <ul class="sub-menu">
-         <li><a href="../SCL/PHP/Verslag.php" '. $_SESSION['dec'] .'>Verslag</a></li>
-             <li><a href="../SCL/PHP/logboek.php" '. $_SESSION['dec'] .'>Logboek</a></li>
+         <li><a href="../SCL/PHP/Verslag.php" '. $dec .'>Verslag</a></li>
+             <li><a href="../SCL/PHP/logboek.php" '. $dec .'>Logboek</a></li>
        </ul></li>
    </ul>
  </nav>

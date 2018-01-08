@@ -1,6 +1,5 @@
 <?php
 include 'Functions.php';
-require('Reg.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
      if($_POST["inputiet"] == ''){
             header("location: Mailver.php");
@@ -27,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div class="u-form">
     <p3>You're almost done!</p3>
     
-    <?php echo '<p3>Is this "'. $_SESSION['Email'] .'" your email?</p3>';?>
+    <?php echo '<p3>Is this: '. $_SESSION['Email'] .' your email?</p3>';?>
     <br>
     <label for="no">No</label>
     <input type="checkbox" name="check" class="subject-list" value="no" id="no">
