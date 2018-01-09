@@ -1,55 +1,16 @@
 <?php
 include "Functions.php";
+$Recovery1 = rand(1000,9999);
+$Recovery2 = rand(1000,9999); 
+$Recovery3 = rand(1000,9999);
+$Recovery4 = rand(1000,9999);
 
-$_SESSION['message'] = "";
-$Recovery1 = rand(0,999);   $count1 = strlen($Recovery1); 
-$Recovery2 = rand(0,999);   $count2 = strlen($Recovery2); 
-$Recovery3 = rand(0,999);   $count3 = strlen($Recovery3);
-$Recovery4 = rand(0,999);   $count4 = strlen($Recovery4);
-
-        switch($count1){
-            case 1 : 
-                $Rec1 = "00".$Recovery1;
-                break;
-            case 2 :
-                $Rec1 = "0".$Recovery1;
-                break;
-            case 3 :
-                $Rec1 = $Recovery1;        
-        }
-        switch($count2){
-            case 1 : 
-                $Rec2 = "00".$Recovery2;
-                break;
-            case 2 :
-                $Rec2 = "0".$Recovery2;
-                break;
-            case 3 :
-                $Rec2 = $Recovery2;        
-        }
-        switch($count3){
-            case 1 : 
-                $Rec3 = "00".$Recovery3;
-                break;
-            case 2 :
-                $Rec3 = "0".$Recovery3;
-                break;
-            case 3 :
-                $Rec3 = $Recovery3;        
-        }
-        switch($count4){
-            case 1 : 
-                $Rec4 = "00".$Recovery4;
-                break;
-            case 2 :
-                $Rec4 = "0".$Recovery4;
-                break;
-            case 3 :
-                $Rec4 = $Recovery4;        
-        }
+if($_SERVER['REQUEST_METHOD']== 'POST'){
+$_SESSION['message'] = "";   
         // We have a match, activate the account
         $_SESSION['message'] = 'Your account has been activated, you can now login';
             $time = date('d-m-Y');//Setting time since account creation
+            $_SESSION['time'] = $time;
             $Username =  $_SESSION['Username'];
             //$_SESSION['Avatar'] = $picture_path;  
             $Name      = $_SESSION['Name'];
@@ -63,13 +24,18 @@ $Recovery4 = rand(0,999);   $count4 = strlen($Recovery4);
             $days      = $_SESSION['days'];
             $month     = $_SESSION['month'];
             $year      = $_SESSION['year'];
-            $active    = 1;
             $id        = $_SESSION['id'];
             $perm      = $_SESSION['perm'];
-            $sql  = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, id, Perm)"
-            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$id', '$perm')";
+            $Recode = $Rec1.$Rec2.$Rec3.$Rec4;
+            $_SESSION['active'] = 1;
+            if(isset($Recode)){
+            $sql  = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, id, Perm, Recode)"
+            . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$id', '$perm','$Recode')";
+            $conn -> query($sql);
         $_SESSION['Login'] = '<a href="Login.php">Continue to login page</a>';
-
+        header("Location: Profile.php");
+            }
+}
         ?>
 <html lang="en">
 <head>
@@ -81,13 +47,15 @@ $Recovery4 = rand(0,999);   $count4 = strlen($Recovery4);
 <body>
     <div class="filler"></div>
     <form method="post">
-    <div class="login-box" style="height: 15%;">
+    <div class="login-box" style="height: auto; opacity: 0.9;">
         <text-align-cent>
             <div class="u-form">
-                <p3>You're almost done!</p3><br>
-    
-    <?php Echo $Rec1.'-'.$Rec2.'-'.$Rec3.'-'.$Rec4?>
+                <h3>You're almost done!</h3><br>
+                <p>This is your recovery code. When you loose your password you may retreive your password by using this code on the Login Page.<br><br>
+                    <strong>Please copy it</strong> If you don't you can still get it on your profile page under recovery code.</p>
+    <?php Echo $Recovery1.'-'.$Recovery2.'-'.$Recovery3.'-'.$Recovery4?><br>
     </text-align-cent> 
+        <button class="button buttonc" type="submit">Accept</button>
     </form>
 </body>
 </html>

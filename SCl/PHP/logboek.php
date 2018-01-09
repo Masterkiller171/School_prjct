@@ -478,8 +478,49 @@ require ("../../PHP/Functions.php");
             <td>Te veel vrije tijd</td>
             <td>250 Minuten</td>
            </tr>
-           
-           <strong><h2>Totale uren: 100 uur</h2></strong>
+           <tr>
+            <td>22 - Dec 2017</td> 
+            <td>*Users can no longer create infinite accounts with the same information<br>
+                *Data on registration will now be in the input of the input fields of Reg.php
+            </td>
+            <td>Geen</td>
+            <td>120 min</td>
+           </tr>
+           <tr>
+            <td>24 - Dec 2017</td> 
+            <td>*Fixed data in input fields on Reg.php when there was no previous input.
+            </td>
+            <td>Geen</td>
+            <td>30 min</td>
+           </tr>
+           <tr>
+            <td>25 - Dec 2017</td> 
+            <td>*Added a return to homepage button on Reg.php<br>
+                *Added refill of input on Reg.php for passwords<br>
+               *Fixed repeating background on Reg.php
+            </td>
+            <td>Geen</td>
+            <td>30 min</td>
+           </tr>
+           <tr>
+            <td>28 - Dec 2017</td> 
+            <td>*Created Mialver.php<br>
+                *Created Verify.php<br>
+                *Started working on email verification.
+            </td>
+            <td>Problemen met mail server</td>
+            <td>60 min</td>
+           </tr>
+           <tr>
+            <td>8 - Jan 2018</td> 
+            <td>-Removed the mailer (for now)<br>
+                *Added a working recovery code generator<br>
+                *User will be able to use the recovery code to retrieve lost pass words
+            </td>
+            <td>Geen</td>
+            <td>120 min</td>
+           </tr>
+           <strong><h2>Totale uren: 106 uur</h2></strong>
         </table>
 </div>
     </div>
