@@ -3,7 +3,7 @@ include "Functions.php";
  if($_SERVER['REQUEST_METHOD']== 'POST'){
 
 $email = $conn->escape_string($_POST['mail']);
-$result = $conn->query("SELECT * FROM userinfo WHERE email='$email'");
+$result = $conn->query("SELECT * FROM userinfo WHERE Email='$email'");
 
 if ($result->num_rows == 0){ // User doesn't exist
     $_SESSION['message'] = "User with that email doesn't exist!";
@@ -91,7 +91,7 @@ function change(){
      return  document.getElementById("showHide").value = "show";
         }
 };
- </script><br>
+ </script><br><a href="../PHP/Recpass.php" style="text-decoration: none;">Forgot Password?</a>
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
                             <button type="submit" class="btn" required/>login

@@ -56,6 +56,7 @@ $_SESSION['message'] = "";
     <?php Echo $Recovery1.'-'.$Recovery2.'-'.$Recovery3.'-'.$Recovery4?><br>
     </text-align-cent> 
         <button class="button buttonc" type="submit">Accept</button>
+        </div>
     </form>
 </body>
 </html>

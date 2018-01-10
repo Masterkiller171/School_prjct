@@ -520,7 +520,18 @@ require ("../../PHP/Functions.php");
             <td>Geen</td>
             <td>120 min</td>
            </tr>
-           <strong><h2>Totale uren: 106 uur</h2></strong>
+           <tr>
+            <td>9 - Jan 2018</td> 
+            <td>*Recovery code generator now fully works.<br>
+                *Added redirect on Verify-Page to Recovery.<br>
+                *All data will now be uploaded from Recovery.php and not from Reg.php as before.<br>
+                *Added Recovery in colom in database
+            </td>
+            <td>Geen</td>
+            <td>90 min</td>
+           </tr>
+           <strong><h2>Totale uren: 108 uur</h2></strong>
+           
         </table>
 </div>
     </div>
