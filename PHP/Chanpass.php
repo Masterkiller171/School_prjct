@@ -6,16 +6,6 @@ $recover = $_SESSION['Recover'];
 $result = $conn->query("SELECT * FROM userinfo WHERE Email='$mail' AND Recode='$recover'");
 $sql = $result -> fetch_assoc();
 $pass = $sql['Password'];
-}else{
-    if(isset($_SERVER['HTTP_REFERER'])){
-       $url = $_SERVER['HTTP_REFERER'];
-        header("Location: '$url'");
-    }else{
-        header("Location: index.php");
-    }
-}
-function loggin(){
-    header('Location: Login.php');
 }
 ?>
 <html lang="en">
@@ -36,8 +26,9 @@ function loggin(){
                 <p>Your email = <?php echo $_SESSION['Mail']; ?> </p>
                 <p>Your Recovery = <?php echo $_SESSION['Recover']; ?> </p>
                 <p>Your Password = <?php echo $pass; ?> </p>
+               </div>
     </text-align-cent> 
-        <button class="button" onclick="<?php loggin() ?>">Get password</button>
+        <button class="button">Get password</button>
         </div>
     </form>
 </body>

@@ -31,11 +31,12 @@ if ($result->num_rows == 0){ // User doesn't exist
             <p style="color: red;"> <?php $_SESSION['message'] ?> </p>
             <div class="u-form">
                 <span><p>Enter your Email:</p></span>
-                <input type="text" name="mail" ><br><br>
+                <input type="text" name="mail" /><br><br>
                 <span><p>Enter your Recovery Code:</p></span>
-                <input type="text" name="recover" ><br><br>
+                <input type="text" name="recover" /><br><br>
+                </div>
     </text-align-cent> 
-        <button class="button" type="submit">Get password</button>
+        <div class="padder"><button class="button" type="submit">Get password</button></div>  
         </div>
     </form>
 </body>

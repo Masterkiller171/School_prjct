@@ -12,7 +12,7 @@ $_SESSION['nowtime'] = date("F j, Y, g:i a");
 $Username = $Name = $Surname = $Password = $Passwordrpt = $Comment = $Email = $gender = $id = $Specialty = $str = $mysqli = $jobs = $match="";
 
 //Setting default time to greenwich time
-date_default_timezone_set('GMT');
+date_default_timezone_set('Europe/Amsterdam');
 
 //Getting today's date (current UK greenwich time)
 $_SESSION['nowtime'] = date("F j, Y, g:i a");

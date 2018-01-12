@@ -10,7 +10,7 @@ require ("../../PHP/Functions.php");
 </head>
 <body style="background: lightblue;">
 
-    <h4><?php button() ?></h4><br><br>
+    <h4><?php button() ?></h4><br><br> 
 <!-- Function for navbar /PHP/Libary.php -->
     <nav>
      <ul>

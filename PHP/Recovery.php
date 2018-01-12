@@ -47,17 +47,18 @@ $_SESSION['message'] = "";
 <body>
     <div class="filler"></div>
     <form method="post">
-    <div class="login-box" style="height: auto; opacity: 0.9;">
+    <div class="login-box" style="height: auto; opacity: 0.8;">
         <text-align-cent>
             <div class="u-form">
                 <h3>You're almost done!</h3><br>
                 <p>This is your recovery code. When you loose your password you may retreive your password by using this code on the Login Page.<br><br>
-                    <strong>Please copy it</strong> If you don't you can still get it on your profile page under recovery code.</p>
-    <?php Echo $Recovery1.'-'.$Recovery2.'-'.$Recovery3.'-'.$Recovery4?><br>
-    </text-align-cent> 
-        <button class="button buttonc" type="submit">Accept</button>
+                    <strong>Please copy it</strong> if you don't you can still get it on your profile page under recovery code.</p>
+                </div>
+   <p> <?php Echo $Recovery1.'-'.$Recovery2.'-'.$Recovery3.'-'.$Recovery4?></p><br>  
+        <p><button class="button buttonc" type="submit" style="width: 60%; color: black; opacity: 0.9;">Accept</button> </p>
+            </text-align-cent>
         </div>
-    </form>
+        </form>
 </body>
 </html>
         

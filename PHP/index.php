@@ -1,5 +1,16 @@
 <?php include 'Functions.php'; 
- error_reporting(E_ALL);
+
+if(isset($_POST['userquer']){
+$username = $_POST['userquer'];
+$quary = $conn -> query("SELECT * FROM userinfo WHERE Username='$username'");
+$sqlll = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from
+$_SESSION['userUsername'] = $sqlll['Username'];
+$_SESSION['userName'] = $sqlll['Name'];
+$_SESSION['userSurname'] = $sqlll['Surname'];
+$_SESSION['userEmail'] = $sqlll['Email'];
+$_SESSION['userUsername'] = $sqlll['Name'];
+$_SESSION['userUsername'] = $sqlll['Name'];
+}
 ?>
 <html lang="en">
 
