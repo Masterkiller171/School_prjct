@@ -1,6 +1,6 @@
 <?php include 'Functions.php'; 
-
-if(isset($_POST['userquer']){
+if($_SERVER['REQUEST_METHOD']== 'POST'){
+if(isset($_POST['userquer'])){
 $username = $_POST['userquer'];
 $quary = $conn -> query("SELECT * FROM userinfo WHERE Username='$username'");
 $sqlll = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from
@@ -8,9 +8,22 @@ $_SESSION['userUsername'] = $sqlll['Username'];
 $_SESSION['userName'] = $sqlll['Name'];
 $_SESSION['userSurname'] = $sqlll['Surname'];
 $_SESSION['userEmail'] = $sqlll['Email'];
-$_SESSION['userUsername'] = $sqlll['Name'];
-$_SESSION['userUsername'] = $sqlll['Name'];
+$_SESSION['userDepartment'] = $sqlll['Specialty'];
+$_SESSION['userDays'] = $sqlll['days'];
+$_SESSION['userMonth'] = $sqlll['month'];
+$_SESSION['userYear'] = $sqlll['year'];
+$_SESSION['userGender'] = $sqlll['Gender'];
+$_SESSION['userTime'] = $sqlll['time'];
+$_SESSION['userComment'] = $sqlll['Comment'];
+if(isset($sqlll['Website'])){
+$_SESSION['userWebsite'] = $sqlll['Website'];
 }
+if(isset($_SESSION['userUsername']) && isset($_SESSION['userName']) && isset($_SESSION['userSurname']) && isset($_SESSION['userEmail'])
+        && isset($_SESSION['userDepartment']) && isset($_SESSION['userDays']) && isset($_SESSION['userMonth'])&& isset($_SESSION['userYear'])
+        && isset($_SESSION['userGender'])&& isset($_SESSION['userTime']) && isset($_SESSION['userComment'])){
+    header("Location: ../Userprofile/customuser.php");
+}
+}}
 ?>
 <html lang="en">
 
