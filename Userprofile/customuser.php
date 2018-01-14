@@ -1,5 +1,14 @@
 <?php
-include "../PHP/Functions.php";
+include '../../PHP/Functions.php';
+function follower($conn){
+    if($_SESSION['active'] > 0){
+    $follow = $_SESSION['userUsername'];
+    $addfllwr = "INSERT INTO userinfo following=". $follow ."";
+    $conn -> query($addfllwr);
+    }else{
+        header("Location: ../PHP/Login.php");
+    }
+}
 ?>
 <html lang="en">
     <head>
@@ -15,12 +24,10 @@ include "../PHP/Functions.php";
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad">
-          
+          <button class="fllw" onclick="<?php follower() ?>"><strong>Follow <?php echo $_SESSION['userUsername']?></strong></button>
           <strong><h4 class="shad">Member Since:</h4></strong>
           <br>
-          <strong><h5 class="shad"><?php echo $_SESSION['userTime'] ?></h5></strong>
-           <a href="Editprof.php" >Edit Profile</a>
-          
+          <strong><h5 class="shad"><?php echo $_SESSION['userTime'] ?></h5></strong>          
            <div class="boxp shadow">
                <div class="cover left">
                <p style="text-align: center;">My posts</p>

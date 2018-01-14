@@ -62,9 +62,7 @@ $navbar ='
        <ul class="sub-menu">
          <li><a href="../PHP/Aboutus.php" '. $dec .'>Our project</a></li>
          <li><a href="../PHP/" '. $dec .'>Background story</a></li>
-       </ul></li>   
-       <form method="post">
-       <input type="text" name="userquer" placeholder="Find other users" style="float: right; width: 10%; height: 30px; border-radius: 5px;"/></form>
+       </ul></li>
    </ul>
    
  </nav>

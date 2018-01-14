@@ -8,7 +8,7 @@ $_SESSION['userUsername'] = $sqlll['Username'];
 $_SESSION['userName'] = $sqlll['Name'];
 $_SESSION['userSurname'] = $sqlll['Surname'];
 $_SESSION['userEmail'] = $sqlll['Email'];
-$_SESSION['userDepartment'] = $sqlll['Specialty'];
+$_SESSION['userSpecialty'] = $sqlll['Specialty'];
 $_SESSION['userDays'] = $sqlll['days'];
 $_SESSION['userMonth'] = $sqlll['month'];
 $_SESSION['userYear'] = $sqlll['year'];
@@ -39,27 +39,15 @@ if(isset($_SESSION['userUsername']) && isset($_SESSION['userName']) && isset($_S
 <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar() ?>
     <div id="wrapper">
-        <div class="right_box">         
+        <div class="right_box">        
+            <br>
         <th>
-            <ol>
-                <a href="Post-page.php" class="bruv">Post</a>
-            </ol>
-            <ol>
-                <a href="Post-page.php" class="bruv">Latest posts</a>
-            </ol>
-            <ol>
-                <a href="Post-page.php" class="bruv">New Posts</a>
-            </ol>
-            <ol>
-                <a href="Projects.php" class="bruv">Projects</a>
-            </ol>
-            <ol>
-                <a href="Post-page.php" class="bruv">Popular posts</a>
-            </ol>
-
+       <form method="post">
+           <input type="text" name="userquer" placeholder="Find other users" style="width: 90%; height: 30px; border-radius: 5px;"/><br>
+           <input type="submit" value="Find user" class="userbtn"/>
+      </form>
         </th>
-    </div>
-    
+        </div>
     <div class="left-filler"></div>
     <div class="body" style="height: 80%;">
         <strong><h1>Welcome To<bold> Innoform</bold></h1></strong>

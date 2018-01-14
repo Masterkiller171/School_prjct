@@ -7,10 +7,11 @@ body{
 }
 
 #wrapper {
-	padding: 20px 0 20px 90px;
-	margin: auto;
+padding: 20px 0 20px 90px;
+margin: auto;
 }
-.sub-menu-parent { position: relative;
+.sub-menu-parent { 
+    position: relative;
 }
 
 .sub-menu { 
@@ -148,4 +149,19 @@ text-align-cent {
 }
 .padder{
     padding: 30px 0 0 0;
+}
+.userbtn{
+    width: 90%;
+    height: 40px;
+}
+.fllw{
+    padding: 10px;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 5px;
+}
+.fllw:hover{
+    color: red;
+    background-color: lightblue;
+    opacity: 1.0;
 }
