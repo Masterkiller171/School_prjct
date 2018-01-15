@@ -16,32 +16,32 @@ En als u het logboek niet kan bekijken en/of niet kan berijken, kan u in de html
 En als dat niet lukt kan u mij emailen voor het logboek.
 
 All features:
--Registeren van account
--Suggestie systeem voor banen in javascript
--Kan een geslacht kiezen
+- Registeren van account
+- Suggestie systeem voor banen in javascript
+- Kan een geslacht kiezen
    *Kan er maar een kiezen*
--Data van geboorte werkt via een array van maanden, een loop van dagen en een algoritme voor jaren
--Kan wachtwoorden ontzichtbaar maken en dan weer zichtbaar
--Kan maar een account aan maken met dezelfde data
--Alle data word in sessions opgeslagen na pagina herladen
--Kan email nog veranderen na registratie pagina
--Een recovery code generator geeft uw een code die uw ergens moet bewaren voor als u uw wachtwoord vergeet
+- Data van geboorte werkt via een array van maanden, een loop van dagen en een algoritme voor jaren
+- Kan wachtwoorden ontzichtbaar maken en dan weer zichtbaar
+- Kan maar een account aan maken met dezelfde data
+- Alle data word in sessions opgeslagen na pagina herladen
+- Kan email nog veranderen na registratie pagina
+- Een recovery code generator geeft uw een code die uw ergens moet bewaren voor als u uw wachtwoord vergeet
 
 -=Login=-
--Inloggen van een account
+- Inloggen van een account
     *Checkt email en wachtwoord*
--Kan wachtwoorden terug krijgen via een recovery code
+- Kan wachtwoorden terug krijgen via een recovery code
   *Hier voor heb een recovery nodig van de registratie en uw email*
- -Kan inloggen met een speciaal admin account hiermee heeft u toegang tot:
+ - Kan inloggen met een speciaal admin account hiermee heeft u toegang tot:
     *Het logboek*
     *Het verslag*
 -=Profiel=-
--Alle data van registratie komt hier te verschijn
--De tijd waarop uw account is aangemaakt komt te voorschijn
--Alle posten die u heeft geplaatst is zichtbaa
--U kan uw profiel aanpassen in bij Edit Profile
+- Alle data van registratie komt hier te verschijn
+- De tijd waarop uw account is aangemaakt komt te voorschijn
+- Alle posten die u heeft geplaatst is zichtbaa
+- U kan uw profiel aanpassen in bij Edit Profile
 
 -=Overige features=-
--Het op zoeken van iemand anders profiel is mogelijk
--De posten bekijken van andere mensen
+- Het op zoeken van iemand anders profiel is mogelijk
+- De posten bekijken van andere mensen
 - Meer komt nog
