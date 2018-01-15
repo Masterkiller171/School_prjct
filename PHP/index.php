@@ -18,12 +18,10 @@ $_SESSION['userComment'] = $sqlll['Comment'];
 if(isset($sqlll['Website'])){
 $_SESSION['userWebsite'] = $sqlll['Website'];
 }
-if(isset($_SESSION['userUsername']) && isset($_SESSION['userName']) && isset($_SESSION['userSurname']) && isset($_SESSION['userEmail'])
-        && isset($_SESSION['userDepartment']) && isset($_SESSION['userDays']) && isset($_SESSION['userMonth'])&& isset($_SESSION['userYear'])
-        && isset($_SESSION['userGender'])&& isset($_SESSION['userTime']) && isset($_SESSION['userComment'])){
     header("Location: ../Userprofile/customuser.php");
 }
-}}
+}
+
 ?>
 <html lang="en">
 
@@ -47,6 +45,7 @@ if(isset($_SESSION['userUsername']) && isset($_SESSION['userName']) && isset($_S
            <input type="submit" value="Find user" class="userbtn"/>
       </form>
         </th>
+        <p><?php echo $_SESSION['message']; ?></p>
         </div>
     <div class="left-filler"></div>
     <div class="body" style="height: 80%;">

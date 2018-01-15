@@ -1,5 +1,8 @@
 <?php
 include 'Functions.php';
+$id = $_SESSION['id'];
+$Following = $conn -> query("SELECT Following FROM userinfo WHERE id='$id'");
+
 ?>
 <html lang="en">
     <head>
@@ -20,6 +23,11 @@ include 'Functions.php';
        
        
         <?php navbar()?>
+        <div class="fllwbox"><br><?php 
+        foreach($Following as $out){
+    echo '<div class="fllwinbox shadow">'.implode($out).' </div>'; 
+        }
+    ?></div>
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad">
@@ -28,7 +36,6 @@ include 'Functions.php';
           <br>
           <strong><h5 class="shad"><?php echo $_SESSION['time'] ?></h5></strong>
            <a href="Editprof.php" >Edit Profile</a>
-          
            <div class="boxp shadow">
                <div class="cover left">
                <p style="text-align: center;">My posts</p>
@@ -37,15 +44,17 @@ include 'Functions.php';
            </div>
            </div>
       </div>
+          
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-   
+            
           <div class="panel panel-info">
             <div class="panel-heading">
-              <div class="panel-title"><h3><?php ?></h3>
+              <div class="panel-title"><h3><?php $_SESSION['Name'].','.$_SESSION['Surname'] ?></h3>
             </div>
             <div class="panel-body">
               <div class="row">
                   <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../Images/Home.png" style=""> </div>
+                  
                   <tabb>
                 <div class=" col-md-9 col-lg-9 ">
                    
@@ -88,9 +97,9 @@ include 'Functions.php';
                 </div>
                   </tabb>
                 </div>
-              </div>
+                
+              </div> 
             </div>
-            
           </div>
         </div>
       </div>

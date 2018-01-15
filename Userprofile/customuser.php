@@ -1,18 +1,21 @@
 <?php
-include '../../PHP/Functions.php';
-function follower($conn){
-    if($_SESSION['active'] > 0){
+include '../PHP/Functions.php';
+if($_SERVER['REQUEST_METHOD']== 'POST'){
+   if($_SESSION['active'] > 0){
+    $id = $_SESSION['id'];
     $follow = $_SESSION['userUsername'];
-    $addfllwr = "INSERT INTO userinfo following=". $follow ."";
+    $addfllwr = "UPDATE userinfo SET Following = '$follow'";
+    echo $addfllwr;
     $conn -> query($addfllwr);
-    }else{
-        header("Location: ../PHP/Login.php");
-    }
+   }else{
+        $_SESSION['message'] = "To perform that action you must be signed in";
+       header("Location: ../PHP/Login.php");
+   }
 }
 ?>
 <html lang="en">
     <head>
-    <title>Innoform - <?php echo $_SESSION['Username'] ?></title>
+    <title>Innoform - <?php echo $_SESSION['userUsername'] ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/Profile.css"> 
     <link rel="stylesheet" href="../CSS/Main.css"> 
@@ -24,16 +27,18 @@ function follower($conn){
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad">
-          <button class="fllw" onclick="<?php follower() ?>"><strong>Follow <?php echo $_SESSION['userUsername']?></strong></button>
+          <form method="post">
+              <button type="submit"><strong>Follow <?php echo $_SESSION['userUsername']?></strong></button>
+          </form>
           <strong><h4 class="shad">Member Since:</h4></strong>
           <br>
           <strong><h5 class="shad"><?php echo $_SESSION['userTime'] ?></h5></strong>          
            <div class="boxp shadow">
-               <div class="cover left">
+            <div class="cover left">
                <p style="text-align: center;">My posts</p>
                <p style="text-align: center;">------------------------------------------------------</p>
            <?php my_loop() ?>
-           </div>
+            </div>
            </div>
       </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >

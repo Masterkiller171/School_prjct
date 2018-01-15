@@ -38,12 +38,13 @@
 	top:80px;
 }
 .boxp {
+        direction:rtl;
 	width:110%;
 	height:300px;
 	background:#FFF;
 	margin:40px auto;
         border-radius: 2px; 
-        overflow: scroll;
+        overflow-y: scroll;
         opacity: 0.8;
         border-radius: 10px;
 }
@@ -103,4 +104,22 @@ tabc{
     padding: 40px;
     background-color: white;
     opacity: 0.8;
+}
+
+.fllwbox{
+    direction:rtl;
+    width:220px;
+    height: 500px;
+    overflow-y: scroll;
+    opacity: 0.8;
+    background-color: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 10px;
+}
+.fllwinbox{
+    width: 90%;
+    height: 40px;
+    background-color: grey;
+    float: left;
 }
