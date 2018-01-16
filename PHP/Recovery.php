@@ -31,6 +31,8 @@ $_SESSION['message'] = "";
             if(isset($Recode)){
             $sql  = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, id, Perm, Recode)"
             . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$id', '$perm','$Recode')";
+            $sqlol = "INSERT INTO following (id) VALUES ('$id')";
+            $conn -> query($sqlol);
             $conn -> query($sql);
         $_SESSION['Login'] = '<a href="Login.php">Continue to login page</a>';
         header("Location: Profile.php");

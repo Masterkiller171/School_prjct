@@ -105,7 +105,6 @@ $navbaradmin =' <nav>
          <li><a href="../SCL/PHP/Verslag.php" '. $dec .'>Verslag</a></li>
              <li><a href="../SCL/PHP/logboek.php" '. $dec .'>Logboek</a></li>
        </ul></li>
-       <input type="text" name="userquer" placeholder="Find other users" style="float: right; width: 10%; height: 30px; border-radius: 5px;"/>
    </ul>
  </nav>
     <div class="filler two"></div>';

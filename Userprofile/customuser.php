@@ -1,17 +1,42 @@
 <?php
 include '../PHP/Functions.php';
+$id = $_SESSION['id'];
+$_SESSION['message'] = '';
+    $fllw = $conn -> query("SELECT * FROM following WHERE id='$id'");
+    $fllw2 = $conn -> query("SELECT Following2 FROM following WHERE id='$id'");
+    $fllw3 = $conn -> query("SELECT Following3 FROM following WHERE id='$id'");
+    $fllw4 = $conn -> query("SELECT Following4 FROM following WHERE id='$id'");
+    $fllw5 = $conn -> query("SELECT Following5 FROM following WHERE id='$id'");
+    $sql = $fllw -> fetch_assoc();
+    
 if($_SERVER['REQUEST_METHOD']== 'POST'){
-   if($_SESSION['active'] > 0){
-    $id = $_SESSION['id'];
+   if($_SESSION['active'] > 0){   
     $follow = $_SESSION['userUsername'];
-    $addfllwr = "UPDATE userinfo SET Following = '$follow'";
-    echo $addfllwr;
-    $conn -> query($addfllwr);
+    //$addtabl = "ALTER TABLE `following` ADD '$follow' VARCHAR( 255 ) NOT NULL";
+    //$addfllwr = "UPDATE userinfo SET Following = '$follow'";
+    //$conn -> query($addfllwr);
+    if($sql['Following1'] === NULL){
+        $conn -> query("UPDATE following SET Following1 = '$follow' WHERE id='$id'");
+    }
+    elseif($fllw2 === NULL){
+        $conn -> query("UPDATE following SET Following2 = '$follow' WHERE id='$id'");
+    }
+    elseif($fllw3 === NULL){
+        $conn -> query("UPDATE following SET Following3 = '$follow' WHERE id='$id'");
+    }
+    elseif($fllw4 === NULL){
+        $conn -> query("UPDATE following SET Following4 = '$follow' WHERE id='$id'");
+    }
+    elseif($fllw5 === NULL){
+        $conn -> query("UPDATE following SET Following5 = '$follow' WHERE id='$id'");
+    }
+        
    }else{
         $_SESSION['message'] = "To perform that action you must be signed in";
        header("Location: ../PHP/Login.php");
    }
 }
+
 ?>
 <html lang="en">
     <head>
