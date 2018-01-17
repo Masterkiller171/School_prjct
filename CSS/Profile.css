@@ -116,10 +116,20 @@ tabc{
     display: inline-block;
     position: absolute;
     border-radius: 10px;
+    text-align: left;
 }
 .fllwinbox{
-   width: 90%;
-    height: 40px;
+    width: 90%;
+    height: 10%;
     background-color: grey;
     float: left;
+    border-radius: 10px;
+}
+.fllwtxt{
+    color: black;
+    font-size: 120%;
+}
+
+.fllwtxt:hover{
+    color: white;
 }

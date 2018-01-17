@@ -2,6 +2,35 @@
 include 'Functions.php';
 $id = $_SESSION['id'];
 $Following = $conn -> query("SELECT Following FROM userinfo WHERE id='$id'");
+foreach($Following as $out){
+   $following =  implode($out);
+}
+
+$name = $conn -> query("SELECT Name FROM userinfo WHERE Username='$following'");
+$surname = $conn -> query("SELECT Surname FROM userinfo WHERE Username='$following'");
+
+if($_SERVER['REQUEST_METHOD']== 'POST'){
+$quary = $conn -> query("SELECT * FROM userinfo WHERE Username='$following'");
+$sqlll = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from
+$_SESSION['userUsername'] = $sqlll['Username'];
+$_SESSION['userName'] = $sqlll['Name'];
+$_SESSION['userSurname'] = $sqlll['Surname'];
+$_SESSION['userEmail'] = $sqlll['Email'];
+$_SESSION['userSpecialty'] = $sqlll['Specialty'];
+$_SESSION['userDays'] = $sqlll['days'];
+$_SESSION['userMonth'] = $sqlll['month'];
+$_SESSION['userYear'] = $sqlll['year'];
+$_SESSION['userGender'] = $sqlll['Gender'];
+$_SESSION['userTime'] = $sqlll['time'];
+$_SESSION['userComment'] = $sqlll['Comment'];
+if(isset($sqlll['Website'])){
+$_SESSION['userWebsite'] = $sqlll['Website'];
+$_SESSION['userFollowing'] = $sqlll['Following'];
+}
+if(isset($_SESSION['userUsername'])){
+    header("Location: ../Userprofile/customuser.php");
+}
+} 
 
 ?>
 <html lang="en">
@@ -23,11 +52,13 @@ $Following = $conn -> query("SELECT Following FROM userinfo WHERE id='$id'");
        
        
         <?php navbar()?>
-        <div class="fllwbox"><br><?php 
-        foreach($Following as $out){
-    echo '<div class="fllwinbox shadow">'.implode($out).' </div>'; 
-        }
-    ?></div>
+        <div class="fllwbox"><br>
+            <form method="post">
+                <div class="fllwinbox"><div class="fllwtxt"><input type="submit" value="<?php echo $following /*.'-'. $name.','.$surname*/ ?>"
+                    style="background: transparent; border: none;"> 
+                    </div></div>
+            </form>
+        </div>
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad">
