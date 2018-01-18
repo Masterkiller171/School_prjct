@@ -2,10 +2,39 @@
 include '../PHP/Functions.php';
 $id = $_SESSION['id'];
 $_SESSION['message'] = '';
-    
+$follow = $_SESSION['userUsername'];
+$Following = $conn -> query("SELECT Following FROM userinfo WHERE Username='$follow'");
+foreach($Following as $out){
+   $following =  implode($out);
+}
 if($_SERVER['REQUEST_METHOD']== 'POST'){
+if(isset($_POST['fllwrs'])){
+ if(isset($following)){
+$quary = $conn -> query("SELECT * FROM userinfo WHERE Username='$following'");
+if(isset($quary) AND !empty($quary)){
+$sqlll = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from
+$_SESSION['userUsername'] = $sqlll['Username'];
+$_SESSION['userName'] = $sqlll['Name'];
+$_SESSION['userSurname'] = $sqlll['Surname'];
+$_SESSION['userEmail'] = $sqlll['Email'];
+$_SESSION['userSpecialty'] = $sqlll['Specialty'];
+$_SESSION['userDays'] = $sqlll['days'];
+$_SESSION['userMonth'] = $sqlll['month'];
+$_SESSION['userYear'] = $sqlll['year'];
+$_SESSION['userGender'] = $sqlll['Gender'];
+$_SESSION['userTime'] = $sqlll['time'];
+$_SESSION['userComment'] = $sqlll['Comment'];
+if(isset($sqlll['Website'])){
+$_SESSION['userWebsite'] = $sqlll['Website'];
+$_SESSION['userFollowing'] = $sqlll['Following'];
+}
+if(isset($_SESSION['userUsername'])){
+    header("Location: ../Userprofile/customuser.php");
+}
+} 
+}
+ }else{
    if($_SESSION['active'] > 0){   
-    $follow = $_SESSION['userUsername'];
     //$addtabl = "ALTER TABLE `following` ADD '$follow' VARCHAR( 255 ) NOT NULL";
     $addfllwr = "UPDATE userinfo SET Following = '$follow' WHERE id='$id'";
     $conn -> query($addfllwr);
@@ -26,12 +55,13 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
       //}elseif($fllw5){
        //   $conn -> query("UPDATE following SET Following5='$follow' WHERE Following5 IS NULL AND id='$id'");
       //}
+   
    }else{
         $_SESSION['message'] = "To perform that action you must be signed in";
        header("Location: ../PHP/Login.php");
    }
 }
-
+}
 ?>
 <html lang="en">
     <head>
@@ -44,6 +74,13 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
     
     <body>      
         <?php navbar()?>
+                <div class="fllwbox"><br>
+            <form method="post">
+                <div class="fllwinbox"><div class="fllwtxt"><input type="submit" name="fllwrs" value="<?php if(isset($following)){ echo $following; }else{ echo 'No followings';} /*.'-'. $name.','.$surname*/ ?>"
+                    style="background: transparent; border: none;"> 
+                    </div></div>
+            </form>
+        </div>
      <div class="container">
       <div class="row">
       <div class="col-md-5  toppad">
@@ -118,6 +155,11 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
           </div>
         </div>
       </div>
+    </div>
+            <div class="filler two">
+    </div>
+    <div class="footer">
+        <h1> Made by Youri Bontekoe</h1>
     </div>
     </body>
 </html>

@@ -120,10 +120,11 @@ tabc{
 }
 .fllwinbox{
     width: 90%;
-    height: 10%;
+    height: auto;
     background-color: grey;
     float: left;
     border-radius: 10px;
+    padding: 5px;
 }
 .fllwtxt{
     color: black;

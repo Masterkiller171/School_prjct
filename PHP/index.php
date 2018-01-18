@@ -26,7 +26,7 @@ $_SESSION['userWebsite'] = $sqlll['Website'];
 <html lang="en">
 
 <head>
-    <title>Hello - <?php $_SESSION['Name'] ?></title>
+    <title>Hello - <?php if(isset($_SESSION['Name'])){ echo $_SESSION['Name'];}else{ echo 'User';} ?></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>

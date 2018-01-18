@@ -5,13 +5,19 @@ $Following = $conn -> query("SELECT Following FROM userinfo WHERE id='$id'");
 foreach($Following as $out){
    $following =  implode($out);
 }
-
-$name = $conn -> query("SELECT Name FROM userinfo WHERE Username='$following'");
-$surname = $conn -> query("SELECT Surname FROM userinfo WHERE Username='$following'");
-
-if($_SERVER['REQUEST_METHOD']== 'POST'){
 $quary = $conn -> query("SELECT * FROM userinfo WHERE Username='$following'");
 $sqlll = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from
+$name = $sqlll['Name'];
+$surname = $sqlll['Surname'];
+$_SESSION['userSurname'] = $sqlll['Surname'];
+$ccomment = $sqlll['Comment'];
+$comlen = strlen($ccomment);
+if($comlen > 20){
+  $comment =  substr($ccomment, 20);
+}else{
+    $comment = '...'.$sqlll['Comment'] ;
+}
+if($_SERVER['REQUEST_METHOD']== 'POST'){
 $_SESSION['userUsername'] = $sqlll['Username'];
 $_SESSION['userName'] = $sqlll['Name'];
 $_SESSION['userSurname'] = $sqlll['Surname'];
@@ -54,8 +60,9 @@ if(isset($_SESSION['userUsername'])){
         <?php navbar()?>
         <div class="fllwbox"><br>
             <form method="post">
-                <div class="fllwinbox"><div class="fllwtxt"><input type="submit" value="<?php echo $following /*.'-'. $name.','.$surname*/ ?>"
-                    style="background: transparent; border: none;"> 
+                <div class="fllwinbox"><div class="fllwtxt">
+                        <input type="submit" value="go to <?php echo $following ?> 's"style="background: transparent; border: none;"> 
+                            <br><?php echo $following .'- '.$name.', '.$surname .'<br>'. $comment?>
                     </div></div>
             </form>
         </div>
@@ -80,7 +87,7 @@ if(isset($_SESSION['userUsername'])){
             
           <div class="panel panel-info">
             <div class="panel-heading">
-              <div class="panel-title"><h3><?php $_SESSION['Name'].','.$_SESSION['Surname'] ?></h3>
+              <div class="panel-title"><h3><?php echo $_SESSION['Name'].','.$_SESSION['Surname'] ?></h3>
             </div>
             <div class="panel-body">
               <div class="row">
@@ -135,5 +142,11 @@ if(isset($_SESSION['userUsername'])){
         </div>
       </div>
     </div>
+            <div class="filler two">
+    </div>
+    <div class="footer">
+        <h1> Made by Youri Bontekoe</h1>
+    </div>
+</body>
     </body>
 </html>
