@@ -154,14 +154,3 @@ text-align-cent {
     width: 90%;
     height: 40px;
 }
-.fllw{
-    padding: 10px;
-    background-color: white;
-    opacity: 0.8;
-    border-radius: 5px;
-}
-.fllw:hover{
-    color: red;
-    background-color: lightblue;
-    opacity: 1.0;
-}

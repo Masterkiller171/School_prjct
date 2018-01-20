@@ -111,6 +111,7 @@ tabc{
     width:220px;
     height: 500px;
     overflow-y: scroll;
+    overflow-x: visible;
     opacity: 0.8;
     background-color: white;
     display: inline-block;
@@ -120,17 +121,49 @@ tabc{
 }
 .fllwinbox{
     width: 90%;
-    height: auto;
-    background-color: grey;
+    height: 15%;
+    background-color: #d6ebf2;
     float: left;
     border-radius: 10px;
     padding: 5px;
 }
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.fllwinbox:hover  .hidden{   
+    height: 30%;
+    opacity: 0.8;
+    visibility: visible;
+    
+}
+.fllwinbox:hover{
+  transition: height 0.3s;
+  height: 30%;
+}
+
 .fllwtxt{
     color: black;
     font-size: 120%;
 }
-
-.fllwtxt:hover{
-    color: white;
+.fllw{
+    padding: 10px;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 5px;
+}
+.fllw:hover{
+    color: red;
+    background-color: lightblue;
+    opacity: 1.0;
+}
+.fllwbox > button{
+    border-radius: 3px;
+    width: 50%;
+    background-color: #d6ebf2;
+    border: none;
+    font-size: 120%;
+}
+.fllwbox > button:hover{
+    color: purple;
 }

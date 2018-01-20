@@ -29,9 +29,11 @@ $_SESSION['message'] = "";
             $Recode = $Rec1.$Rec2.$Rec3.$Rec4;
             $_SESSION['active'] = 1;
             if(isset($Recode)){
+            
             $sql  = "INSERT INTO userinfo (Username, Name, Surname, Email, Password, Comment, Gender, Specialty, days, month, year, time, Website, id, Perm, Recode)"
             . "VALUES ('$Username', '$Name', '$Surname', '$Email', '$Password', '$Comment', '$Gender', '$Specialty', '$days', '$month', '$year', '$time', '$Website', '$id', '$perm','$Recode')";
             $sqlol = "INSERT INTO following (id) VALUES ('$id')";
+            $conn -> query('UPDATE userinfo SET Online="1"');
             $conn -> query($sqlol);
             $conn -> query($sql);
         $_SESSION['Login'] = '<a href="Login.php">Continue to login page</a>';

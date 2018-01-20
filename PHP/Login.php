@@ -29,7 +29,7 @@ else { // User exists
     $_SESSION['Email']    = $email;  
     $_SESSION['perm']     = $sql['Perm'];
     $_SESSION['active']   = 1;
-    
+    $conn -> query('UPDATE userinfo SET Online="1"');
      header("location: Profile.php");
     }else{
         $_SESSION['message'] = "You have entered wrong password, try again!";

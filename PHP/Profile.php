@@ -2,9 +2,11 @@
 include 'Functions.php';
 $id = $_SESSION['id'];
 $Following = $conn -> query("SELECT Following FROM userinfo WHERE id='$id'");
-foreach($Following as $out){
+/*Looping trough all array elements*/
+foreach($Following as $out){ 
    $following =  implode($out);
 }
+/* Getting all information from  follower */
 $quary = $conn -> query("SELECT * FROM userinfo WHERE Username='$following'");
 $sqlll = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from
 $name = $sqlll['Name'];
@@ -17,6 +19,29 @@ if($comlen > 20){
 }else{
     $comment = '...'.$sqlll['Comment'] ;
 }
+
+$online = $conn -> query("SELECT Online FROM userinfo WHERE Username='$following'");
+if(isset($online)){
+if($online == '1'){
+    $ofnile = "Online";
+    $offn = '
+               <div class="fllwinbox" style="background-color:#7fff7f"><div class="fllwtxt">           
+                        <input type="submit" value="  '.$following.'---'.$ofnile.' "style="background: transparent; border: none;">
+                        <br>'.$name.",".$surname.'?>  
+                        <div class="hidden"> '.$comment.'<br> 
+                        </div>
+                    </div></div>';
+}else{
+    $ofnile = "Offline";
+    $offn = '
+                <div class="fllwinbox" style="background-color:#ff7f7f"><div class="fllwtxt">           
+                        <input type="submit" value=" '. $following.'---'.$ofnile .'  "style="background: transparent; border: none;"/>
+                        <br>'.$name.",".$surname.'
+                        <div class="hidden">'. $comment.'<br> 
+                        </div></div>';
+}
+}
+
 if($_SERVER['REQUEST_METHOD']== 'POST'){
 $_SESSION['userUsername'] = $sqlll['Username'];
 $_SESSION['userName'] = $sqlll['Name'];
@@ -58,15 +83,15 @@ if(isset($_SESSION['userUsername'])){
        
        
         <?php navbar()?>
-        <div class="fllwbox"><br>
-            <form method="post">
-                <div class="fllwinbox"><div class="fllwtxt">
-                        <input type="submit" value="go to <?php echo $following ?> 's"style="background: transparent; border: none;"> 
-                            <br><?php echo $following .'- '.$name.', '.$surname .'<br>'. $comment?>
-                    </div></div>
+        <div class="fllwbox">
+            <button><strong>Following</strong></button><button><strong>Followers</strong></button><br>
+            <form method="post"><br>
+             <?php echo $offn ?>
+                                    
             </form>
+            </div>
         </div>
-     <div class="container">
+     <div class="container">         
       <div class="row">
       <div class="col-md-5  toppad">
           
@@ -82,7 +107,6 @@ if(isset($_SESSION['userUsername'])){
            </div>
            </div>
       </div>
-          
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
             
           <div class="panel panel-info">
@@ -92,7 +116,6 @@ if(isset($_SESSION['userUsername'])){
             <div class="panel-body">
               <div class="row">
                   <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../Images/Home.png" style=""> </div>
-                  
                   <tabb>
                 <div class=" col-md-9 col-lg-9 ">
                    
@@ -134,11 +157,11 @@ if(isset($_SESSION['userUsername'])){
                     </table>
                 </div>
                   </tabb>
-                </div>
-                
+                </div>             
               </div> 
             </div>
           </div>
+                          
         </div>
       </div>
     </div>

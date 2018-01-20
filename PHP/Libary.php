@@ -20,7 +20,7 @@ $butout = '
 //Loop on profile page for posts
 $myloop='<div class="filler1"></div>
          <div class="cover left">
-         <div class="box2 shadow"> Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum... <div class="btn">
+         <div class="box2 shadow" style="background-color: #d6ebf2;"> Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum... <div class="btn">
          <a href="Post.php">Read more...</a></div></div></div>';
 
 //Link to login page
