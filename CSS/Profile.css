@@ -39,10 +39,9 @@
 }
 .boxp {
         direction:rtl;
-	width:110%;
-	height:300px;
+	width:90%;
+	height:60%;
 	background:#FFF;
-	margin:40px auto;
         border-radius: 2px; 
         overflow-y: scroll;
         opacity: 0.8;
@@ -108,9 +107,8 @@ tabc{
 
 .fllwbox{
     direction:rtl;
-    width:13%;
-    height: 500px;
-    overflow-y: scroll;
+    width:10%;
+    height: 70%;
     opacity: 0.8;
     background-color: white;
     display: inline-block;
@@ -121,7 +119,6 @@ tabc{
     width: 90%;
     height: 15%;
     background-color: #d6ebf2;
-    float: left;
     border-radius: 10px;
     padding: 5px;
 }
@@ -143,6 +140,7 @@ tabc{
 .fllwtxt{
     color: black;
     font-size: 120%;
+    text-align: center;
 }
 .fllw{
     padding: 10px;
@@ -160,4 +158,10 @@ timer{
     padding: 10px;
     background-color: white;
     opacity: 0.8;
+}
+aligner{     
+    text-align: center;
+}
+.padders{
+    padding: 0 20px 0 0;
 }

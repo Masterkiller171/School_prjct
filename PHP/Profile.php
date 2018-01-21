@@ -27,19 +27,18 @@ $online = $conn -> query("SELECT Online FROM userinfo WHERE Username='$following
      $ofnile = "Online";
      $offn = ' 
                <div class="fllwinbox" style="background-color:#7fff7f"><div class="fllwtxt">           
-                         <input type="submit" value="  '.$following.'-'.$ofnile.'" name="fllws" style="background: transparent; border: none;">
-                         <br>'.$name.",".$surname.'?>  
-                         <div class="hidden"> '.$comment.'<br> 
-                        </div>
-                     </div></div>';
+                         <input type="submit" value="  '.$following.'" name="fllws" style="background: transparent; border: none;" /></div><p style="float: right;">'.$ofnile.'</p>
+                         <p>'.$name.", ".$surname.'</p>  
+                         <div class="hidden"> '.$comment.'</div><br> 
+                        </div>';
  }else{
      $ofnile = "Offline";
      $offn = '
                  <div class="fllwinbox" style="background-color:#ff7f7f"><div class="fllwtxt">           
-                         <input type="submit" value=" '. $following.'-'.$ofnile .'"  name="fllws" style="background: transparent; border: none;"/>
-                         <br>'.$name.",".$surname.'
-                         <div class="hidden">'. $comment.'<br> </div>
-                         </div></div>';
+                         <input type="submit" value=" '. $following.'"  name="fllws" style="background: transparent; border: none;" /></div><p style="float: right;">'.$ofnile.'</p>
+                         <p">'.$name.", ".$surname.'</p>
+                         <div class="hidden">'. $comment.'</div><br> 
+                         </div>';
  }
  }
 $user = $_SESSION['Username'];
@@ -61,18 +60,17 @@ if(isset($quarei)){
     if($Onlines == '1'){
      $ofniles = 'Online';
      $fllwrs = '<div class="fllwinbox" style="background-color:#7fff7f"><div class="fllwtxt">           
-                        <input type="submit" value="  '.$followings.'-'.$ofniles.'" name="fllwrs" style="background: transparent; border: none;"/>
-                        '.$namee.",".$surnamee.'  
-                        <div class="hidden"> '.$comments.'<br> 
-                        </div>
-                    </div></div>';
+                        <input type="submit" value="  '.$followings.'" name="fllwrs" style="background: transparent; border: none;"/></div> <p style="float: right;">'.$ofniles.'</p>
+                        <p>'.$namee.", ".$surnamee.'</p>  
+                        <div class="hidden"> '.$comments.'</div><br>                         
+                    </div>';
  }elseif($Onlines == '0'){
      $ofniles = 'Offline';
        $fllwrs = '<div class="fllwinbox" style="background-color:#ff7f7f"><div class="fllwtxt">           
-                        <input type="submit" value=" '. $followings.'-'.$ofniles .'"  name="fllwrs" style="background: transparent; border: none;"/>
-                        '.$namee.",".$surnamee.'
-                        <div class="hidden">'. $comments.'<br> </div>
-                        </div></div>';        
+                        <input type="submit" value=" '. $followings.'"  name="fllwrs" style="background: transparent; border: none;"/></div> <p style="float: right;">'.$ofniles.'</p>
+                        <p>'.$namee.", ".$surnamee.'</p>
+                       <div class="hidden">'. $comments.' </div><br>
+                       </div>';        
 }
 }
 if($_SERVER['REQUEST_METHOD']== 'POST'){
@@ -137,7 +135,17 @@ if(isset($_SESSION['userUsername'])){
        
        
         <?php navbar()?>
-<div class="fllwbox">          
+        <div class="leftfiller"></div>
+        <div class="left-filler"></div>
+<div class="fllwbox"> 
+    <strong> 
+    <p style="   
+    text-align: center; 
+    width: 100%; 
+    height: auto; 
+    padding: 5px;
+    background-color: #d6ebf2">Following</p></strong>
+    <div class="padders">
 <form method="post">
 <?php 
  if(isset($offn)){
@@ -147,8 +155,17 @@ if(isset($_SESSION['userUsername'])){
  }
 ?>
                </form>
+    </div>
                 </div>
 <div class="fllwbox">  
+    <strong> <p style='
+    text-align: center; 
+    width: 100%; 
+    height: auto; 
+    padding: 5px;
+    background-color: #d6ebf2'>Followers</p></strong>
+    
+    <div class="padders">
  <form method="post">   
 <?php 
 if(isset($fllwrs)){
@@ -158,19 +175,20 @@ if(isset($fllwrs)){
 }
 ?>
  </form>
+    </div>
 </div>
         <div class="container" style="float: right;">         
       <div class="row">
-      <div class="col-md-5 toppad">      
+      <div class="col-md-5 toppad" style="background-color: white; border-radius: 10px; padding: 10px 50px; height: 70%">      
           <strong><h4 class="shad">Member Since:</h4></strong>         
           <br>
           <strong><h5 class="shad"><?php echo $_SESSION['time'] ?></h5></strong>
            <a href="Editprof.php" >Edit Profile</a>
-           <div class="boxp shadow">
+           <div class="boxp" style="height: 70%">
                <div class="cover left">
                <p style="text-align: center;">My posts</p>
-               <p style="text-align: center;">------------------------------------------------------</p>
-           <?php my_loop() ?>
+              <hr>
+           <?php echo my_loop() ?>
            </div>
            </div>
       </div>
@@ -178,16 +196,17 @@ if(isset($fllwrs)){
             
           <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title"><h3><?php echo $_SESSION['Name'].','.$_SESSION['Surname'] ?></h3>
-            </div>
             <div class="panel-body">
               <div class="row">
                   <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../Images/Home.png"> </div>
                   <tabb>
-                <div class=" col-md-9 col-lg-9 ">
+                      <div class=" col-md-9 col-lg-9 " style="height: 65.5%;">
                    
                   <table class="table table-user-information">
                     <tbody>
+<div class="panel-title" style="background-color: white; opacity: 0.8; border-radius: 10px; white-space: nowrap;"><h3><?php echo $_SESSION['Name'].', '.$_SESSION['Surname'] ?></h3>
+</div>
+                    <hr><div class="filler"></div>
                         <tr> 
                         <td>Username</td>
                         <td><?php echo $_SESSION['Username'];?>
@@ -232,6 +251,9 @@ if(isset($fllwrs)){
         </div>
       </div>
     </div>
+        <div class="filler two"></div>
+    <div class="footer">
+        <h2> Made by Youri Bontekoe</h2>
+    </div>
 </body>
-    </body>
 </html>
