@@ -8,6 +8,7 @@ foreach($Following as $out){
 }
 /* Getting all information from  follower */
 $quary = $conn -> query("SELECT * FROM userinfo WHERE Username='$following'");
+
 $sqlll = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from
 $name = $sqlll['Name'];
 $surname = $sqlll['Surname'];
@@ -21,28 +22,61 @@ if($comlen > 20){
 }
 
 $online = $conn -> query("SELECT Online FROM userinfo WHERE Username='$following'");
-if(isset($online)){
-if($online == '1'){
-    $ofnile = "Online";
-    $offn = '
+ if(isset($online)){
+ if($online == '1'){
+     $ofnile = "Online";
+     $offn = ' 
                <div class="fllwinbox" style="background-color:#7fff7f"><div class="fllwtxt">           
-                        <input type="submit" value="  '.$following.'---'.$ofnile.' "style="background: transparent; border: none;">
-                        <br>'.$name.",".$surname.'?>  
-                        <div class="hidden"> '.$comment.'<br> 
+                         <input type="submit" value="  '.$following.'-'.$ofnile.'" name="fllws" style="background: transparent; border: none;">
+                         <br>'.$name.",".$surname.'?>  
+                         <div class="hidden"> '.$comment.'<br> 
+                        </div>
+                     </div></div>';
+ }else{
+     $ofnile = "Offline";
+     $offn = '
+                 <div class="fllwinbox" style="background-color:#ff7f7f"><div class="fllwtxt">           
+                         <input type="submit" value=" '. $following.'-'.$ofnile .'"  name="fllws" style="background: transparent; border: none;"/>
+                         <br>'.$name.",".$surname.'
+                         <div class="hidden">'. $comment.'<br> </div>
+                         </div></div>';
+ }
+ }
+$user = $_SESSION['Username'];
+$quarie = $conn -> query("SELECT * FROM userinfo WHERE Following='$user'");
+$quarei = mysqli_fetch_array($quarie, MYSQLI_ASSOC); //Splicing all data from from
+$followings = $quarei['Username'];
+$namee = $quarei['Name'];
+$surnamee = $quarei['Surname'];
+$_SESSION['userSurname'] = $quarei['Surname'];
+$ccomments = $quarei['Comment'];
+$Onlines = $quarei['Online'];
+$comlens = strlen($ccomments);
+if($comlen > 20){
+  $comments =  '...'. substr($ccomment, 20) ;
+}else{
+    $comments = $quarei['Comment'] ;
+}
+if(isset($quarei)){
+    if($Onlines == '1'){
+     $ofniles = 'Online';
+     $fllwrs = '<div class="fllwinbox" style="background-color:#7fff7f"><div class="fllwtxt">           
+                        <input type="submit" value="  '.$followings.'-'.$ofniles.'" name="fllwrs" style="background: transparent; border: none;"/>
+                        '.$namee.",".$surnamee.'  
+                        <div class="hidden"> '.$comments.'<br> 
                         </div>
                     </div></div>';
-}else{
-    $ofnile = "Offline";
-    $offn = '
-                <div class="fllwinbox" style="background-color:#ff7f7f"><div class="fllwtxt">           
-                        <input type="submit" value=" '. $following.'---'.$ofnile .'  "style="background: transparent; border: none;"/>
-                        <br>'.$name.",".$surname.'
-                        <div class="hidden">'. $comment.'<br> 
-                        </div></div>';
+ }elseif($Onlines == '0'){
+     $ofniles = 'Offline';
+       $fllwrs = '<div class="fllwinbox" style="background-color:#ff7f7f"><div class="fllwtxt">           
+                        <input type="submit" value=" '. $followings.'-'.$ofniles .'"  name="fllwrs" style="background: transparent; border: none;"/>
+                        '.$namee.",".$surnamee.'
+                        <div class="hidden">'. $comments.'<br> </div>
+                        </div></div>';        
 }
 }
-
 if($_SERVER['REQUEST_METHOD']== 'POST'){
+    if(isset($_POST['fllws'])){    
 $_SESSION['userUsername'] = $sqlll['Username'];
 $_SESSION['userName'] = $sqlll['Name'];
 $_SESSION['userSurname'] = $sqlll['Surname'];
@@ -61,8 +95,28 @@ $_SESSION['userFollowing'] = $sqlll['Following'];
 if(isset($_SESSION['userUsername'])){
     header("Location: ../Userprofile/customuser.php");
 }
+}
+if(isset($_POST['fllwrs'])){
+ $_SESSION['userUsername'] = $quarei['Username'];
+$_SESSION['userName'] = $quarei['Name'];
+$_SESSION['userSurname'] = $quarei['Surname'];
+$_SESSION['userEmail'] = $quarei['Email'];
+$_SESSION['userSpecialty'] = $quarei['Specialty'];
+$_SESSION['userDays'] = $quarei['days'];
+$_SESSION['userMonth'] = $quarei['month'];
+$_SESSION['userYear'] = $quarei['year'];
+$_SESSION['userGender'] = $quarei['Gender'];
+$_SESSION['userTime'] = $quarei['time'];
+$_SESSION['userComment'] = $quarei['Comment'];
+if(isset($quarei['Website'])){
+$_SESSION['userWebsite'] = $quarei['Website'];
+$_SESSION['userFollowing'] = $quarei['Following'];
+}
+if(isset($_SESSION['userUsername'])){
+    header("Location: ../Userprofile/customuser.php");
+}   
 } 
-
+}
 ?>
 <html lang="en">
     <head>
@@ -83,19 +137,32 @@ if(isset($_SESSION['userUsername'])){
        
        
         <?php navbar()?>
-        <div class="fllwbox">
-            <button><strong>Following</strong></button><button><strong>Followers</strong></button><br>
-            <form method="post"><br>
-             <?php echo $offn ?>
-                                    
-            </form>
-            </div>
-        </div>
-     <div class="container">         
+<div class="fllwbox">          
+<form method="post">
+<?php 
+ if(isset($offn)){
+    echo $offn;
+ }else{
+     echo "No followings";
+ }
+?>
+               </form>
+                </div>
+<div class="fllwbox">  
+ <form method="post">   
+<?php 
+if(isset($fllwrs)){
+    echo $fllwrs;
+}else{
+    echo "No followers";
+}
+?>
+ </form>
+</div>
+        <div class="container" style="float: right;">         
       <div class="row">
-      <div class="col-md-5  toppad">
-          
-          <strong><h4 class="shad">Member Since:</h4></strong>
+      <div class="col-md-5 toppad">      
+          <strong><h4 class="shad">Member Since:</h4></strong>         
           <br>
           <strong><h5 class="shad"><?php echo $_SESSION['time'] ?></h5></strong>
            <a href="Editprof.php" >Edit Profile</a>
@@ -111,11 +178,11 @@ if(isset($_SESSION['userUsername'])){
             
           <div class="panel panel-info">
             <div class="panel-heading">
-              <div class="panel-title"><h3><?php echo $_SESSION['Name'].','.$_SESSION['Surname'] ?></h3>
+                <div class="panel-title"><h3><?php echo $_SESSION['Name'].','.$_SESSION['Surname'] ?></h3>
             </div>
             <div class="panel-body">
               <div class="row">
-                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../Images/Home.png" style=""> </div>
+                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../Images/Home.png"> </div>
                   <tabb>
                 <div class=" col-md-9 col-lg-9 ">
                    
@@ -164,11 +231,6 @@ if(isset($_SESSION['userUsername'])){
                           
         </div>
       </div>
-    </div>
-            <div class="filler two">
-    </div>
-    <div class="footer">
-        <h1> Made by Youri Bontekoe</h1>
     </div>
 </body>
     </body>

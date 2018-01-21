@@ -1,11 +1,79 @@
 <?php
 include '../PHP/Functions.php';
-$id = $_SESSION['id'];
 $_SESSION['message'] = '';
 $follow = $_SESSION['userUsername'];
 $Following = $conn -> query("SELECT Following FROM userinfo WHERE Username='$follow'");
 foreach($Following as $out){
    $following =  implode($out);
+}
+/* Getting all information from  follower */
+$quary = $conn -> query("SELECT * FROM userinfo WHERE Username='$following'");
+
+$sqlll = mysqli_fetch_array($quary, MYSQLI_ASSOC); //Splicing all data from from
+$name = $sqlll['Name'];
+$surname = $sqlll['Surname'];
+$_SESSION['userSurname'] = $sqlll['Surname'];
+$ccomment = $sqlll['Comment'];
+$comlen = strlen($ccomment);
+if($comlen > 20){
+  $comment =  substr($ccomment, 20);
+}else{
+    $comment = '...'.$sqlll['Comment'] ;
+}
+
+$online = $conn -> query("SELECT Online FROM userinfo WHERE Username='$following'");
+ if(isset($online)){
+ if($online == '1'){
+     $ofnile = "Online";
+     $offn = ' 
+               <div class="fllwinbox" style="background-color:#7fff7f"><div class="fllwtxt">           
+                         <input type="submit" value="  '.$following.'-'.$ofnile.'" name="fllws" style="background: transparent; border: none;">
+                         <br>'.$name.",".$surname.'?>  
+                         <div class="hidden"> '.$comment.'<br> 
+                        </div>
+                     </div></div>';
+ }else{
+     $ofnile = "Offline";
+     $offn = '
+                 <div class="fllwinbox" style="background-color:#ff7f7f"><div class="fllwtxt">           
+                         <input type="submit" value=" '. $following.'-'.$ofnile .'"  name="fllws" style="background: transparent; border: none;"/>
+                         <br>'.$name.",".$surname.'
+                         <div class="hidden">'. $comment.'<br> </div>
+                         </div></div>';
+ }
+ }
+$user = $_SESSION['userUsername'];
+$quarie = $conn -> query("SELECT * FROM userinfo WHERE Following='$user'");
+$quarei = mysqli_fetch_array($quarie, MYSQLI_ASSOC); //Splicing all data from from
+$followings = $quarei['Username'];
+$namee = $quarei['Name'];
+$surnamee = $quarei['Surname'];
+$_SESSION['userSurname'] = $quarei['Surname'];
+$ccomments = $quarei['Comment'];
+$Onlines = $quarei['Online'];
+$comlens = strlen($ccomments);
+if($comlen > 20){
+  $comments =  '...'. substr($ccomment, 20) ;
+}else{
+    $comments = $quarei['Comment'] ;
+}
+if(isset($quarei)){
+    if($Onlines == '1'){
+     $ofniles = 'Online';
+     $fllwrs = '<div class="fllwinbox" style="background-color:#7fff7f"><div class="fllwtxt">           
+                        <input type="submit" value="  '.$followings.'-'.$ofniles.'" name="fllwrs" style="background: transparent; border: none;"/>
+                        '.$namee.",".$surnamee.'  
+                        <div class="hidden"> '.$comments.'<br> 
+                        </div>
+                    </div></div>';
+ }elseif($Onlines == '0'){
+     $ofniles = 'Offline';
+       $fllwrs = '<div class="fllwinbox" style="background-color:#ff7f7f"><div class="fllwtxt">           
+                        <input type="submit" value=" '. $followings.'-'.$ofniles .'"  name="fllwrs" style="background: transparent; border: none;"/>
+                        '.$namee.",".$surnamee.'
+                        <div class="hidden">'. $comments.'<br> </div>
+                        </div></div>';        
+}
 }
 if($_SERVER['REQUEST_METHOD']== 'POST'){
 if(isset($_POST['fllwrs'])){
@@ -74,14 +142,29 @@ if(isset($_SESSION['userUsername'])){
     
     <body>      
         <?php navbar()?>
-                <div class="fllwbox"><br>
-            <form method="post">
-                <div class="fllwinbox"><div class="fllwtxt"><input type="submit" name="fllwrs" value="<?php if(isset($following)){ echo $following; }else{ echo 'No followings';} /*.'-'. $name.','.$surname*/ ?>"
-                    style="background: transparent; border: none;"> 
-                    </div></div>
-            </form>
-        </div>
-     <div class="container">
+<div class="fllwbox">          
+<form method="post">
+<?php 
+ if(isset($offn)){
+    echo $offn;
+ }else{
+     echo "No followings";
+ }
+?>
+               </form>
+                </div>
+<div class="fllwbox">  
+ <form method="post">   
+<?php 
+if(isset($fllwrs)){
+    echo $fllwrs;
+}else{
+    echo "No followers";
+}
+?>
+ </form>
+</div>
+        <div class="container" style="float: right;">
       <div class="row">
       <div class="col-md-5  toppad">
           <form method="post">
@@ -155,11 +238,6 @@ if(isset($_SESSION['userUsername'])){
           </div>
         </div>
       </div>
-    </div>
-            <div class="filler two">
-    </div>
-    <div class="footer">
-        <h1> Made by Youri Bontekoe</h1>
     </div>
     </body>
 </html>
