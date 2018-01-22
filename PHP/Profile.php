@@ -179,7 +179,7 @@ if(isset($fllwrs)){
 </div>
         <div class="container" style="float: right;">         
       <div class="row">
-      <div class="col-md-5 toppad" style="background-color: white; border-radius: 10px; padding: 10px 50px; height: 70%">      
+      <div class="col-md-5 toppad" style="background-color: white; border-radius: 10px; height: 70%;">      
           <strong><h4 class="shad">Member Since:</h4></strong>         
           <br>
           <strong><h5 class="shad"><?php echo $_SESSION['time'] ?></h5></strong>
@@ -200,7 +200,7 @@ if(isset($fllwrs)){
               <div class="row">
                   <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../Images/Home.png"> </div>
                   <tabb>
-                      <div class=" col-md-9 col-lg-9 " style="height: 65.5%;">
+                      <div class=" col-md-9 col-lg-9 " style="height: 70%;">
                    
                   <table class="table table-user-information">
                     <tbody>

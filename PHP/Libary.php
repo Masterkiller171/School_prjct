@@ -102,7 +102,7 @@ $navbaradmin =' <nav>
        </ul></li>
        <li class="sub-menu-parent"><a '. $dec .'>logboek</a>
        <ul class="sub-menu">
-         <li><a href="../SCL/PHP/Verslag.php" '. $dec .'>Verslag</a></li>
+         <li><a href="../SCL/PHP/Stappenplan.php" '. $dec .'>Stappenplan</a></li>
              <li><a href="../SCL/PHP/logboek.php" '. $dec .'>Logboek</a></li>
        </ul></li>
    </ul>

@@ -46,8 +46,7 @@ require ("../../PHP/Functions.php");
        </ul></li>
        <li class="sub-menu-parent"><a style='<?php echo $_SESSION['dec'] ?>'>logboek</a>
        <ul class="sub-menu">
-         <li><a href="../SCL/PHP/Verslag.php" style='<?php echo $_SESSION['dec'] ?>'>Verslag</a></li>
-             <li><a href="../SCL/PHP/logboek.php" style='<?php echo $_SESSION['dec'] ?>'>Logboek</a></li>
+         <li><a href="Stappenplan.php" style='<?php echo $_SESSION['dec'] ?>'>Verslag</a></li>
        </ul></li>
    </ul>
  </nav>
@@ -57,10 +56,10 @@ require ("../../PHP/Functions.php");
         <strong><h1>Logboek</h1></strong>
         <table>
             <tr>
-            <th>Datum:</th>
-            <th>Wat ik heb gedaan:</th>
-            <th>Problemen:</th>
-            <th>Hoeveel uur:</th>
+            <th><h3>Datum:</th>
+            <th><h3>Wat ik heb gedaan:</h3></th>
+            <th><h3>Problemen:</h3></th>
+            <th><h3>Hoeveel uur/minuten:</h3></th>
            </tr>
            <tr>
             <td>1 -Sep 2017</td> 
@@ -530,7 +529,130 @@ require ("../../PHP/Functions.php");
             <td>Geen</td>
             <td>90 min</td>
            </tr>
-           <strong><h2>Totale uren: 108 uur</h2></strong>
+                      <tr>
+            <td>10 - Jan 2018</td> 
+            <td>*Added Chanpass.php<br>
+*You can now retrieve your password when you lost it<br>
+*Implemented a fully working recovery system<br>
+*Added last page visited system so when someone is not supposed to be on a certain page they will get send back (not fully implemented)
+            </td>
+            <td>Geen</td>
+            <td>120 min</td>
+           </tr>
+            <tr>
+            <td>11 - Jan 2018</td> 
+            <td>*Reworked editprof.php<br>
+*editing profile is now partially functional
+            </td>
+            <td>Geen</td>
+            <td>90 min</td>
+           </tr>
+                                  <tr>
+            <td>12 - Jan 2018</td> 
+            <td>*Fixed recovery page<br>
+*Started working on user look up
+
+            </td>
+            <td>Geen</td>
+            <td>60 min</td>
+           </tr>
+                       <tr>
+            <td>13 - Jan 2018</td> 
+            <td>*Added user profile file<br>
+                *Added user profile search up<br>
+*Users will be redirected to custom profile page if requested (not finished yet)
+            </td>
+            <td>Data van andere gebruikers moesten naar een aparte session</td>
+            <td>180 min</td>
+           </tr>
+                             <tr>
+            <td>14 - Jan 2018</td> 
+            <td>*Users can now look up other users their profile<br>
+                *Fixed user search bar showing incorrectly on index by moving it to a separate box<br>
+                *Fixed department not showing up<br>
+                *Fixed clipping glitch on profile.php<br>
+*working on a following/ followers system
+            </td>
+            <td>Data wilde niet in de sessions gaan</td>
+            <td>120 min</td>
+           </tr>   
+           <tr>
+            <td>15 - Jan 2018</td> 
+            <td>*Users may now follow one person<br>
+                *Fixed custom user page not loading in<br>
+                *Fixed follow box clipping with time box<br>
+                *Added a license to the project<br>
+                *Updated readme file
+            </td>
+            <td>Veel following boxen clipte met het profiel</td>
+            <td> 90 min</td>
+           </tr> 
+                      <tr>
+            <td>16 - Jan 2018</td> 
+            <td>*Still looking for a solution for multiple followers/following
+            </td>
+            <td>Ik kreeg het probleem niet opgelost en ben dan met een follower verder gegaan</td>
+            <td> 120 min</td>
+           </tr> 
+                                 <tr>
+            <td>17 - Jan 2018</td> 
+            <td>*users are now be able to go to their following's their page<br>
+                *Limited followings to 1 (because having more than 5 is not possible at the moment)<br>
+                *Improved followers box
+
+            </td>
+            <td>Geen</td>
+            <td> 180 min</td>
+           </tr> 
+                                 <tr>
+            <td>18 - Jan 2018</td> 
+            <td>*Users are now be able to see their followings followings<br>
+                *User are now be able to go to their followlings followings's pages<br>
+                *Added more data to the followings box<br>
+                *Added footer to profile pages<br>
+                *Improved footer<br>
+                *Improved followings box
+            </td>
+            <td>Geen</td>
+            <td> 150 min</td>
+           </tr> 
+           <tr>
+         <td>19 - Jan 2018</td> 
+         <td>*Users can now see if their followings are online<br>
+             -The following box will turn green if online<br>
+             -And red if offline<br>
+             *Added followings button and followers button<br>
+             *Improved followings box
+            </td>
+            <td>Geen</td>
+            <td> 180 min</td>
+           </tr> 
+         <tr>
+         <td>20 - Jan 2018</td> 
+         <td>*Users can now see their follower followers<br>
+             -Users are able to see if follow is online<br>
+             *Textbox of follower and following will turn green (online) and red (Offline)<br>
+             *Users are now be able to see their followings followers<br>
+             *Improved profile<br>
+             *Improved custom profile<br>
+             *Removed footer on custom profile and profile
+            </td>
+            <td>De footer zorgde voor een overlapping en is dus tijdelijk weggehaald</td>
+            <td> 120 min</td>
+           </tr> 
+                    <tr>
+         <td>21 - Jan 2018</td> 
+         <td>*Improved profile page<br>
+             *Improved edit profile page<br>
+             *Updated custom profile page<br>
+             *Fixed bug showing different surnames<br>
+             *Re-added footer to profile<br>
+             *Re-added footer to custom profile
+            </td>
+            <td>De footer zorgde voor een overlapping en is dus tijdelijk weggehaald</td>
+            <td> 120 min</td>
+           </tr> 
+           <strong><h2>Totale uren: 136 uur</h2></strong>
            
         </table>
 </div>
