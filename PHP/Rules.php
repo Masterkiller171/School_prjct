@@ -16,9 +16,9 @@
     <!-- Function for navbar /PHP/Libary.php -->
     <?php navbar()?>
     <div class="filler two"></div>
-    <div class="left-filler"></div>
+    <div id='wrapper'>
     <div class="body">
-        <strong><h1>Title</h1></strong>
+        <strong><h1>The rules</h1></strong>
         <ol>
             <li>Don't spam the post section.</li>
             <br/>
@@ -26,12 +26,12 @@
             <br/>
             <li>Don't upload inpropriate content.</li>
             <br/>
-            <li>lol</li>
+            <li>Don't use innapropiate names.</li>
             <br/>
-            <li>lol</li>
+            <li>Don't spam the login page or the registration</li>
             <br/>
-            <li>lol</li>
         </ol>
+    </div>
     </div>
 
 

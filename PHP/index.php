@@ -48,42 +48,48 @@ $_SESSION['userWebsite'] = $sqlll['Website'];
         <p><?php echo $_SESSION['message']; ?></p>
         </div>
     <div class="left-filler"></div>
-    <div class="body" style="height: 80%;">
+    <div class="body" style="height: 85%;">
         <strong><h1>Welcome To<bold> Innoform</bold></h1></strong>
 
-        <h5>
-            <?php echo $_SESSION['active'] ?>
-        </h5>
             <br>
             <h5>  
-                <button onclick="<?php knopje() ?>">Click dit knopje voor admin</button><?php function knopje(){
-                    global $conn;
-                    $conn -> query("INSERT INTO `userinfo` (`Username`, `Name`, `Surname`, `Email`, 
-`Password`, `Comment`, `Gender`, `Specialty`, `id`, `days`, `month`, `year`, `time`, `Website`, `Perm`) VALUES
-('asd', 'asd', 'asd', 'asd@gmail.com', '7815696ecbf1c96e6894b779456d330e', 
-'asdasd', 'female', 'asd', 4853, 2, 'Apr', 1906, '0000-00-00', 'www.com.com', 0),
-('Developer', 'Developer', 'Developer', 'Developer@gmail.com', 
-'Developer', 'Developer', 'female', 'Developer', 545642986, 4, 'May', 1903, '2017-12-20 16:56:11', '', 2);");
-                }
-?>
+            Hallo en welkom op Innoform. Deze website is gemaakt voor de mensen onder ons die hulp nodig hebben bij het maken voor project.
+            Mensen die hulp nodig hebben voor een onderzoek. Hier kunt u dus die help krijgen voor dat onderzoek. Iedereen op deze website,
+            heeft of geeft hulp aan andere mensen. 
             </h5>
-            <br>
             <h5>  
-            Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
-            Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. 
-            Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+             Laten we beginnen met het opzetten en het registratreren van uw profiel. Om te beginnen met het registreren van uw account.
+             Om te beginnen klikt u op Registratie/ login als u hierop klikt krijgt u de login pagina op uw scherm. Om verder te gaan naar
+             naar de registratie, klikt u op de registratie knop boven aan het login scherm. Als u hier op klikt word u naar de registratie geleid.
+            Als u eenmaal bent aangekomen op de registratie pagina kunt uw gegevens invullen en een kort stukje schrijven over uw baan.
+            Zorg dat u alles invult want als dat niet zo is word u terug geleid naar de registratie pagina. Maar dat is geen probleem want
+            als u per ongeluk de pagina herlaad dan word alle informatie in de goede vakken voor u ingevult en dus geen zorgen hoeft te maken.            
             </h5>
-            <br>
-            <h5>  
-            Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
-            Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. 
-            Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+            <h5>
+            Als u al uw informatie heeft ingevuld word u naar de verify pagina geleid. Hier staat uw email. En vraagt de website of dit uw email is.
+            Als het uw email is dan is het geen probleem en ook als het niet zo is want u kunt gewoon uw email invullen en  verify klikken. 
+            U krijgt dan nog een keer de verify pagina te zien maar dan met u verbeteerde email adress. Als u dan nog een keer op de knop klikt 
+            dan word u verder geleid.
             </h5>
-            <br>
-            <h5>  
-            Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
-            Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. 
-            Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+            <h5>
+                U word dan verder geleid naar de recovery pagina. Op deze pagina krijgt u een code te zien. Onthoud deze code goed want op dit moment
+                is er geen mogelijkheid om opnieuw te krijgen. En dus zu ik het ergens bewaren op uw computer voor het geval dat.
+                Deze code kunt u dan weer gebruiken als u uw wachtwoord vergeten bent. Want dan kunt u klikken op forgot password 
+                en dan kunt u uw email en de code invullen en dan krijgt u uw wachtwoord en email terug.
+            </h5>
+            <h5>
+                Als u dit allemaal heb voldaan kan u uw profiel bekijken. Hierop staat alle data die u net heeft ingevult of gaat invullen.
+                Al deze dat is veilig op geslagen in onze database en het wachtwoord is vertaald tot een hash string via een md5 encryptie.
+                Dus al uw data word veilig opgeslagen en is veilig bewaard tegen hackers.
+            </h5>
+            <h5>
+                En nu dat u uw profiel heeft kunt u naar andere gebruikers hun profiel bekijken. Deze gebruikers kunt u volgen en komen dan 
+                in uw followings tab terecht. Op dit moment kunt u 1 iemand volgen. Als u iemand volgt kunt u nu ook via uw profiel naar die gebruiker
+                zijn of haar profiel door op hun naam te klikken.
+                En deze gebruikers kunnen ook u volgen en die komen dan in de followers tab terecht. Hier kunt u het zelfde doen als in de followings tab.
+                U kunt naar het profiel gaan maar ook de comment lezen van de gebruiker lezen en hun naam. De comment is alleen te zien als u uw cursor er overheen
+                gaat.
+                
             </h5>
 </div>
     </div>
